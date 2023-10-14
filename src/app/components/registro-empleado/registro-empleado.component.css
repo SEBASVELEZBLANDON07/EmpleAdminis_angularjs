@@ -1,0 +1,530 @@
+.container_principal{
+    position: relative;
+    top: 100%;
+    left: 0.1%;
+    width: 100%;
+    height: 100%;
+   /* padding: 40px;*/
+    /*transform: translate(-50%, -50%); */
+  }
+
+.abrir-navegacion {
+    position: fixed; 
+    top: 3.5%; 
+    right: 80px; 
+    
+    transform: translateY(-50%); 
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: #9dc0c2;
+    border: 2px solid #000000;
+    border-radius: 15px;
+    z-index: 1000; 
+  }
+
+  .abrir-navegacion:hover {
+    background-color: #ffffff;
+
+
+    
+    border-radius: 15px;
+    box-shadow: 0 0 5px #01ff62a1,
+                0 0 25px #01ff62a1,
+                0 0 25px #01ff62a1,
+                0 0 25px #01ff62a1;
+
+  }
+
+/*navegacion izquieda*/
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -40%;
+    width: 15%;
+    height: 100%;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    justify-content: center;
+    font-size: 1.6rem;
+    z-index: 1000;
+  }
+
+  .menu ul:hover a {
+    color: #ffffff;
+  }
+  .menu ul:hover a:hover {
+    color: #ff0000;
+    box-shadow: 0 2px 0 0 currentcolor;
+  }
+
+  .menu ul {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-35%, -50%);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  .menu li {
+    margin-bottom: 20px;
+  }
+  
+  .menu a {
+    color: #2bff00;
+    text-decoration: none;
+  }
+
+/*divicion de pagina*/
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*background-color: #da0641;*/
+  }
+  
+  .columna-izquierda{
+    flex-basis: 5%;
+    
+    flex-grow: 1; 
+   background-color: #000000;
+   
+  }
+  .columna-derecha {
+    flex-basis: 5%;
+    flex-grow: 1; 
+    background-color: #000000;
+    
+  }
+  
+  .columna-central {
+    flex-basis: 1250px;
+    background-color: #333;
+    border-radius: 20px;
+  }
+
+
+/*titulo de la empresa*/
+.estilo {
+  position: fixed;
+  top: 0;
+  right: 35%;
+  transform: translateX(-50%, -50%); 
+  
+  width: 400px;
+  height: 60px;
+  z-index: 1000;
+  /*background-color: #000000;*/
+}
+
+
+.titulo-empresa{
+
+  color: #ffffff;
+  font: normal 140px Varela Round, sans-serif;
+
+  left: 0;
+  letter-spacing: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  animation: animar linear 5000ms infinite;
+ 
+  font-size: 40px;
+  margin-top: 2px;
+  
+  
+  }
+
+  
+  @keyframes animar {
+    0% {
+      text-shadow:
+        
+        1px -1px 0 #da0641,
+        -4px 4px 0 #13f1fc,
+      
+      ;
+    }
+    30% {
+      text-shadow:
+        -4px -4px 0 #13f1fc,
+        -3px -3px 0 #13f1fc,
+        -2px -2px 0 #13f1fc,
+        -1px -1px 0 #13f1fc,
+        4px 4px 0 #da0641,
+        3px 3px 0 #da0641,
+        2px 2px 0 #da0641,
+        1px 1px 0 #da0641
+      ;
+    }
+    50% {
+      text-shadow:
+        
+        -1px 1px 0 #da0641,
+        4px -4px 0 #13f1fc,
+        
+      ;
+    }
+    80% {
+      text-shadow:
+        4px 4px 0 #13f1fc,
+        3px 3px 0 #13f1fc,
+        2px 2px 0 #13f1fc,
+        1px 1px 0 #13f1fc,
+        -4px -4px 0 #da0641,
+        -3px -3px 0 #da0641,
+        -2px -2px 0 #da0641,
+        -1px -1px 0 #da0641
+      ;
+    }
+    100% {
+      text-shadow:
+        
+        1px -1px 0 #da0641,
+        -4px 4px 0 #13f1fc,
+        
+      ;
+    }
+  }
+
+
+
+  /*efectos de navegacion*/
+  .efectos-navegación {
+    
+    position: fixed;
+    top: 0;
+    left: 12%;
+    height: 40px;
+
+    width: 77%;
+    
+     font-family: "Inter", sans-serif;
+     /*background-color: #333;*/
+     color: #2bff00;
+     display: flex;
+     align-items: center;
+     /*justify-content: center;*/
+     font-size: 1.3rem;
+     margin-top: 50px;
+     margin-left: 68px;
+     z-index: 1000;
+     background-color: #333;
+     border-radius: 20px
+   }
+ 
+   .menu-central a {
+     color: inherit;
+     text-decoration: none;
+     transition: 0.25s ease;
+   }
+ 
+   .menu-central ul {
+     display: flex;
+     flex-wrap: wrap;
+   }
+   .menu-central ul li {
+     margin-left: 0.75em;
+     margin-right: 0.75em;
+   }
+   .menu-central ul:hover a {
+     color: #ffffff;
+   }
+   .menu-central ul:hover a:hover {
+     color: #ff0000;
+     box-shadow: 0 2px 0 0 currentcolor;
+   }
+
+
+  .contenerdo_formulario {
+    width: 100%; /* Ajusta el ancho según tus necesidades */
+    overflow: hidden; /* Limpia los floats internos */
+   /* background-color: blue;*/
+  }
+  
+  .izquierda_form {
+    float: left;
+    margin-top: 50px;
+    margin-left: 10px;
+    width: 59%; /* Esto divide el contenedor en dos columnas iguales */
+    /* Puedes ajustar el ancho según tus necesidades */
+  /*  background-color: #13f1fc;*/
+  
+  }
+  .cont_registro {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 40px;
+    color: #000000;
+    background-color: #d6d6d6;
+    z-index: 2; /* Asegura que cont_registro se muestre encima de cont_form */
+    border: 3px solid #000000;
+    border-radius: 10px;
+
+  }
+
+.text_registro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente */
+    height: 6vh; /* Opcional: ajusta la altura al 100% del viewport */
+    font-size: 1.5rem;
+    border: #000000;
+    border-radius: 10px;
+    position: relative; /* Añade posicionamiento relativo para que z-index funcione */
+    margin-left: 10px;
+  }
+
+.cont_form {
+    position: relative; /* Cambia a posicionamiento absoluto */
+    top: 0; /* Mueve la parte superior de cont_form al 50% del contenedor padre (.cont_registro) */
+    left: 10px;
+    width: 95%;
+
+    transform: translateY(-2%); /* Centra verticalmente el contenido de cont_form */
+    
+    background-color: #7e7b7b;
+    z-index: 1; /* Asegura que cont_form se muestre detrás de cont_registro */
+    border: 3px solid #000000;
+    border-radius: 20px;
+
+  }
+
+  .form_{
+    margin: 20px;
+  }
+
+  .cont_input_label {
+    margin: 20px;
+    display: flex;
+    flex-direction: row; /* Alinea el label y el input en la misma fila */
+    align-items: center; /* Centra verticalmente dentro del contenedor */
+  }
+
+  .label_ {
+      font-weight: bold;
+      margin-right: 20px; /* Añade un margen entre el label y el input */
+      font-size: 1.1rem;
+ 
+ 
+    }
+
+  .input_ {
+      width: 325px;
+      padding: 5px;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      font-size: 1rem;
+  }
+
+  .input_:hover {
+    /*background-color: #ff0000;*/
+  
+    border-radius: 10px;
+    box-shadow: 0 0 5px #55ff06d3,
+                0 0 25px #55ff06d3,
+                0 0 25px #55ff06d3,
+                0 0 25px #55ff06d3
+  }
+  
+
+  /* Estilo para el marcador de posición (placeholder) */
+  .input_::placeholder {
+      color: #999; /* Color del texto de marcador de posición */
+  }
+
+  .select_ {
+    margin-right: 20px;
+    font-size: 1rem;
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+  }
+  .select_:hover {
+    /*background-color: #ff0000;*/
+  
+    border-radius: 10px;
+    box-shadow: 0 0 5px #55ff06d3,
+                0 0 25px #55ff06d3,
+                0 0 25px #55ff06d3,
+                0 0 25px #55ff06d3
+  }
+  
+
+.input_fecha{
+  width: 125px;
+  font-size: 1rem;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.input_fecha:hover {
+  /*background-color: #ff0000;*/
+
+  border-radius: 10px;
+  box-shadow: 0 0 5px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3
+}
+
+
+
+
+.input_Numero{
+  width: 200px;
+  font-size: 1rem;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+.input_Numero:hover {
+  /*background-color: #ff0000;*/
+
+  border-radius: 10px;
+  box-shadow: 0 0 5px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3
+}
+
+
+
+
+
+
+
+
+
+  
+  .derecha_form {
+    float: right;
+    margin-top: 85px;
+    margin-right: 10px;
+    width: 38%; /* Esto divide el contenedor en dos columnas iguales */
+    /* Puedes ajustar el ancho según tus necesidades */
+    background-color: #7e7b7b;
+    border-radius: 20px;
+    border: 3px solid #000000;
+  }
+
+    /*imagen*/
+.conteinerimgs { 
+  margin-top: 10px;
+  text-align: center;
+  
+}
+
+.centrar-imagen {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px; 
+  height: 280px; 
+  border-radius: 8px;
+}
+
+.input_imagen {
+  width: 380px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.input_imagen:hover {
+  /*background-color: #ff0000;*/
+
+  border-radius: 10px;
+  box-shadow: 0 0 5px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3
+}
+
+
+.label_imagen {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-left: 130px;
+
+  
+  
+}
+
+
+
+.terminos-y-condiciones {
+  max-height: 100px; /* Altura máxima del div */
+  overflow-y: auto; /* Habilita el desplazamiento vertical cuando es necesario */
+  border-radius: 15px;
+  border: 1px solid #000000; /* Borde para el div */
+  
+  padding: 10px; /* Espaciado interno del div */
+  margin-bottom: 10px;
+  width: 90%;
+  margin-left: 10px;
+
+}
+
+.terminos-y-condiciones:hover {
+  /*background-color: #ff0000;*/
+
+  border-radius: 15px;
+  box-shadow: 0 0 5px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3
+
+}
+
+
+.botones-container {
+  display: flex; /* Utiliza flexbox para alinear elementos en la misma fila */
+  justify-content: space-between; /* Coloca espacio entre los botones */
+  width: 50%; /* Ancho deseado para el contenedor de botones */
+  margin: 0 auto; /* Centra el contenedor de botones horizontalmente */
+}
+
+.buttlimpiar, .buttenviar {
+  flex: 1; /* Hace que ambos botones ocupen un espacio igual en la fila */
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 30px;
+}
+
+.buttenviar:hover  {
+  background-color: #16cf82;
+  border-radius: 15px;
+  box-shadow: 0 0 5px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3
+  
+}
+
+.buttlimpiar:hover{
+  background-color: #ee1645;
+  border-radius: 15px;
+  box-shadow: 0 0 5px #ff0037be,
+              0 0 25px  #ff0037be,
+              0 0 25px  #ff0037be,
+              0 0 25px #ff0037be
+  
+}
+

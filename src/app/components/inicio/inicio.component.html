@@ -1,0 +1,85 @@
+<br><br><br>
+<body>   
+    <div class="container_principal">
+    <header class="heatitulo" >
+        <!--div class="h1titulo" id="particles">
+            <h1 id="titulo" [@tituloAnimation]="animationState" >EmpleAdminis</h1>
+            <h1 id="titulo">
+                <span [@tituloAnimation]="animation1">E</span>
+                <span [@tituloAnimation]="animation2">m</span>
+                <span [@tituloAnimation]="animation3">p</span>
+                <span [@tituloAnimation]="animation4">l</span>
+                <span [@tituloAnimation]="animation5">e</span>
+                <span [@tituloAnimation]="animation6">A</span>
+                <span [@tituloAnimation]="animation7">d</span>
+                <span [@tituloAnimation]="animation8">m</span>
+                <span [@tituloAnimation]="animation9">i</span>
+                <span [@tituloAnimation]="animation10">n</span>
+                <span [@tituloAnimation]="animation11">i</span>
+                <span [@tituloAnimation]="animation12">s</span>
+            </h1>
+        </div-->
+        <!--(click)="abrirNavegacion()"-->
+        <button   class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+
+            <nav class="menu"  id="particles-js" #menu>
+                <ul class="menu-contenido">
+                    <li><a routerLink="/inicio" routerLinkActive="active" >Inicio</a></li>
+                    <li><a href="#" >Cerrar sesion</a></li>
+                    <li><a href="#">Actualizar Empleado</a></li>
+                    <li><a href="#">Actualizar Perfil</a></li>
+                    <!--li><a href="#">Incapacidad</a></li>
+                    <li><a href="#">Inventario</a></li>
+                    <li><a href="#">Borrar Empleado</a></li-->
+                </ul>
+            </nav>
+    </header>
+    
+    <div class="contenedor">
+
+        <div class="columna-izquierda" #columnaizquierda></div>
+
+        <div class="columna-central" #columnacentral>
+            <div class="estilo">
+                <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
+            </div>
+            <div class="conteinerimgs">
+                <img src="../../../assets/logo_logo.png" class="centrar-imagen">
+            </div>
+            <nav class="menuclas">
+                <ul class="menu-bolitas">
+                    <li><a href="#" class="bolita bolita-1"></a><span class="nombreuno">Horas Extras</span></li>
+                    <li><a href="#" class="bolita bolita-2"></a><span class="nombredos">Asistencia</span></li>
+                    <li><a href="#" class="bolita bolita-3"></a><span class="nombretres">Incapacidad</span></li>
+                    <li><a routerLink="/regitroEmpleado" routerLinkActive="active" class="cuadradouno">Regitrar Nuevo Empleado </a></li>
+                    <li><a href="#" class="cuadradodos">Borrar Empleado</a></li>
+                    <li><a href="#" class="cuadradotres">Inventario</a></li>
+         
+                </ul>
+            </nav>
+            <div class="cerrar-seccion">
+                <button class="boton-cerrar">logout <i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+            <br><br><br><br><br><br>
+            <div>
+               
+            </div>
+            <!--div class="creditos">
+                Desarrollado por <b>SEBASTIAN VELEZ BLANDON</b> - Todos los derechos reservados &copy; 2023
+            </div-->
+        </div>        
+   
+        <div class="columna-derecha" #columnaderecha></div>
+
+    </div>
+</div> 
+  
+   
+    
+</body>
+
+
+
+<router-outlet></router-outlet>
+
+

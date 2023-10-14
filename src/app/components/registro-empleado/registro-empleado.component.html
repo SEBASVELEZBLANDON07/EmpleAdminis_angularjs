@@ -1,0 +1,203 @@
+<br><br><br>
+<body>
+    <div class="container_principal">
+
+        <header>
+            <button   class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+
+                <nav class="menu"  id="particles-js" #menu>
+                    <ul class="menu-contenido">
+                        <li><a routerLink="/inicio" routerLinkActive="active" >Inicio</a></li>
+                        <li><a routerLink="/regitroEmpleado" routerLinkActive="active" >Cerrar sesion</a></li>
+                        <li><a href="#">Actualizar Empleado</a></li>
+                        <li><a href="#">Actualizar Perfil</a></li>
+                        <!--li><a href="#">Incapacidad</a></li>
+                        <li><a href="#">Inventario</a></li>
+                        <li><a href="#">Borrar Empleado</a></li-->
+                    </ul>
+                </nav>
+        </header>
+        <div  class="contenedor">
+        
+            <div class="columna-izquierda" #columnaizquierda></div>
+            
+            
+            <div class="columna-central" #columnacentral>
+                <div class="estilo">
+                    <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
+                </div>
+                <div class="efectos-navegación">
+                    <nav class="menu-central">
+                        <ul class="estilonav">
+                            <li><a routerLink="/inicio" routerLinkActive="active" >Inicio</a></li>
+                            <li><a routerLink="/regitroEmpleado" routerLinkActive="active" >R.Empleado</a></li>
+                            <li><a href="#Movies">R.Asistencia</a></li>
+                            <li><a href="#">R.Horas Extras</a></li>
+                            <li><a href="#">R.Incapacidad</a></li>
+                            <li><a href="#">Inventario</a></li>
+                            <li><a href="#">Borrar Empleado</a></li>
+
+                        </ul> 
+                    </nav>
+                </div>
+                <div class="contenerdo_formulario">
+                    <div class="izquierda_form">
+                        <div class="cont_registro">
+                            <h1 class="text_registro">Registro Empleado</h1>
+                        </div>
+                        <div class="cont_form">
+                            <form class="form_" action="">
+                                <div class="cont_input_label">
+                                    <label class="label_" for="">Nombre de Empleado</label>
+                                    <input class="input_" type="text" id="nombre" placeholder="Ingrese el nombre del empleado" required>
+                                </div>
+
+                                <div class="cont_input_label">
+                                    <label class="label_" for="">Apellidos del Empleado</label>
+                                    <input class="input_" type="text" id="apellidos" placeholder="Ingrese los apellidos del empleado" required>
+                                </div>
+
+                                <div class="cont_input_label" >
+                                    <select class="select_" id="tipo_documento" required>
+                                        <option value="cc">Cédula de Ciudadanía</option>
+                                        <option value="ce">Cédula de Extranjería</option>
+                                    </select>
+                                    <input class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required>
+                                </div>
+
+                                <div class="cont_input_label" >
+                                    <label class="label_" for="">Fecha de nacimiento</label>
+                                    <input class="input_fecha"  type="date" id="fecha" name="fecha" min="1923-01-01" max="2030-12-31" required>
+                                </div>
+                                <div>
+                                    <label class="label_" for="pais">País:</label>
+                                    <select class="select_" id="pais" name="pais" required>
+                                        <option value="+57">Colombia (+57)</option>
+                                        <option value="+1">EE. UU. (+1)</option>
+                                        <option value="+44">Reino Unido (+44)</option>
+                                        
+                                        <!-- Agrega más opciones de países según sea necesario -->
+                                    </select>
+                                    
+                                    <label class="label_" for="numero">Numero cel:</label>
+                                    <input class="input_Numero" type="tel" id="numero" name="numero" placeholder="Número de contacto" required>
+                                </div>
+                                <div class="cont_input_label" >
+                                    <label class="label_" for="correo">Correo Electrónico:</label>
+                                    <input class="input_" type="email" id="correo" name="correo" placeholder="Ejemplo: correo@ejemplo.com" required>
+
+                                </div>
+                                <div class="cont_input_label">
+                                    <label class="label_" for="direccion">Dirección:</label>
+                                    <input class="input_" type="text" id="direccion" name="direccion" placeholder="Ejemplo: 123 Calle Principal" required> 
+                                </div>
+                                <!--div class="cont_input_label">
+                                    <label  class="label_" for="salario">Salario:</label>
+                                    <input class="input_" type="number" id="salario" name="salario" placeholder="Ingrese su salario" required> 
+
+                                </div-->
+                                <br><br><br>
+                                
+                                <h2  class="label_" >Ingresa el horaraio a cumplir de este empleado</h2><br>
+
+
+                                <div class="cont_input_label" >
+                                    <label class="label_" for="diaInicio">Día de inicio:</label>
+                                    <select class="select_" id="diaInicio" name="diaInicio">
+                                        <option value="lunes">Lunes</option>
+                                        <option value="martes">Martes</option>
+                                        <option value="miercoles">Miércoles</option>
+                                        <option value="jueves">Jueves</option>
+                                        <option value="viernes">Viernes</option>
+                                    </select>
+                                    
+                                    <label class="label_" for="diaFinal">Día final:</label>
+                                    <select class="select_" id="diaFinal" name="diaFinal">
+                                        <option value="lunes">Lunes</option>
+                                        <option value="martes">Martes</option>
+                                        <option value="miercoles">Miércoles</option>
+                                        <option value="jueves">Jueves</option>
+                                        <option value="viernes">Viernes</option>
+                                        <option value="sabado">Sabado</option>
+                                        <option value="domingo">Domingo</option>
+                                    </select>
+                                </div>
+                                <div >
+                                    <label  class="label_" for="horaInicio">Hora de inicio:</label>
+                                    <input  class="input_fecha" type="time" id="horaInicio" name="horaInicio">
+                                    
+                                    <label class="label_"  for="horaFinal">Hora final:</label>
+                                    <input  class="input_fecha" type="time" id="horaFinal" name="horaFinal">
+                                </div>
+                                <br><br>
+                            </form>
+                    
+                    
+
+                        </div>
+                    
+                    
+                    </div>    
+
+                    <div class="derecha_form">
+                        
+                        <div class="conteinerimgs">
+                            <!--img class="centrar-imagen" id="imagenMostrada" #imagenMostrada src="../../../assets/perfil_empleado.PNG">
+                            <img #imagenMostrada [src]="imagenSrc" src="../../../assets/perfil_empleado.PNG" style="display: none;"-->
+                            <img *ngIf="imagenSrcPredeterminada" [src]="imagenSrcPredeterminada" class="centrar-imagen">
+                            <img *ngIf="imagenSrc" [src]="imagenSrc" class="centrar-imagen">
+                        </div><br>
+                        <form id="miFormulario" enctype="multipart/form-data">
+                            <div >
+                                <label class="label_imagen" for="cargarImagen">Selecciona una fotografia:</label>
+                                <input class="input_imagen" #inputImagen type="file" id="cargarImagen" accept="image/*" (change)="mostrarImagen($event)" required>
+                            </div>
+                            <div class="cont_input_label">
+                                <label class="label_" for="">Cargo</label>
+                                <input class="input_" type="text" id="nombre" placeholder="Ingrese el cargo del empleado" required>
+                            </div>
+                            <div  class="cont_input_label">
+                                
+                                <label class="label_" for="notificaciones">Permitir enviar notificasiones</label>
+                                <input type="checkbox" id="notificaciones" name="notificaciones" required>
+                            </div>
+                        
+                        
+                        </form>
+
+                        <div class="terminos-y-condiciones">
+                            <h1>Términos y Condiciones</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                            
+                            
+                            
+                            <!-- Agrega más contenido de tus términos y condiciones aquí -->
+                        </div>
+                        
+
+                    </div>
+
+                </div>
+
+                <div class="botones-container">
+                    <button class="buttlimpiar" id="botonlimbiar">limpiar</button>
+                    
+                    <button class="buttenviar" id="botonEnviar">Enviar Datos</button>
+                </div>
+            </div>
+        
+            
+            <div div class="columna-derecha" #columnaderecha></div>
+
+
+        </div>
+
+
+    </div>
+</body>
+<router-outlet></router-outlet>
