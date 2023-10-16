@@ -48,30 +48,30 @@
                         <div class="cont_form">
                             <form class="form_" action="">
                                 <div class="cont_input_label">
-                                    <label class="label_" for="">Nombre de Empleado</label>
-                                    <input class="input_" type="text" id="nombre" placeholder="Ingrese el nombre del empleado" required>
+                                    <label  class="label_" for="">Nombre de Empleado</label>
+                                    <input [(ngModel)]="empleado_f.nombre" name="nombre" class="input_" type="text" id="nombre" placeholder="Ingrese el nombre del empleado" required>
                                 </div>
 
                                 <div class="cont_input_label">
                                     <label class="label_" for="">Apellidos del Empleado</label>
-                                    <input class="input_" type="text" id="apellidos" placeholder="Ingrese los apellidos del empleado" required>
+                                    <input [(ngModel)]="empleado_f.apellidos" name="apellidos" class="input_" type="text" id="apellidos" placeholder="Ingrese los apellidos del empleado" required>
                                 </div>
 
                                 <div class="cont_input_label" >
-                                    <select class="select_" id="tipo_documento" required>
+                                    <select  [(ngModel)]="empleado_f.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
                                         <option value="cc">Cédula de Ciudadanía</option>
                                         <option value="ce">Cédula de Extranjería</option>
                                     </select>
-                                    <input class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required>
+                                    <input  [(ngModel)]="empleado_f.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required>
                                 </div>
 
                                 <div class="cont_input_label" >
                                     <label class="label_" for="">Fecha de nacimiento</label>
-                                    <input class="input_fecha"  type="date" id="fecha" name="fecha" min="1923-01-01" max="2030-12-31" required>
+                                    <input [(ngModel)]="empleado_f.fecha_nacimiento" name="fecha_nacimiento" class="input_fecha" type="date" id="fecha" min="1923-01-01" max="2030-12-31" required>
                                 </div>
                                 <div>
                                     <label class="label_" for="pais">País:</label>
-                                    <select class="select_" id="pais" name="pais" required>
+                                    <select  [(ngModel)]="empleado_f.pais" name="pais" class="select_" id="pais"  required>
                                         <option value="+57">Colombia (+57)</option>
                                         <option value="+1">EE. UU. (+1)</option>
                                         <option value="+44">Reino Unido (+44)</option>
@@ -80,16 +80,16 @@
                                     </select>
                                     
                                     <label class="label_" for="numero">Numero cel:</label>
-                                    <input class="input_Numero" type="tel" id="numero" name="numero" placeholder="Número de contacto" required>
+                                    <input [(ngModel)]="empleado_f.num_contacto" name="num_contacto" class="input_Numero" type="tel" id="numero"  placeholder="Número de contacto" required>
                                 </div>
                                 <div class="cont_input_label" >
                                     <label class="label_" for="correo">Correo Electrónico:</label>
-                                    <input class="input_" type="email" id="correo" name="correo" placeholder="Ejemplo: correo@ejemplo.com" required>
+                                    <input [(ngModel)]="empleado_f.correo" name="correo" class="input_" type="email" id="correo"  placeholder="Ejemplo: correo@ejemplo.com" required>
 
                                 </div>
                                 <div class="cont_input_label">
                                     <label class="label_" for="direccion">Dirección:</label>
-                                    <input class="input_" type="text" id="direccion" name="direccion" placeholder="Ejemplo: 123 Calle Principal" required> 
+                                    <input [(ngModel)]="empleado_f.direccion" name="direccion" class="input_" type="text" id="direccion"  placeholder="Ejemplo: 123 Calle Principal" required> 
                                 </div>
                                 <!--div class="cont_input_label">
                                     <label  class="label_" for="salario">Salario:</label>
@@ -103,16 +103,18 @@
 
                                 <div class="cont_input_label" >
                                     <label class="label_" for="diaInicio">Día de inicio:</label>
-                                    <select class="select_" id="diaInicio" name="diaInicio">
+                                    <select [(ngModel)]="empleado_f.primer_dias_laboral" name="primer_dias_laboral" class="select_" id="diaInicio" >
                                         <option value="lunes">Lunes</option>
                                         <option value="martes">Martes</option>
                                         <option value="miercoles">Miércoles</option>
                                         <option value="jueves">Jueves</option>
                                         <option value="viernes">Viernes</option>
+                                        <option value="sabado">Sabado</option>
+                                        <option value="domingo">Domingo</option>
                                     </select>
                                     
                                     <label class="label_" for="diaFinal">Día final:</label>
-                                    <select class="select_" id="diaFinal" name="diaFinal">
+                                    <select [(ngModel)]="empleado_f.ultimo_dias_laboral" name="ultimo_dias_laboral" class="select_" id="diaFinal" >
                                         <option value="lunes">Lunes</option>
                                         <option value="martes">Martes</option>
                                         <option value="miercoles">Miércoles</option>
@@ -124,10 +126,10 @@
                                 </div>
                                 <div >
                                     <label  class="label_" for="horaInicio">Hora de inicio:</label>
-                                    <input  class="input_fecha" type="time" id="horaInicio" name="horaInicio">
+                                    <input [(ngModel)]="empleado_f.hora_inicio" name="hora_inicio" class="input_fecha" type="time" id="horaInicio">
                                     
                                     <label class="label_"  for="horaFinal">Hora final:</label>
-                                    <input  class="input_fecha" type="time" id="horaFinal" name="horaFinal">
+                                    <input [(ngModel)]="empleado_f.hora_fin" name="hora_fin" class="input_fecha" type="time" id="horaFinal">
                                 </div>
                                 <br><br>
                             </form>
@@ -150,11 +152,11 @@
                         <form id="miFormulario" enctype="multipart/form-data">
                             <div >
                                 <label class="label_imagen" for="cargarImagen">Selecciona una fotografia:</label>
-                                <input class="input_imagen" #inputImagen type="file" id="cargarImagen" accept="image/*" (change)="mostrarImagen($event)" required>
+                                <input [(ngModel)]="empleado_f.imagen" name="imagen" class="input_imagen" #inputImagen type="file" id="cargarImagen" accept="image/*" (change)="mostrarImagen($event)" required>
                             </div>
                             <div class="cont_input_label">
                                 <label class="label_" for="">Cargo</label>
-                                <input class="input_" type="text" id="nombre" placeholder="Ingrese el cargo del empleado" required>
+                                <input [(ngModel)]="empleado_f.cargo" name="cargo" class="input_" type="text" id="nombre" placeholder="Ingrese el cargo del empleado" required>
                             </div>
                             <div  class="cont_input_label">
                                 
@@ -187,7 +189,7 @@
                 <div class="botones-container">
                     <button class="buttlimpiar" id="botonlimbiar">limpiar</button>
                     
-                    <button class="buttenviar" id="botonEnviar">Enviar Datos</button>
+                    <button (click)="enviar_f()" class="buttenviar" id="botonEnviar">Enviar Datos</button>
                 </div>
             </div>
         

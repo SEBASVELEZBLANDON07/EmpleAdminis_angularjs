@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import { Route, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+//import { File } from '@ionic-native/file';
 
 
 // Declaración para particlesJS
@@ -18,6 +21,9 @@ export class RegistroEmpleadoComponent implements OnInit {
   imagenSrc: string | ArrayBuffer | null = null;
   imagenSrcPredeterminada: string | null = '../../../assets/perfil_empleado.PNG';
 
+
+
+
   @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
   @ViewChild('menu', { static: true }) menu!: ElementRef;
   @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
@@ -26,7 +32,84 @@ export class RegistroEmpleadoComponent implements OnInit {
 
   @ViewChild('imagenMostrada', { static: true }) imagenMostrada!: ElementRef;
 
+ 
 
+
+  //almacenar las variables de los datos de los empleados 
+  empleado_f = {
+    id_cedula: '',
+    tipo_documento: '',
+    nombre: '',
+    apellidos: '',
+    fecha_nacimiento: '',
+    pais: '',
+    num_contacto: '',
+    correo: '',
+    direccion: '',
+    hora_inicio: '',
+    hora_fin: '',
+    primer_dias_laboral: '',
+    ultimo_dias_laboral: '',
+    cargo: '',
+    imagen: null as File | null,
+    nom_empresa: '',
+  }
+
+  constructor(
+    private authService: AuthService,
+    private route: Router,
+    //private file: File,
+    
+  ){}
+
+  enviar_f(){
+    console.log(this.empleado_f);
+    this.empleado_f.nom_empresa = this.nom_empresa;
+    console.log(this.empleado_f.nom_empresa);
+
+    
+    
+
+    const formData = new FormData();
+
+    formData.append('id_cedula', this.empleado_f.id_cedula);
+    formData.append('tipo_documento', this.empleado_f.tipo_documento);
+    formData.append('nombre', this.empleado_f.nombre);
+    formData.append('apellidos', this.empleado_f.apellidos);
+    formData.append('fecha_nacimiento', this.empleado_f.fecha_nacimiento);
+    formData.append('pais', this.empleado_f.pais);
+    formData.append('num_contacto', this.empleado_f.num_contacto);
+    formData.append('correo', this.empleado_f.correo);
+    formData.append('direccion', this.empleado_f.direccion);
+    formData.append('hora_inicio', this.empleado_f.hora_inicio);
+    formData.append('hora_fin', this.empleado_f.hora_fin);
+    formData.append('primer_dias_laboral', this.empleado_f.primer_dias_laboral);
+    formData.append('ultimo_dias_laboral', this.empleado_f.ultimo_dias_laboral);
+    formData.append('cargo', this.empleado_f.cargo);
+    //formData.append('imagen', this.empleado_f.imagen);
+    formData.append('nom_empresa', this.empleado_f.nom_empresa);
+
+
+      // Verifica si hay una imagen válida
+      if (this.empleado_f.imagen) {
+        formData.append('imagen', this.empleado_f.imagen, 'imagen.jpg');
+      }
+
+    console.log(this.empleado_f.imagen);
+
+        //insercion del usuario de la empresa 
+      this.authService.regis_empleado(formData).subscribe(   
+      (res: any) => {
+              this.route.navigate(['inicio']);
+              alert('Empresa insertada exitosamente');
+      }, 
+      (error) => {
+            console.log('Error: ', error);
+      }
+      );
+
+
+  }
 
   ngAfterViewInit() {
     this.inicializarParticulas();
@@ -77,11 +160,20 @@ export class RegistroEmpleadoComponent implements OnInit {
 
   mostrarImagen(event: any) {
     const input = event.target;
+   
+   // const file: File = input.files[0];
 
     if (input.files && input.files[0]) {
+
+      const file: File = input.files[0];
+     
+
       const lector = new FileReader();
 
+    
+
       lector.onload = (e) => {
+        this.empleado_f.imagen = file;
         this.imagenSrcPredeterminada = null;
         this.imagenSrc = e.target?.result as string;
         this.mostrarImagenMostrada();
@@ -91,6 +183,7 @@ export class RegistroEmpleadoComponent implements OnInit {
     }
   }
 
+  //sesion de imagenes 
   mostrarImagenMostrada() {
     if (this.imagenMostrada) {
       this.imagenMostrada.nativeElement.style.display = 'block';

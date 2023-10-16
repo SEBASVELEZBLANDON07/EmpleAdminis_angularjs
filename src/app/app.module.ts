@@ -26,6 +26,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { UserEmpresaComponent } from './components/user-empresa/user-empresa.component';
 import { RegistroEmpleadoComponent } from './components/registro-empleado/registro-empleado.component';
 
+//import { File } from '@ionic-native/file/ngx';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { RegistroEmpleadoComponent } from './components/registro-empleado/regist
     {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
     JwtHelperService,
     //token interception 
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptoService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptoService, multi: true},
+    //File,
   ],
   
   bootstrap: [AppComponent]

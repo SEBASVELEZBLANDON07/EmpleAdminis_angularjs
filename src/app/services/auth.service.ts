@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
+ 
   private URL = 'http://localhost:8080'; 
 
   correo: string = '';
@@ -31,6 +31,14 @@ export class AuthService {
     return this.http.post(`${this.URL}/crearF_route/InsEmpreUSer`, user_fP);
   }
 
+  regis_empleado(formData:any){
+    return this.http.post(`${this.URL}/Empleado_edic/InsEmpleado`, formData);
+  }
+
+
+
+
+
    //metodo para establecer el correo del usuario
    setCorreoUsuario(correologin: string) {
     this.correo = correologin;
@@ -46,6 +54,8 @@ export class AuthService {
     const params = new HttpParams().set('correo', correo)
     return this.http.get(`${this.URL}/crearF_route/nombreEmpresa`, {params});
   }
+
+  
 
   //se verifica si el usuario tiene un token 
   isAunt(): boolean{
