@@ -9,6 +9,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { UserEmpresaComponent } from './components/user-empresa/user-empresa.component';
 import { RegistroEmpleadoComponent } from './components/registro-empleado/registro-empleado.component';
+import { CuentaEmpleadoComponent } from './components/cuenta-empleado/cuenta-empleado.component';
 
 const routes: Routes = [
   
@@ -24,8 +25,13 @@ const routes: Routes = [
   //ruta de inicio pagina principal //necesita tener token y rol admin
   { path: 'inicio', component: InicioComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
-   //ruta de ingresar un usuario nuevo a la base de datos //necesita tener token y rol admin
-   { path: 'regitroEmpleado', component: RegistroEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+  //ruta de ingresar un usuario nuevo a la base de datos //necesita tener token y rol admin
+  { path: 'regitroEmpleado', component: RegistroEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+
+  //ruta de ingresar un usuario nuevo a la base de datos //necesita tener token y rol admin
+  { path: 'cuentaEmpleado', component: CuentaEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+
+
 
   //ruta indefinido // necesita tener un token  
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },

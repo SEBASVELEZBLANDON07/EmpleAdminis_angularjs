@@ -25,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegistroComponent } from './components/registro/registro.component';
 import { UserEmpresaComponent } from './components/user-empresa/user-empresa.component';
 import { RegistroEmpleadoComponent } from './components/registro-empleado/registro-empleado.component';
+import { CuentaEmpleadoComponent } from './components/cuenta-empleado/cuenta-empleado.component';
 
 //import { File } from '@ionic-native/file/ngx';
 
@@ -40,6 +41,7 @@ import { RegistroEmpleadoComponent } from './components/registro-empleado/regist
     RegistroComponent,
     UserEmpresaComponent,
     RegistroEmpleadoComponent,
+    CuentaEmpleadoComponent,
   ],
   imports: [
     BrowserModule,

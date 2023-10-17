@@ -194,7 +194,7 @@ export class RegistroEmpleadoComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       });
       
-      //this.route.navigate(['inicio']);
+      this.route.navigate(['cuentaEmpleado']);
 
     }, 
     (error) => {

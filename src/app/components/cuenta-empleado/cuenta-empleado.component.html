@@ -1,0 +1,94 @@
+
+<br><br><br>
+<body>
+  <div class="container_principal">
+
+    <header>
+        <button   class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+
+            <nav class="menu"  id="particles-js" #menu>
+                <ul class="menu-contenido">
+                    <li><a routerLink="/inicio" routerLinkActive="active" >Inicio</a></li>
+                    <li><a href="#">Cerrar sesion</a></li>
+                    <li><a href="#">Actualizar Empleado</a></li>
+                    <li><a href="#">Actualizar Perfil</a></li>
+                    <!--li><a href="#">Incapacidad</a></li>
+                    <li><a href="#">Inventario</a></li>
+                    <li><a href="#">Borrar Empleado</a></li-->
+                </ul>
+            </nav>
+    </header>
+    <div  class="contenedor">
+       
+      <div class="columna-izquierda" #columnaizquierda></div>
+        
+        
+      <div class="columna-central" #columnacentral>
+          <div class="estilo">
+              <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
+          </div>
+          <div class="efectos-navegación">
+              <nav class="menu-central">
+                  <ul class="estilonav">
+                      <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                      <li><a routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
+                      <li><a href="#Movies">R.Asistencia</a></li>
+                      <li><a href="#">R.Horas Extras</a></li>
+                      <li><a href="#">R.Incapacidad</a></li>
+                      <li><a href="#">Inventario</a></li>
+                      <li><a href="#">Borrar Empleado</a></li>
+
+                  </ul> 
+              </nav>
+          </div>
+
+
+          <br><br><br><br><br><br><br><br><br><br>
+          <br><br><br><br><br><br><br><br><br><br>
+          <br><br><br><br><br><br><br><br><br><br>
+
+          <div class="container">
+            <div class="col1">
+              <!--maneja la targeta -->
+              <div class="card">
+                <div class="front">
+                  <span class="chip"></span>
+                  <span class="num_cuenta">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
+                  <div class="tipo"><span class="tipo_cuenta">Tipo de cuenta</span></div>
+                  <span class="nom_banco">NOMBRE DE LA ENTIDAD</span>
+                  <span class="salario">Salario</span>
+
+                  <!--span class="fullname">FULL NAME</span-->
+
+                </div>
+              </div>
+            </div>
+                  
+            <div class="col2">
+                <label>Card Number</label>
+                <input class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                
+                <label>Cardholder name</label>
+                <input class="nom_banco" type="text" placeholder="" /><br>
+                
+                <label>nombre banci</label>
+                <input class="expire" type="text" placeholder="" /><br>
+
+                <label>salariuo</label>
+                <input type="number" placeholder="" />
+                
+                <button class="buttEnviar">evidar</button>
+              </div>
+          </div>
+        </div>
+        <div div class="columna-derecha" #columnaderecha></div>
+    </div>
+
+
+  </div>
+</body>
+<router-outlet></router-outlet>
+
+
+
+

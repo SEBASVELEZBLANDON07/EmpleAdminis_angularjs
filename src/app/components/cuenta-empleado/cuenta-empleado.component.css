@@ -1,0 +1,429 @@
+
+.container_principal{
+    position: relative;
+    top: 100%;
+    left: 0.1%;
+    width: 100%;
+    height: 100%;
+   /* padding: 40px;*/
+    /*transform: translate(-50%, -50%); */
+  }
+
+.abrir-navegacion {
+    position: fixed; 
+    top: 3.5%; 
+    right: 80px; 
+    
+    transform: translateY(-50%); 
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: #9dc0c2;
+    border: 2px solid #000000;
+    border-radius: 15px;
+    z-index: 1000; 
+  }
+
+  .abrir-navegacion:hover {
+    background-color: #ffffff;
+
+
+    
+    border-radius: 15px;
+    box-shadow: 0 0 5px #01ff62a1,
+                0 0 25px #01ff62a1,
+                0 0 25px #01ff62a1,
+                0 0 25px #01ff62a1;
+
+  }
+
+/*navegacion izquieda*/
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -40%;
+    width: 15%;
+    height: 100%;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    justify-content: center;
+    font-size: 1.6rem;
+    z-index: 1000;
+  }
+
+  .menu ul:hover a {
+    color: #ffffff;
+  }
+  .menu ul:hover a:hover {
+    color: #ff0000;
+    box-shadow: 0 2px 0 0 currentcolor;
+  }
+
+  .menu ul {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-35%, -50%);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  .menu li {
+    margin-bottom: 20px;
+  }
+  
+  .menu a {
+    color: #2bff00;
+    text-decoration: none;
+  }
+
+/*divicion de pagina*/
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*background-color: #da0641;*/
+  }
+  
+  .columna-izquierda{
+    flex-basis: 5%;
+    
+    flex-grow: 1; 
+   background-color: #000000;
+   
+  }
+  .columna-derecha {
+    flex-basis: 5%;
+    flex-grow: 1; 
+    background-color: #000000;
+    
+  }
+  
+  .columna-central {
+    flex-basis: 1250px;
+    background-color: #333;
+    border-radius: 20px;
+  }
+
+
+/*titulo de la empresa*/
+.estilo {
+  position: fixed;
+  top: 0;
+  right: 35%;
+  transform: translateX(-50%, -50%); 
+  
+  width: 400px;
+  height: 60px;
+  z-index: 1000;
+  /*background-color: #000000;*/
+}
+
+
+.titulo-empresa{
+
+  color: #ffffff;
+  font: normal 140px Varela Round, sans-serif;
+
+  left: 0;
+  letter-spacing: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  animation: animar linear 5000ms infinite;
+ 
+  font-size: 40px;
+  margin-top: 2px;
+  
+  
+  }
+
+  
+  @keyframes animar {
+    0% {
+      text-shadow:
+        
+        1px -1px 0 #da0641,
+        -4px 4px 0 #13f1fc,
+      
+      ;
+    }
+    30% {
+      text-shadow:
+        -4px -4px 0 #13f1fc,
+        -3px -3px 0 #13f1fc,
+        -2px -2px 0 #13f1fc,
+        -1px -1px 0 #13f1fc,
+        4px 4px 0 #da0641,
+        3px 3px 0 #da0641,
+        2px 2px 0 #da0641,
+        1px 1px 0 #da0641
+      ;
+    }
+    50% {
+      text-shadow:
+        
+        -1px 1px 0 #da0641,
+        4px -4px 0 #13f1fc,
+        
+      ;
+    }
+    80% {
+      text-shadow:
+        4px 4px 0 #13f1fc,
+        3px 3px 0 #13f1fc,
+        2px 2px 0 #13f1fc,
+        1px 1px 0 #13f1fc,
+        -4px -4px 0 #da0641,
+        -3px -3px 0 #da0641,
+        -2px -2px 0 #da0641,
+        -1px -1px 0 #da0641
+      ;
+    }
+    100% {
+      text-shadow:
+        
+        1px -1px 0 #da0641,
+        -4px 4px 0 #13f1fc,
+        
+      ;
+    }
+  }
+
+
+
+  /*efectos de navegacion*/
+  .efectos-navegación {
+    
+    position: fixed;
+    top: 0;
+    left: 12%;
+    height: 40px;
+ 
+    width: 100%;
+    
+     font-family: "Inter", sans-serif;
+     /*background-color: #333;*/
+     color: #2bff00;
+     display: flex;
+     align-items: center;
+     /*justify-content: center;*/
+     font-size: 1.3rem;
+     margin-top: 50px;
+     margin-left: 68px;
+     z-index: 1000;
+     /*background-color: #555555;*/
+   }
+ 
+   .menu-central a {
+     color: inherit;
+     text-decoration: none;
+     transition: 0.25s ease;
+   }
+ 
+   .menu-central ul {
+     display: flex;
+     flex-wrap: wrap;
+   }
+   .menu-central ul li {
+     margin-left: 0.75em;
+     margin-right: 0.75em;
+   }
+   .menu-central ul:hover a {
+     color: #ffffff;
+   }
+   .menu-central ul:hover a:hover {
+     color: #ff0000;
+     box-shadow: 0 2px 0 0 currentcolor;
+   }
+
+
+/*------------------------------------------------------------------------------*/
+
+/* 4: VISA, 51 -> 55: MasterCard, 36-38-39: DinersClub, 34-37: American Express, 65: Discover, 5019: dankort*/
+
+/*@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');*/
+
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html{
+  --card-color: #cacaca;
+  --text-color: #e1e1e1;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.container{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 680px;
+    
+  .col1{
+    perspective: 1000;
+    transform-style: preserve-3d;
+    .card{
+      position: relative;
+      width: 500px;
+      height: 280px;
+      margin-bottom: 85px;
+      margin-right: 10px;
+      border-radius: 17px;
+      box-shadow: 0 5px 20px -5px rgba(0,0,0,0.1);
+      transition: all 1s;
+      transform-style: preserve-3d;
+      .front{
+        position: absolute;
+        background: var(--card-color);
+        border-radius: 17px;
+        padding: 50px;
+        width: 100%;
+        height: 100%;
+        transform: translateZ(1px);
+        -webkit-transform: translateZ(1px);
+        z-index: 50;
+        background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), -webkit-linear-gradient(-245deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.2) 70%, rgba(194, 197, 155, 0.507) 90%);
+        /*background-image: repeating-linear-gradient(45deg, rgba(127, 224, 175, 0) 1px, rgba(80, 154, 240, 0.03) 2px, rgba(65, 218, 111, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), -webkit-linear-gradient(-245deg, rgba(255, 255, 255, 0) 40%, rgb(238, 218, 107) 70%, rgba(207, 199, 199, 0.712) 90%);*/
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+
+      .num_cuenta{
+        position: absolute;
+        font-size: 26px;
+        font-weight: 500;
+        letter-spacing: -1px;
+        top: 110px;
+        color: var(--text-color);
+        word-spacing: 3px;
+        transition: color 0.5s;
+        color: #e1e1e1;
+      }
+
+      .tipo{
+        position: absolute;
+        bottom: 40px;
+        right: 80px;
+        width: 180px;
+        height: 50px;
+        color: var(--text-color);
+        transition: color 0.5s;
+        .tipo_cuenta{
+          font-size: 18px;
+          position: absolute;
+          margin-left: 55px;
+          margin-top: 20px;
+          color: var(--text-color);
+          font-weight: 500;
+          transition: color 0.5s;
+          color: #e1e1e1;
+
+        }
+        &:after{
+          content: 'Targeta';
+          position: absolute;
+          display: block;
+          font-size: 15px;
+          margin-left: 50px;
+          margin-top: 5;
+          color: #e1e1e1;
+
+        }
+        &:before{
+          content: 'Tipo \a Cuenta';
+          position: absolute;
+          display: block;
+          font-size: 12px;
+          white-space: pre;
+          margin-top: 8px;
+          margin-right: 100px;
+          color: #e1e1e1;
+
+        }
+      }
+
+      .nom_banco{
+        position: absolute;
+        font-size: 20px;
+      
+        /*color: var(--text-color);*/
+        transition: color 0.5s;
+        color: #e1e1e1;
+
+      }
+      .salario{
+        position: absolute;
+        font-size: 20px;
+        bottom: 40px;
+        /*color: var(--text-color);*/
+        transition: color 0.5s;
+        color: #e1e1e1;
+
+        &:after{
+          content: 'Sueldo';
+          position: absolute;
+          display: block;
+          font-size: 15px;
+          margin-left: 50px;
+          
+        }
+      }
+    }  
+
+  }
+}
+  
+.col2{
+  input{
+    display: block;
+    width: 260px;
+    height: 30px;
+    padding-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin: 7px;
+    font-size: 17px;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.05);
+    border: none;
+    
+    &:focus{
+      outline-width: 0;
+      background: rgba(31,134,252, 0.15);
+      
+    }
+  }
+  
+  label{
+    padding-left: 8px;
+    font-size: 15px;
+    color: #444;
+  }
+  buttEnviar{
+    color: #e1e1e1;
+  }
+    
+    
+}
+  
+
+
+
+
