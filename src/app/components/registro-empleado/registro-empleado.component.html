@@ -21,11 +21,12 @@
         
             <div class="columna-izquierda" #columnaizquierda></div>
             
-            
             <div class="columna-central" #columnacentral>
+
                 <div class="estilo">
                     <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
                 </div>
+
                 <div class="efectos-navegación">
                     <nav class="menu-central">
                         <ul class="estilonav">
@@ -36,92 +37,127 @@
                             <li><a href="#">R.Incapacidad</a></li>
                             <li><a href="#">Inventario</a></li>
                             <li><a href="#">Borrar Empleado</a></li>
-
                         </ul> 
                     </nav>
                 </div>
                 <div class="contenerdo_formulario">
+
+                    <!--animacion de gargando imagen-->
+                    <div class="cargando-overlay" *ngIf="loading">
+                        <div class="cargando-alert">
+                            <div class="spinner"></div>
+                            <div>Cargando...</div>
+                        </div>
+                    </div>
+
                     <div class="izquierda_form">
+
                         <div class="cont_registro">
                             <h1 class="text_registro">Registro Empleado</h1>
                         </div>
                         <div class="cont_form">
-                            <form class="form_" action="">
+
+                            <form  class="form_" action="">
                                 <div class="cont_input_label">
-                                    <label  class="label_" for="">Nombre de Empleado</label>
-                                    <input [(ngModel)]="empleado_f.nombre" name="nombre" class="input_" type="text" id="nombre" placeholder="Ingrese el nombre del empleado" required>
+                                    <label  class="label_" for="" >Nombre de Empleado</label>
+                                    <input [(ngModel)]="empleado_f.nombre" name="nombre" class="input_" type="text" id="nombre" placeholder="Ingrese el nombre del empleado" required><p class="requiered">*</p>
                                 </div>
 
                                 <div class="cont_input_label">
                                     <label class="label_" for="">Apellidos del Empleado</label>
-                                    <input [(ngModel)]="empleado_f.apellidos" name="apellidos" class="input_" type="text" id="apellidos" placeholder="Ingrese los apellidos del empleado" required>
+                                    <input [(ngModel)]="empleado_f.apellidos" name="apellidos" class="input_" type="text" id="apellidos" placeholder="Ingrese los apellidos del empleado" required><p class="requiered">*</p>
                                 </div>
 
                                 <div class="cont_input_label" >
-                                    <select  [(ngModel)]="empleado_f.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
+                                    <p class="requiered">*</p><select  [(ngModel)]="empleado_f.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
+                                        <option [ngValue]="''" disabled hidden>Tipo de documento</option>
                                         <option value="cc">Cédula de Ciudadanía</option>
                                         <option value="ce">Cédula de Extranjería</option>
                                     </select>
-                                    <input  [(ngModel)]="empleado_f.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required>
+                                    <input  [(ngModel)]="empleado_f.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required><p class="requiered">*</p>
                                 </div>
 
                                 <div class="cont_input_label" >
                                     <label class="label_" for="">Fecha de nacimiento</label>
-                                    <input [(ngModel)]="empleado_f.fecha_nacimiento" name="fecha_nacimiento" class="input_fecha" type="date" id="fecha" min="1923-01-01" max="2030-12-31" required>
+                                    <input [(ngModel)]="empleado_f.fecha_nacimiento" name="fecha_nacimiento" class="input_fecha" type="date" id="fecha" min="1923-01-01" max="2030-12-31" required><p class="requiered">*</p>
                                 </div>
-                                <div>
-                                    <label class="label_" for="pais">País:</label>
-                                    <select  [(ngModel)]="empleado_f.pais" name="pais" class="select_" id="pais"  required>
-                                        <option value="+57">Colombia (+57)</option>
-                                        <option value="+1">EE. UU. (+1)</option>
-                                        <option value="+44">Reino Unido (+44)</option>
-                                        
-                                        <!-- Agrega más opciones de países según sea necesario -->
+                                <div class="cont_input_label" >
+                                    <p class="requiered">*</p><select  [(ngModel)]="empleado_f.pais" name="pais" class="select_" id="pais"  required>
+                                        <option [ngValue]="''" disabled hidden>Elije un país</option>
+                                        <option value="+54">Argentina (+54)</option>
+                                            <option value="+61">Australia (+61)</option>
+                                            <option value="+55">Brasil (+55)</option>
+                                            <option value="+57">Colombia (+57)</option>
+                                            <option value="+56">Chile (+56)</option>
+                                            <option value="+86">China (+86)</option>
+                                            <option value="+506">Costa Rica (+506)</option>
+                                            <option value="+53">Cuba (+53)</option>
+                                            <option value="+1">Canadá (+1)</option>
+                                            <option value="+57">Colombia (+57)</option>
+                                            <option value="+82">Corea del Sur (+82)</option>
+                                            <option value="+1">Estados Unidos (+1)</option>
+                                            <option value="+503">El Salvador (+503)</option>
+                                            <option value="+593">Ecuador (+593)</option>
+                                            <option value="+34">España (+34)</option>
+                                            <option value="+49">Alemania (+49)</option>
+                                            <option value="+33">Francia (+33)</option>
+                                            <option value="+502">Guatemala (+502)</option>
+                                            <option value="+504">Honduras (+504)</option>
+                                            <option value="+91">India (+91)</option>
+                                            <option value="+81">Japón (+81)</option>
+                                            <option value="+52">México (+52)</option>
+                                            <option value="+591">Bolivia (+591)</option>
+                                            <option value="+595">Paraguay (+595)</option>
+                                            <option value="+507">Panamá (+507)</option>
+                                            <option value="+51">Perú (+51)</option>
+                                            <option value="+1">Puerto Rico (+1)</option>
+                                            <option value="+7">Rusia (+7)</option>
+                                            <option value="+46">Suecia (+46)</option>
+                                            <option value="+91">India (+91)</option>
+                                            <option value="+55">Brasil (+55)</option>
+                                            <option value="+52">México (+52)</option>
+                                            <option value="+58">Venezuela (+58)</option>
                                     </select>
                                     
                                     <label class="label_" for="numero">Numero cel:</label>
-                                    <input [(ngModel)]="empleado_f.num_contacto" name="num_contacto" class="input_Numero" type="tel" id="numero"  placeholder="Número de contacto" required>
+                                    <input [(ngModel)]="empleado_f.num_contacto" name="num_contacto" class="input_Numero" type="tel" id="numero"  placeholder="Número de contacto" required><p class="requiered">*</p>
                                 </div>
                                 <div class="cont_input_label" >
                                     <label class="label_" for="correo">Correo Electrónico:</label>
-                                    <input [(ngModel)]="empleado_f.correo" name="correo" class="input_" type="email" id="correo"  placeholder="Ejemplo: correo@ejemplo.com" required>
+                                    <input [(ngModel)]="empleado_f.correo" name="correo" class="input_" type="email" id="correo"  placeholder="Ejemplo: correo@ejemplo.com" required><p class="requiered">*</p>
 
                                 </div>
                                 <div class="cont_input_label">
                                     <label class="label_" for="direccion">Dirección:</label>
-                                    <input [(ngModel)]="empleado_f.direccion" name="direccion" class="input_" type="text" id="direccion"  placeholder="Ejemplo: 123 Calle Principal" required> 
+                                    <input [(ngModel)]="empleado_f.direccion" name="direccion" class="input_" type="text" id="direccion"  placeholder="Ejemplo: 123 Calle Principal" required><p class="requiered">*</p>
                                 </div>
-                                <!--div class="cont_input_label">
-                                    <label  class="label_" for="salario">Salario:</label>
-                                    <input class="input_" type="number" id="salario" name="salario" placeholder="Ingrese su salario" required> 
-
-                                </div-->
-                                <br><br><br>
                                 
+                                <br><br><br>
                                 <h2  class="label_" >Ingresa el horaraio a cumplir de este empleado</h2><br>
-
 
                                 <div class="cont_input_label" >
                                     <label class="label_" for="diaInicio">Día de inicio:</label>
                                     <select [(ngModel)]="empleado_f.primer_dias_laboral" name="primer_dias_laboral" class="select_" id="diaInicio" >
-                                        <option value="lunes">Lunes</option>
-                                        <option value="martes">Martes</option>
-                                        <option value="miercoles">Miércoles</option>
-                                        <option value="jueves">Jueves</option>
-                                        <option value="viernes">Viernes</option>
-                                        <option value="sabado">Sabado</option>
-                                        <option value="domingo">Domingo</option>
+                                        <option [ngValue]="''" disabled hidden>Dia inicial</option>
+                                        <option value="Lunes">Lunes</option>
+                                        <option value="Martes">Martes</option>
+                                        <option value="Miercoles">Miércoles</option>
+                                        <option value="Jueves">Jueves</option>
+                                        <option value="Viernes">Viernes</option>
+                                        <option value="Sabado">Sabado</option>
+                                        <option value="Domingo">Domingo</option>
                                     </select>
                                     
                                     <label class="label_" for="diaFinal">Día final:</label>
                                     <select [(ngModel)]="empleado_f.ultimo_dias_laboral" name="ultimo_dias_laboral" class="select_" id="diaFinal" >
-                                        <option value="lunes">Lunes</option>
-                                        <option value="martes">Martes</option>
-                                        <option value="miercoles">Miércoles</option>
-                                        <option value="jueves">Jueves</option>
-                                        <option value="viernes">Viernes</option>
-                                        <option value="sabado">Sabado</option>
-                                        <option value="domingo">Domingo</option>
+                                        <option [ngValue]="''" disabled hidden>Dia final</option>
+                                        <option value="Lunes">Lunes</option>
+                                        <option value="Martes">Martes</option>
+                                        <option value="Miercoles">Miércoles</option>
+                                        <option value="Jueves">Jueves</option>
+                                        <option value="Viernes">Viernes</option>
+                                        <option value="Sabado">Sabado</option>
+                                        <option value="Domingo">Domingo</option>   
                                     </select>
                                 </div>
                                 <div >
@@ -131,40 +167,33 @@
                                     <label class="label_"  for="horaFinal">Hora final:</label>
                                     <input [(ngModel)]="empleado_f.hora_fin" name="hora_fin" class="input_fecha" type="time" id="horaFinal">
                                 </div>
-                                <br><br>
+                                <br>
                             </form>
-                    
-                    
-
                         </div>
-                    
-                    
                     </div>    
 
                     <div class="derecha_form">
                         
                         <div class="conteinerimgs">
-                            <!--img class="centrar-imagen" id="imagenMostrada" #imagenMostrada src="../../../assets/perfil_empleado.PNG">
-                            <img #imagenMostrada [src]="imagenSrc" src="../../../assets/perfil_empleado.PNG" style="display: none;"-->
                             <img *ngIf="imagenSrcPredeterminada" [src]="imagenSrcPredeterminada" class="centrar-imagen">
                             <img *ngIf="imagenSrc" [src]="imagenSrc" class="centrar-imagen">
+
                         </div><br>
-                        <form id="miFormulario" enctype="multipart/form-data">
-                            <div >
+                        <form  id="miFormulario" enctype="multipart/form-data">
+                            
                                 <label class="label_imagen" for="cargarImagen">Selecciona una fotografia:</label>
-                                <input [(ngModel)]="empleado_f.imagen" name="imagen" class="input_imagen" #inputImagen type="file" id="cargarImagen" accept="image/*" (change)="mostrarImagen($event)" required>
+                            <div class="cont_input_label">    
+                                <input [(ngModel)]="empleado_f.imagen" name="imagen" class="input_imagen" #inputImagen type="file" id="cargarImagen" accept="image/*" (change)="mostrarImagen($event)" required><p class="requiered">*</p>
                             </div>
                             <div class="cont_input_label">
                                 <label class="label_" for="">Cargo</label>
-                                <input [(ngModel)]="empleado_f.cargo" name="cargo" class="input_" type="text" id="nombre" placeholder="Ingrese el cargo del empleado" required>
+                                <input [(ngModel)]="empleado_f.cargo" name="cargo" class="input_" type="text" id="nombre" placeholder="Ingrese el cargo del empleado" required><p class="requiered">*</p>
                             </div>
                             <div  class="cont_input_label">
                                 
                                 <label class="label_" for="notificaciones">Permitir enviar notificasiones</label>
-                                <input type="checkbox" id="notificaciones" name="notificaciones" required>
+                                <input [(ngModel)]="notificaion" type="checkbox" id="notificaciones" name="notificaciones" required><p class="requiered">*</p>
                             </div>
-                        
-                        
                         </form>
 
                         <div class="terminos-y-condiciones">
@@ -175,31 +204,18 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-                            
-                            
-                            
-                            <!-- Agrega más contenido de tus términos y condiciones aquí -->
                         </div>
-                        
-
                     </div>
-
                 </div>
 
                 <div class="botones-container">
-                    <button class="buttlimpiar" id="botonlimbiar">limpiar</button>
-                    
+                    <button (click)="botonlimbiar()" class="buttlimpiar" id="botonlimbiar">limpiar</button>
                     <button (click)="enviar_f()" class="buttenviar" id="botonEnviar">Enviar Datos</button>
                 </div>
             </div>
-        
             
             <div div class="columna-derecha" #columnaderecha></div>
-
-
         </div>
-
-
     </div>
 </body>
 <router-outlet></router-outlet>

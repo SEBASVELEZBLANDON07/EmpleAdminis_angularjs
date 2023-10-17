@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-//import { File } from '@ionic-native/file';
 
+//manejo de mensajes personalizados 
+import Swal from 'sweetalert2';
 
 // Declaración para particlesJS
 declare var particlesJS: any;
@@ -21,19 +22,20 @@ export class RegistroEmpleadoComponent implements OnInit {
   imagenSrc: string | ArrayBuffer | null = null;
   imagenSrcPredeterminada: string | null = '../../../assets/perfil_empleado.PNG';
 
+  //estado de cargando los datos al servidor 
+  loading: boolean = false;
 
+  public notificaion: string = '';
 
-
+  //variable para el menu desplegable
   @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
   @ViewChild('menu', { static: true }) menu!: ElementRef;
   @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
   @ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
   @ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
 
+  //variable para mostrar la imagen en pantalla 
   @ViewChild('imagenMostrada', { static: true }) imagenMostrada!: ElementRef;
-
- 
-
 
   //almacenar las variables de los datos de los empleados 
   empleado_f = {
@@ -55,23 +57,106 @@ export class RegistroEmpleadoComponent implements OnInit {
     nom_empresa: '',
   }
 
+  //restablecer imagen predeterminada
+  imagenpredeterminada(){
+    this.imagenSrc= null,
+    this.imagenSrcPredeterminada = '../../../assets/perfil_empleado.PNG';
+  }
+
+  // Función para limpiar los campos del formulario
+  limpiarCampos(): void {
+    this.notificaion= '';
+    this.empleado_f = {
+      id_cedula: '',
+      tipo_documento: '',
+      nombre: '',
+      apellidos: '',
+      fecha_nacimiento: '',
+      pais: '',
+      num_contacto: '',
+      correo: '',
+      direccion: '',
+      hora_inicio: '',
+      hora_fin: '',
+      primer_dias_laboral: '',
+      ultimo_dias_laboral: '',
+      cargo: '',
+      imagen: null,
+      nom_empresa: '',
+    };
+  }
+
   constructor(
     private authService: AuthService,
     private route: Router,
-    //private file: File,
-    
   ){}
 
+  //butt limbia todo los campos del formulario
+  botonlimbiar(){
+    this.limpiarCampos();
+    this.imagenpredeterminada();
+  }
+
+  //butt enviar el formulario al servidor 
   enviar_f(){
-    console.log(this.empleado_f);
+
+    // Verifica si los campos requeridos del primer formulario están completos
+    const formulario1 = document.querySelector('.form_');
+    if (formulario1) {
+      const camposRequeridos1 = formulario1.querySelectorAll('[required]');
+      const camposCompletos1 = Array.from(camposRequeridos1).every((campo) => (campo as HTMLInputElement).value);
+      //se muestra un error en pantalla si faltan campos requeridos 
+      if (!camposCompletos1) {
+        Swal.fire({
+          title: 'Por favor, complete todos los campos requeridos',
+          icon: 'info',
+          confirmButtonText: 'Aceptar'
+         });
+        return;
+      }
+    }else {
+      Swal.fire({
+        title: 'Error: No se encontró el primer formulario.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      
+      return;
+    }
+
+    // Verifica si los campos requeridos del segundo formulario están completos
+    const formulario2 = document.querySelector('#miFormulario');
+    if (formulario2) {
+      const camposRequeridos2 = formulario2.querySelectorAll('[required]');
+      const camposCompletos2 = Array.from(camposRequeridos2).every((campo) => (campo as HTMLInputElement).value);
+      //se muestra un error en pantalla si faltan campos requeridos 
+      if (!camposCompletos2) {
+        Swal.fire({
+          title: 'Por favor, complete todos los campos requeridos',
+          icon: 'info',
+          confirmButtonText: 'Aceptar'
+        });
+        return;
+      }
+    }else{
+      Swal.fire({
+        title: 'Error: No se encontró el primer formulario.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+    
+    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    this.loading = true;
+
+    //se almacena el nombre de la empresa almacenada en el localStorage
     this.empleado_f.nom_empresa = this.nom_empresa;
-    console.log(this.empleado_f.nom_empresa);
 
-    
-    
-
+    //se inicia el constructor de recopilacion de formulario 
     const formData = new FormData();
 
+    //se almacenan los datos en el constructor 
     formData.append('id_cedula', this.empleado_f.id_cedula);
     formData.append('tipo_documento', this.empleado_f.tipo_documento);
     formData.append('nombre', this.empleado_f.nombre);
@@ -86,29 +171,42 @@ export class RegistroEmpleadoComponent implements OnInit {
     formData.append('primer_dias_laboral', this.empleado_f.primer_dias_laboral);
     formData.append('ultimo_dias_laboral', this.empleado_f.ultimo_dias_laboral);
     formData.append('cargo', this.empleado_f.cargo);
-    //formData.append('imagen', this.empleado_f.imagen);
     formData.append('nom_empresa', this.empleado_f.nom_empresa);
 
+    // Verifica si hay una imagen válida
+    if (this.empleado_f.imagen) {
+      formData.append('imagen', this.empleado_f.imagen, 'fotografia_empleado_ingrasado.jpg');
+    }
+    //guadamos el id_cedula en el localStorage
+    localStorage.setItem('id_cedula', this.empleado_f.id_cedula);
 
-      // Verifica si hay una imagen válida
-      if (this.empleado_f.imagen) {
-        formData.append('imagen', this.empleado_f.imagen, 'imagen.jpg');
-      }
+    //insercion del empleado de la empresa 
+    this.authService.regis_empleado(formData).subscribe(   
+    (res: any) => {
+      this.loading = false;
+      
+      this.limpiarCampos();
+      this.imagenpredeterminada();
 
-    console.log(this.empleado_f.imagen);
+      Swal.fire({
+        title: 'Empleado insertado con exito ',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+      
+      //this.route.navigate(['inicio']);
 
-        //insercion del usuario de la empresa 
-      this.authService.regis_empleado(formData).subscribe(   
-      (res: any) => {
-              this.route.navigate(['inicio']);
-              alert('Empresa insertada exitosamente');
-      }, 
-      (error) => {
-            console.log('Error: ', error);
-      }
-      );
-
-
+    }, 
+    (error) => {
+      console.log('Error: ', error);
+      this.loading = false;
+      Swal.fire({
+        title: 'No se pudo insertar el Empleado',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+    }
+    );
   }
 
   ngAfterViewInit() {
@@ -158,32 +256,26 @@ export class RegistroEmpleadoComponent implements OnInit {
     });
   }
 
+  //metodo para insertar en la pantalla la imagen suvida por el usuario
   mostrarImagen(event: any) {
     const input = event.target;
-   
-   // const file: File = input.files[0];
 
     if (input.files && input.files[0]) {
-
       const file: File = input.files[0];
-     
-
       const lector = new FileReader();
-
-    
-
       lector.onload = (e) => {
+        //se almacena la imagen para enviarla al servidor 
         this.empleado_f.imagen = file;
+
         this.imagenSrcPredeterminada = null;
         this.imagenSrc = e.target?.result as string;
         this.mostrarImagenMostrada();
       };
-
       lector.readAsDataURL(input.files[0]);
     }
   }
 
-  //sesion de imagenes 
+  //se muestra la imagen en pantalla 
   mostrarImagenMostrada() {
     if (this.imagenMostrada) {
       this.imagenMostrada.nativeElement.style.display = 'block';
@@ -191,14 +283,6 @@ export class RegistroEmpleadoComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
-
-
-
-
-
-
     // Recupera el valor almacenado en localStorage
     const nom_empresaGuardada = localStorage.getItem('nom_empresa');
 
@@ -249,7 +333,7 @@ export class RegistroEmpleadoComponent implements OnInit {
         this.columnacentral.nativeElement.style.flexBasis = '1250px';
         this.columnacentral.nativeElement.classList.remove('columna-central-reducir');
 
-        this.menu.nativeElement.style.left = '-40%';
+        this.menu.nativeElement.style.left = '-45%';
         this.menu.nativeElement.classList.remove('menu-abrir');
         botoncerrar = 0;
         
@@ -278,7 +362,7 @@ export class RegistroEmpleadoComponent implements OnInit {
         this.columnacentral.nativeElement.style.flexBasis = '1250px';
         this.columnacentral.nativeElement.classList.remove('columna-central-reducir');
 
-        this.menu.nativeElement.style.left = '-40%';
+        this.menu.nativeElement.style.left = '-45%';
         this.menu.nativeElement.classList.remove('menu-abrir');
       
         botoncerrar=0;
@@ -292,9 +376,4 @@ export class RegistroEmpleadoComponent implements OnInit {
     }
 
   }   
-
-
-
-  
-
 }

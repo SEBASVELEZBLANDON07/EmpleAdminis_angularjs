@@ -31,7 +31,6 @@ export class InicioComponent implements OnInit {
   @ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
   @ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
 
-
   constructor( 
     private router: ActivatedRoute, 
     private authService: AuthService,
@@ -40,7 +39,6 @@ export class InicioComponent implements OnInit {
   ngAfterViewInit() {
     this.inicializarParticulas();
     this.obtenerCorreoUsuario();
-    //console.log(this.CorreoUsuario);
     this.obtenerCorreoUsuarioPorCorreo(this.CorreoUsuario);
   }
 
@@ -90,35 +88,24 @@ export class InicioComponent implements OnInit {
   //obtengo el correo con el que se ingreso el usuario 
   obtenerCorreoUsuario() {
     this.CorreoUsuario = this.authService.getCorreoUsuario();
-    console.log('correo del usuario:', this.CorreoUsuario);
   }
 
   obtenerCorreoUsuarioPorCorreo(correo: string) {
-
-    // Método para eliminar el valor de nom_empresa de localStorage
-    //localStorage.removeItem('nom_empresa');
-    
     //hacemos la consulta para identificar el nombre de la empresa con la que se inicio sesion 
     this.authService.obtenerNomEmpresa(correo).subscribe(
       (response: any) => {
         this.nom_empresa = response.nomEmpresa;
-        //console.log(this.nom_empresa)
 
         //lo guardamos en el localStorage
         localStorage.setItem('nom_empresa', this.nom_empresa);
-
       },
       (error) => {
-        //alert("nombre de empresa no encontrado ")
         console.error('Error al obtener el nombre de la empresa:', error);
       }
     );
   }
 
-
-
   ngOnInit() {
-        
     // Recupera el valor almacenado en localStorage
     const nom_empresaGuardada = localStorage.getItem('nom_empresa');
 
@@ -206,12 +193,8 @@ export class InicioComponent implements OnInit {
       estado= false;
     });
 
-      
-    window.onload = () => {
-        
+    window.onload = () => {  
     }
-
   }
-
 }
 

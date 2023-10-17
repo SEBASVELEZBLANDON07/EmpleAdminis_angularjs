@@ -1,127 +1,74 @@
 
 <body>
-   
-   
-   
     <div class="contenedor">
         
         <div class="columna-izquierda"></div>
     
         <div class="columna-central">
             <br><br><br><br>
+
             <div class="estilo">
                 <h2 class="titulo-empresa">REGISTRO EMPRESA</h2>
             </div>
     
             <div class="container">
                 
-                
-                
-                
-        <!--i class="fa-solid fa-user icon"></i>
-                    <fa-icon [icon]="['fas', 'user']" class="icon"></fa-icon-->
                 <div class="cont_icon">
-                    
-                    
-                    <!--i class="fa-solid fa-user icon"></i-->
                     <i class="fa-regular fa-user icon"></i>
                 </div>
                
-               
-               
                 <div class="container_login">
+
+                    <!--animacion de gargando imagen-->
+                    <div class="cargando-overlay" *ngIf="loading">
+                        <div class="cargando-alert">
+                            <div class="spinner"></div>
+                            <div>Cargando...</div>
+                         </div>
+                    </div>
                 
-                    
-                    
-                
-        
-        
                     <h2 class="login_h2">Administrativo</h2>
+
                     <form class="login_form">
                         <div class="cont_user_pass">
-                            <input [(ngModel)]="user_f.nom_empresa" class="input_login" type="text" name="nom_empresa" required="">
+                            <p class="requiered">*</p><input [(ngModel)]="user_f.nom_empresa" class="input_login" type="text" name="nom_empresa" required>
                             <label class="label_login" form="nom_empresa">Ingrese El Nombre De La Empresa</label>
                         </div>
                         <div class="cont_user_pass">
-                            <input [(ngModel)]="user_fP.correo" class="input_login" type="email" name="correo" required="">
+                            <p class="requiered">*</p><input [(ngModel)]="user_fP.correo" class="input_login" type="email" name="correo" required="">
                             <label class="label_login" form="correo">Ingrese El Correco De Empresa</label>
                         </div>
                         <div class="cont_user_pass">
-                            <input  [(ngModel)]="user_fP.password" class="input_login" id="password" type="password" name="password" required="" #password>
+                            <p class="requiered">*</p><input  [(ngModel)]="user_fP.password" class="input_login" id="password" type="password" name="password" required="" #password>
                             <span class="password-logo" id="logoojo" #logoojo><i class="fa-solid fa-eye-slash ojoicon"></i></span>
-                            <label form="password" class="label_login" >contraseña</label>
+                            <label form="password" class="label_login" >Contraseña</label>
                         </div>
-                        <!--div class="cont_user_pass">
-                            <input  [(ngModel)]="user.password" class="input_login" id="password" type="password" name="password" required="" #password>
-                            <span class="password-logo" id="logoojo" #logoojo><i class="fa-solid fa-eye-slash ojoicon"></i></span>
-                            <label form="password" class="label_login" >contraseña</label>
-                        </div-->
         
-                            <!--a class="olvi_a" href="#">Olvidé mi contraseña</a-->
-        
-                       
-        
-                            <button (click)="crearf()" class="login_a" type="submit">
-                                <span class="ligin_spam">__</span><!--arriba-->
-                                <span class="ligin_spam"></span><!--bajando-->
-                                <span class="ligin_spam"></span><!--abajo-->
-                                <span class="ligin_spam">**</span><!--subir-->
-                                Crear Perfil
-                            </button>
-                            <a class="login_b" routerLink="/login" routerLinkActive="active">
-                                <span class="ligin_spam">__</span>
-                                <span class="ligin_spam"></span>
-                                <span class="ligin_spam"></span>
-                                <span class="ligin_spam">**</span>
-                                Iniciar Sesion
-                            </a>
-        
-                    
-        
-                        
-        
+                        <button (click)="crearf()" class="login_a" type="submit">
+                            <span class="ligin_spam">__</span><!--arriba-->
+                            <span class="ligin_spam"></span><!--bajando-->
+                            <span class="ligin_spam"></span><!--abajo-->
+                            <span class="ligin_spam">**</span><!--subir-->
+                            Crear Perfil
+                        </button>
+
+                        <a class="login_b" routerLink="/login" routerLinkActive="active">
+                            <span class="ligin_spam">__</span>
+                            <span class="ligin_spam"></span>
+                            <span class="ligin_spam"></span>
+                            <span class="ligin_spam">**</span>
+                            Iniciar Sesion
+                        </a>
                     </form>
                 </div>
-        
             </div>
-            <!--a routerLink="/admin" routerLinkActive="active">admin</a><br>
-            <a routerLink="/empleado" routerLinkActive="active">empleado</a>
-            
-            
-            
-            <a routerLink="/admin" routerLinkActive="active">admin</a><br>
-            <a routerLink="/login" routerLinkActive="active">login</a><br>
-            <a routerLink="/empleado" routerLinkActive="active">empleado</a-->
-    
-           
         </div>        
     
         <div class="columna-derecha"></div>
     
-    
-    
-    
     </div>
-       
-        
-    </body>
-    <router-outlet></router-outlet>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+          
+</body>
+<router-outlet></router-outlet>
     
     

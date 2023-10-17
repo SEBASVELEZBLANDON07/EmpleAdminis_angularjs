@@ -14,33 +14,32 @@ export class AuthService {
 
   constructor( 
     private http: HttpClient,
-    private jwtHerper: JwtHelperService) { }
+    private jwtHerper: JwtHelperService
+  ){}
 
-  //metodo para iniciar sesion 
+  //Solicitud HTTP al servidor para iniciar sesión 
   Login(user:any){
     return this.http.post(`${this.URL}/userRoute/login`, user);
   }
 
-  //metodo para insertar el prerfil de la empresa
+  //Solicitud HTTP al servidor para insertar el perfil de la empresa
   crearf(user_f:any){
     return this.http.post(`${this.URL}/crearF_route/InsEmpre`, user_f);
   }
 
-  //metodo para insertar el usurio administrador de la cuenta de la empresa 
+  //Solicitud HTTP al servidor para insertar el usuario administrador de la cuenta de la empres
   crearfP(user_fP:any){
     return this.http.post(`${this.URL}/crearF_route/InsEmpreUSer`, user_fP);
   }
 
+  //Solicitud HTTP al servidor para insercion de nuevo empleado
   regis_empleado(formData:any){
     return this.http.post(`${this.URL}/Empleado_edic/InsEmpleado`, formData);
   }
 
 
-
-
-
-   //metodo para establecer el correo del usuario
-   setCorreoUsuario(correologin: string) {
+  //metodo para establecer el correo del usuario
+  setCorreoUsuario(correologin: string) {
     this.correo = correologin;
   }
 
@@ -49,7 +48,7 @@ export class AuthService {
     return this.correo;
   }
 
-  //metodo para obtener el nombre de la empresa
+  //Solicitud HTTP al servidor para obtener el nombre de la empresa
   obtenerNomEmpresa(correo: string): Observable<any>{
     const params = new HttpParams().set('correo', correo)
     return this.http.get(`${this.URL}/crearF_route/nombreEmpresa`, {params});
