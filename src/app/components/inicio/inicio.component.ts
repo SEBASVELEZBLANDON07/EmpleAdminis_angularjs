@@ -37,7 +37,6 @@ export class InicioComponent implements OnInit {
   ) {}
 
   ngAfterViewInit() {
-    this.inicializarParticulas();
     this.obtenerCorreoUsuario();
     this.obtenerCorreoUsuarioPorCorreo(this.CorreoUsuario);
   }
@@ -85,6 +84,12 @@ export class InicioComponent implements OnInit {
     });
   }
 
+ //se presiona el butt de abrir menu desplegable 
+buttabrirnavegacion(){
+  this.inicializarParticulas();
+}
+
+
   //obtengo el correo con el que se ingreso el usuario 
   obtenerCorreoUsuario() {
     this.CorreoUsuario = this.authService.getCorreoUsuario();
@@ -99,8 +104,8 @@ export class InicioComponent implements OnInit {
         //lo guardamos en el localStorage
         localStorage.setItem('nom_empresa', this.nom_empresa);
       },
-      (error) => {
-        console.error('Error al obtener el nombre de la empresa:', error);
+      (error) => { 
+        console.error('Error al obtener el nombre de la empresa:', error); 
       }
     );
   }
@@ -113,6 +118,7 @@ export class InicioComponent implements OnInit {
     if (nom_empresaGuardada) {
       // lo asigna a la variable nom_empresa
       this.nom_empresa = nom_empresaGuardada;
+      this.inicializarParticulas();
     } else {
       // Si no hay un valor almacenado, puedes proporcionar un valor predeterminado
       this.nom_empresa = 'perfil empresa x';

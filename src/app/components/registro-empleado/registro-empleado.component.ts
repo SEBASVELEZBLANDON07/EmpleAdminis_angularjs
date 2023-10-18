@@ -256,6 +256,12 @@ export class RegistroEmpleadoComponent implements OnInit {
     });
   }
 
+  //se presiona el butt de abrir menu desplegable 
+  buttabrirnavegacion(){
+    this.inicializarParticulas();
+  }
+
+
   //metodo para insertar en la pantalla la imagen suvida por el usuario
   mostrarImagen(event: any) {
     const input = event.target;

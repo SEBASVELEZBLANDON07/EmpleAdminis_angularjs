@@ -4,7 +4,7 @@
   <div class="container_principal">
 
     <header>
-        <button   class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+        <button (click)="buttabrirnavegacion()"   class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
 
             <nav class="menu"  id="particles-js" #menu>
                 <ul class="menu-contenido">
@@ -41,49 +41,60 @@
                   </ul> 
               </nav>
           </div>
-
-
           <br><br><br><br><br><br><br><br><br><br>
           <br><br><br><br><br><br><br><br><br><br>
           <br><br><br><br><br><br><br><br><br><br>
 
           <div class="container">
+            <!--animacion de gargando imagen-->
+            <div class="cargando-overlay" *ngIf="loading">
+              <div class="cargando-alert">
+                  <div class="spinner"></div>
+                  <div>Cargando...</div>
+              </div>
+            </div>
+
             <div class="col1">
-              <!--maneja la targeta -->
               <div class="card">
                 <div class="front">
+
+                  <div class="cont_icon" >
+                    <i class="fa-solid fa-ticket icon"></i>
+                  </div>
+
                   <span class="chip"></span>
-                  <span class="num_cuenta">&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; </span>
-                  <div class="tipo"><span class="tipo_cuenta">Tipo de cuenta</span></div>
-                  <span class="nom_banco">NOMBRE DE LA ENTIDAD</span>
-                  <span class="salario">Salario</span>
-
-                  <!--span class="fullname">FULL NAME</span-->
-
+                  <span class="num_cuenta">{{ num_cuenta }}</span>
+                  <div class="tipo"><span class="tipo_cuenta">{{ tipoCuenta }}</span></div>
+                  <span class="nom_banco">{{ nombreEntidad }}</span>
+                  <span class="salario">{{ salario }}</span>
                 </div>
               </div>
             </div>
-                  
+          
             <div class="col2">
-                <label>Card Number</label>
-                <input class="number" type="text" ng-model="ncard" maxlength="19" onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+              <form >
+                <label class="label_">NUMERO DE CUENTA</label>
+                <input class="inputnum_cuenta" type="text"  maxlength="37" (input)="updatenum_cuenta($event)" />
                 
-                <label>Cardholder name</label>
-                <input class="nom_banco" type="text" placeholder="" /><br>
+                <label class="label_">NOMBRE DE LA ENTRIDAD</label>
+                <input class="inputnom_banco" type="text"  (input)="updatInputNom_banco($event)"  /><br>
                 
-                <label>nombre banci</label>
-                <input class="expire" type="text" placeholder="" /><br>
-
-                <label>salariuo</label>
-                <input type="number" placeholder="" />
-                
-                <button class="buttEnviar">evidar</button>
-              </div>
+                <label class="label_">TIPO DE CUENTA</label>
+                <input class="inputtipo_cuenta" type="text"  (input)="updatiInputTipo_cuenta($event)"  /><br>
+            
+                <label class="label_">SALARIO</label>
+                <input class="inputsalario" type="number" [(ngModel)]="salario" (input)="updatInputSalario($event)"   />
+  
+                <button class="buttEnviar">Guardar</button>
+              
+              </form>
+              
+            </div>
           </div>
+
         </div>
         <div div class="columna-derecha" #columnaderecha></div>
     </div>
-
 
   </div>
 </body>

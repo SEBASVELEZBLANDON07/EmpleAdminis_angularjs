@@ -1,17 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormsModule } from '@angular/forms';
 
 //manejo de mensajes personalizados 
 import Swal from 'sweetalert2';
 
-//visualizar los datos en la tarjeta dependencia jQuery
-declare var $: any;
-
 // Declaración para particlesJS
 declare var particlesJS: any;
-
-
 
 @Component({
   selector: 'app-cuenta-empleado',
@@ -19,12 +15,21 @@ declare var particlesJS: any;
   styleUrls: ['./cuenta-empleado.component.css']
 })
 export class CuentaEmpleadoComponent {
+
+//estado de cargando los datos al servidor 
+loading: boolean = false;
+
 //variable titulo empresa 
 nom_empresa: string = 'empresa';
 
 //variable id del empleado del registrando
 id_cedula: string = '';
 
+//variables predeterminadas de la targeta 
+num_cuenta: string = '**** **** **** ****';
+nombreEntidad: string = 'NOMBRE DE LA ENTIDAD';
+tipoCuenta: string = 'Tipo de cuenta';
+salario: number= 0;
 
 @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
 @ViewChild('menu', { static: true }) menu!: ElementRef;
@@ -32,12 +37,12 @@ id_cedula: string = '';
 @ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
 @ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
 
-
+/*
 
 ngAfterViewInit() {
   this.inicializarParticulas();
 }
-
+*/
 inicializarParticulas(){
   //menu izquierda animacion
   particlesJS('particles-js', {
@@ -81,6 +86,43 @@ inicializarParticulas(){
   });
 }
 
+//se presiona el butt de abrir menu desplegable 
+buttabrirnavegacion(){
+  this.inicializarParticulas();
+}
+
+//visualizacion en la targeta nombre de banco
+updatInputNom_banco(event: any) {
+  const userInput = event.target.value.toUpperCase();;
+  event.target.value = userInput;
+  this.nombreEntidad = userInput
+}
+
+//visualizacion en la targeta tipo de cuenta 
+updatiInputTipo_cuenta(event: any) {
+  const userInput = event.target.value;
+  event.target.value = userInput;
+  this.tipoCuenta = userInput
+}
+ 
+//visualizacion en la targeta salario
+updatInputSalario(event: any) {
+  const userInput = event.target.value;
+  event.target.value = userInput;
+  this.salario = userInput
+}
+
+//visualizacion en la targeta numero de cuenta
+updatenum_cuenta(event: any) {
+  const userInput = event.target.value;
+  const numericValue = userInput.replace(/\D/g, '');
+  const formattedValue = numericValue.substring(0, 30);
+  //se agrega un espacio después de cada 4 caracteres
+  this.num_cuenta = formattedValue.replace(/(.{4})/g, '$1 ').trim(); 
+  event.target.value = formattedValue;
+}
+
+
 ngOnInit() {
   // Recupera el valor almacenado en localStorage
   const nom_empresaGuardada = localStorage.getItem('nom_empresa');
@@ -104,31 +146,7 @@ ngOnInit() {
     this.id_cedula = '';
   }
 
-  //funcion para poder ver los datos en la targeta 
-   // Card number input
-   $('.number').on('input', function (event) {
-    $('.num_cuenta').text($(this).val());
-    if ($('.num_cuenta').text().length === 0) {
-      $('.num_cuenta').html('&#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF; &#x25CF;&#x25CF;&#x25CF;&#x25CF;');
-    }
-  });
-
-  // Name Input
-  $('.nom_banco').on('input', function () {
-    $('.nom_banco').text($(this).val());
-    if ($('.nom_banco').val().length === 0) {
-      $('.nom_banco').text('NOMBRE DE LA ENTIDAD');
-    }
-  });
-
-  // Date expire input
-  $('.expire').on('input', function (event) {
-    $('.tipo_cuenta').text($(this).val());
-    if ($(this).val().length === 0) {
-      $('.tipo_cuenta').text('Tipo de cuenta');
-    }
-  });
-
+  
 
 
 
