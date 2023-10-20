@@ -26,6 +26,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { UserEmpresaComponent } from './components/user-empresa/user-empresa.component';
 import { RegistroEmpleadoComponent } from './components/registro-empleado/registro-empleado.component';
 import { CuentaEmpleadoComponent } from './components/cuenta-empleado/cuenta-empleado.component';
+import { AsistenciaComponent } from './components/asistencia/asistencia.component';
 
 //import { File } from '@ionic-native/file/ngx';
 
@@ -42,6 +43,7 @@ import { CuentaEmpleadoComponent } from './components/cuenta-empleado/cuenta-emp
     UserEmpresaComponent,
     RegistroEmpleadoComponent,
     CuentaEmpleadoComponent,
+    AsistenciaComponent,
   ],
   imports: [
     BrowserModule,

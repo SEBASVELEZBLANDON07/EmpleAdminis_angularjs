@@ -215,8 +215,8 @@
   display: flex;
   }
   
-  /*cargando informacion al servidor*/
-  .cargando-overlay {
+/*cargando informacion al servidor*/
+.cargando-overlay {
     position: fixed;
     top: 0;
     left: 0;

@@ -14,13 +14,15 @@ declare var particlesJS: any;
   templateUrl: './cuenta-empleado.component.html',
   styleUrls: ['./cuenta-empleado.component.css']
 })
-export class CuentaEmpleadoComponent {
+export class CuentaEmpleadoComponent implements OnInit {
 
 //estado de cargando los datos al servidor 
 loading: boolean = false;
 
 //variable titulo empresa 
-nom_empresa: string = 'empresa';
+nom_empresa: string = 'Empresa'; 
+
+nom_empleado: string = 'Empleado';
 
 //variable id del empleado del registrando
 id_cedula: string = '';
@@ -29,13 +31,18 @@ id_cedula: string = '';
 num_cuenta: string = '**** **** **** ****';
 nombreEntidad: string = 'NOMBRE DE LA ENTIDAD';
 tipoCuenta: string = 'Tipo de cuenta';
-salario: number= 0;
+salario: string= '0';
 
 @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
 @ViewChild('menu', { static: true }) menu!: ElementRef;
 @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
 @ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
 @ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
+
+constructor(
+  private authService: AuthService,
+  private route: Router,
+){}
 
 /*
 
@@ -86,6 +93,72 @@ inicializarParticulas(){
   });
 }
 
+cuenta_b ={
+  num_cuenta_bancaria: '',
+  nom_banco: '',
+  tipo_cuenta: '',
+  salario: '',
+  id_cedula_c: '',
+}
+
+guardar_c(){
+  console.log("se presiona")
+  //verificamos si los campos requeridos estan completos
+  const formulario = document.querySelector('.formul_cuenta_b');
+  if(formulario){
+    const composReqqueridos = formulario.querySelectorAll('[required]');
+    const camposcompletos = Array.from(composReqqueridos).every((campo) => (campo as HTMLInputElement).value);
+    //se mustra un error en pantalla si faltan los campos requeridos 
+    if(!camposcompletos){
+      Swal.fire({
+        title: 'por favor completa los campos requeridos',
+        icon: 'info',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+  }else{
+    Swal.fire({
+      title: 'Error: No se encontro el formulario',
+      icon: 'info',
+      confirmButtonText: 'Aceptar'
+    });
+    return;
+  }
+  
+
+  //se cambia el loadinf de false a true para que comiense a cargar mientras se procesan los datos 
+  this.loading = true;
+
+  //se almacena el id del empleado en el campo de id_cuenta_c
+  this.cuenta_b.id_cedula_c = this.id_cedula;
+
+  console.log(this.cuenta_b);
+
+  //enviamos los datos del formulario de cuenta bancaria al servidor
+  this.authService.guardar_c(this.cuenta_b).subscribe(
+    (res: any) => {
+      this.loading = false;
+      Swal.fire({
+        title: 'Cuenta bancaria ingresada correctamente',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
+      this.route.navigate(['inicio']);
+    },
+    (error) => {
+      console.log('error', error);
+      this.loading = false;
+      Swal.fire({
+        title: 'No se pudo ingresar la cuenta',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+    }
+  );
+  
+}
+
 //se presiona el butt de abrir menu desplegable 
 buttabrirnavegacion(){
   this.inicializarParticulas();
@@ -108,8 +181,35 @@ updatiInputTipo_cuenta(event: any) {
 //visualizacion en la targeta salario
 updatInputSalario(event: any) {
   const userInput = event.target.value;
+  const maximoNume = userInput.substring(0, 9);
+  const remplazar = maximoNume.replace(/[,.]/g, '');
+  const numvalor = parseFloat(remplazar);
+
+  //se verifica si el numero ingresado es valido 
+  if(!isNaN(numvalor)){
+    //se utiliza el separador de peso colombiano
+    const numero_modificado = numvalor.toLocaleString('es-CO', {
+     //style: 'currency',
+     //currency: 'COP',
+     minimumFractionDigits: 0,
+     maximumFractionDigits: 0,
+    });
+
+    const num_separado = numero_modificado.replace(/,/g, ' ');
+
+    event.target.value = maximoNume;
+    //se muestra el valor en la targeta
+    this.salario = num_separado;
+
+  }else{
+    console.log('numero no valifdo')
+
+  }
+  /*
   event.target.value = userInput;
-  this.salario = userInput
+  this.salario = userInput.replace(/(.{3})/g, '$1 ').trim();
+  */
+ 
 }
 
 //visualizacion en la targeta numero de cuenta
@@ -127,6 +227,8 @@ ngOnInit() {
   // Recupera el valor almacenado en localStorage
   const nom_empresaGuardada = localStorage.getItem('nom_empresa');
   const id_cedulaGuardada = localStorage.getItem('id_cedula');
+  const nom_empleadoGuardado = localStorage.getItem('nombre')
+  
 
 
   //verificamos si hay un valor almacenado en localStorage, 
@@ -137,6 +239,16 @@ ngOnInit() {
     // Si no hay un valor almacenado, puedes proporcionar un valor predeterminado
     this.nom_empresa = 'perfil empresa x';
   }
+
+   //verificamos si hay un valor almacenado en localStorage, 
+   if (nom_empleadoGuardado) {
+    // lo asigna a la variable nom_empresa
+    this.nom_empleado = nom_empleadoGuardado;
+  } else {
+    // Si no hay un valor almacenado, puedes proporcionar un valor predeterminado
+    this.nom_empleado = '';
+  }
+
   //verificamos si hay un valor almacenado en localStorage, 
   if (id_cedulaGuardada) {
     // lo asigna a la variable nom_empresa

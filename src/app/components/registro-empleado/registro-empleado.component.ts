@@ -177,8 +177,9 @@ export class RegistroEmpleadoComponent implements OnInit {
     if (this.empleado_f.imagen) {
       formData.append('imagen', this.empleado_f.imagen, 'fotografia_empleado_ingrasado.jpg');
     }
-    //guadamos el id_cedula en el localStorage
+    //guadamos el id_cedula y el nombre en el localStorage
     localStorage.setItem('id_cedula', this.empleado_f.id_cedula);
+    localStorage.setItem('nombre', this.empleado_f.nombre);
 
     //insercion del empleado de la empresa 
     this.authService.regis_empleado(formData).subscribe(   
@@ -209,10 +210,11 @@ export class RegistroEmpleadoComponent implements OnInit {
     );
   }
 
+  /*
   ngAfterViewInit() {
     this.inicializarParticulas();
   }
-
+*/
   inicializarParticulas(){
     //menu izquierda animacion
     particlesJS('particles-js', {

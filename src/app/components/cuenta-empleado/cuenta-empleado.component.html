@@ -32,7 +32,7 @@
                   <ul class="estilonav">
                       <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
                       <li><a routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
-                      <li><a href="#Movies">R.Asistencia</a></li>
+                      <li><a routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
                       <li><a href="#">R.Horas Extras</a></li>
                       <li><a href="#">R.Incapacidad</a></li>
                       <li><a href="#">Inventario</a></li>
@@ -41,9 +41,17 @@
                   </ul> 
               </nav>
           </div>
+          <br><br><br><br>
+          <div>
+            <h2 class="h2">Registra la cuenta bancaria de {{ nom_empleado }}</h2>
+
+          </div>
+          <br><br><br>
+          <br><br><br><br><br><br>
           <br><br><br><br><br><br><br><br><br><br>
           <br><br><br><br><br><br><br><br><br><br>
-          <br><br><br><br><br><br><br><br><br><br>
+
+          
 
           <div class="container">
             <!--animacion de gargando imagen-->
@@ -72,22 +80,35 @@
             </div>
           
             <div class="col2">
-              <form >
+              <form class="formul_cuenta_b" >
+
                 <label class="label_">NUMERO DE CUENTA</label>
-                <input class="inputnum_cuenta" type="text"  maxlength="37" (input)="updatenum_cuenta($event)" />
+                <div class="cont">
+                  <p class="requiered">*</p>
+                  <input class="inputnum_cuenta" type="text" name="num_cuenta_bancaria"  maxlength="37" [(ngModel)]="cuenta_b.num_cuenta_bancaria" (input)="updatenum_cuenta($event)" required/>  
+                </div>
                 
                 <label class="label_">NOMBRE DE LA ENTRIDAD</label>
-                <input class="inputnom_banco" type="text"  (input)="updatInputNom_banco($event)"  /><br>
-                
+                <div class="cont">
+                  <p class="requiered">*</p>
+                  <input class="inputnom_banco" type="text" name="nom_banco" [(ngModel)]="cuenta_b.nom_banco"  (input)="updatInputNom_banco($event)" required /><br>
+                </div>
+
                 <label class="label_">TIPO DE CUENTA</label>
-                <input class="inputtipo_cuenta" type="text"  (input)="updatiInputTipo_cuenta($event)"  /><br>
-            
+                <div class="cont">
+                  <p class="requiered">*</p>
+                  <input class="inputtipo_cuenta" type="text" name="tipo_cuenta"  [(ngModel)]="cuenta_b.tipo_cuenta"  (input)="updatiInputTipo_cuenta($event)" required /><br>
+                </div>
+
                 <label class="label_">SALARIO</label>
-                <input class="inputsalario" type="number" [(ngModel)]="salario" (input)="updatInputSalario($event)"   />
-  
-                <button class="buttEnviar">Guardar</button>
+                <div class="cont">
+                  <p class="requiered">*</p>
+                  <input class="inputsalario" type="number" name="salario" maxlength="9" [(ngModel)]="cuenta_b.salario" (input)="updatInputSalario($event)" required  />
+                </div>
               
               </form>
+              
+              <button (click)="guardar_c()" class="buttEnviar">Guardar</button>
               
             </div>
           </div>

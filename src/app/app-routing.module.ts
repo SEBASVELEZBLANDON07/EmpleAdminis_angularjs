@@ -10,6 +10,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { UserEmpresaComponent } from './components/user-empresa/user-empresa.component';
 import { RegistroEmpleadoComponent } from './components/registro-empleado/registro-empleado.component';
 import { CuentaEmpleadoComponent } from './components/cuenta-empleado/cuenta-empleado.component';
+import { AsistenciaComponent } from './components/asistencia/asistencia.component';
 
 const routes: Routes = [
   
@@ -30,6 +31,9 @@ const routes: Routes = [
 
   //ruta de ingresar un usuario nuevo a la base de datos //necesita tener token y rol admin
   { path: 'cuentaEmpleado', component: CuentaEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+
+  //ruta de ingresar un usuario nuevo a la base de datos //necesita tener token y rol admin
+  { path: 'asistencia', component: AsistenciaComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
 
 

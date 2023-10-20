@@ -293,6 +293,27 @@ body{
       100% { transform: rotate(360deg); }
 }
 
+
+.h2{
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 30%; 
+ /* font-size: 30px;*/
+ font-size: 36px; /* Tamaño de fuente */
+ color: #9e9b9b; /* Color de texto */
+ /*/text-align: center; /* Alineación en el centro */
+ text-transform: capitalize; /* Capitalizar la primera letra de cada palabra */
+ font-weight: 700; /* Peso de fuente (bold) */
+ margin: 20px 0; /* Márgenes superior e inferior */
+ text-shadow: 5px 5px 8px rgba(11, 70, 16, 0.829); /* Sombra de texto */
+ font-family: "Arial", sans-serif; /* Fuente del texto */
+
+
+
+}
+ 
+
 /*estilos de la targeta*/
 .container{
   position: absolute;
@@ -300,7 +321,7 @@ body{
   flex-direction: row;
   align-items: center;
   margin: auto;
-  top: 20px;
+  top: 30px;
   bottom: 0;
   left: -50px;
   right: 0;
@@ -422,13 +443,21 @@ body{
           position: absolute;
           display: block;
           font-size: 15px;
-          margin-left: 50px;
-          
+          margin-left: 40px;
+        }
+        &:before{
+          content: 'COP';
+          position: absolute;
+          display: block;
+          font-size: 12px;
+          white-space: pre;
+          margin-top: 5px;
+          margin-left: 112px;
+          color: #e1e1e1;
 
-
-          
         }
       }
+      
     }  
 
   }
@@ -463,6 +492,13 @@ body{
     margin-right: 20px;
     font-size: 1.1rem;
     color: #e1e1e1;
+    
+  }
+
+  .cont{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
   }
 
   /* Estilo para inputs */
@@ -473,11 +509,16 @@ body{
     border-radius: 5px;
     font-size: 1rem;
     transition: all 0.3s; 
-    margin: 10px;
+    margin: 5px;
     color: #ffffff;
     background: var(--card-color);
     background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0) 1px, rgba(255, 255, 255, 0.03) 2px, rgba(255, 255, 255, 0.04) 3px, rgba(255, 255, 255, 0.05) 4px), -webkit-linear-gradient(-245deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.2) 70%, rgba(194, 197, 155, 0.507) 90%);
 
+  }
+  /* Estilo para campos de entrada requeridos */
+  .requiered {
+    color: red;
+    margin-right: 5px;
   }
 
   /* Estilo de hover para los inputs */

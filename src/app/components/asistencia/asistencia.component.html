@@ -1,0 +1,150 @@
+<br><br><br>
+<body>
+    <div class="container_principal">
+
+    <header>
+        <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+
+            <nav class="menu"  id="particles-js" #menu>
+                <ul class="menu-contenido">
+                    <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                    <li><a href="#">Cerrar sesion</a></li>
+                    <li><a href="#">Actualizar Empleado</a></li>
+                    <li><a href="#">Actualizar Perfil</a></li>
+                    <!--li><a href="#">Incapacidad</a></li>
+                    <li><a href="#">Inventario</a></li>
+                    <li><a href="#">Borrar Empleado</a></li-->
+                </ul>
+            </nav>
+    </header>
+    <div  class="contenedor">
+       
+        <div class="columna-izquierda" #columnaizquierda></div>
+        
+        
+        <div class="columna-central" #columnacentral>
+            <div class="estilo">
+                <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
+            </div>
+            <div class="efectos-navegación">
+                <nav class="menu-central">
+                    <ul class="estilonav">
+                        <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                        <li><a routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
+                        <li><a routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
+                        <li><a href="#">R.Horas Extras</a></li>
+                        <li><a href="#">R.Incapacidad</a></li>
+                        <li><a href="#">Inventario</a></li>
+                        <li><a href="#">Borrar Empleado</a></li>
+
+                    </ul> 
+                </nav>
+            </div>
+
+<div class="contenerdo_formulario">
+
+     <!--animacion de gargando imagen-->
+     <div class="cargando-overlay" *ngIf="loading">
+        <div class="cargando-alert">
+            <div class="spinner"></div>
+            <div>Cargando...</div>
+        </div>
+    </div>
+    <div class="contForm">
+
+        <div class="cont_registro">
+            <h1 class="text_registro">Registro Asistencia</h1>
+        </div>
+
+        <div class="cont_form">
+            
+
+            <form class="form">
+                <div class="cont_select" >
+                    <p class="requiered">*</p>
+                    <select [(ngModel)]="EmpleadoBusar.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
+                        <option [ngValue]="''" disabled hidden>Tipo de documento</option>
+                        <option value="cc">Cédula de Ciudadanía</option>
+                        <option value="ce">Cédula de Extranjería</option>
+                    </select>
+                   
+                </div>
+
+                <div class="cont_posicion">
+                    <label class="label_" for="">Digite el numero de cedula del empleado </label>
+                    <div class="cont_input">
+                    
+                        <input  [(ngModel)]="EmpleadoBusar.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required>
+                        <p class="requiered">*</p>
+                    </div>
+                </div>
+
+                <div class="botones-container">
+                    <!--button class="buttlimpiar" id="botonlimbiar">limpiar</button-->
+                    <button (click)="buscarEmp()" class="buttenviar" id="botonEnviar">Buscar</button>
+                </div>
+                
+
+               
+            </form>
+
+        <div class="datosocultos" style="display: none;">
+
+            <div class="cont_datos">
+                <h2 class="h2">Nombre:  </h2><p class="p">{{ nombre }}</p>
+            </div>
+
+            <div class="cont_datos">
+                <h2 class="h2">Apellidos: </h2><p class="p">{{ apellidos }}</p>
+            </div>
+
+            <div class="cont_fechaTime">
+                <h2 class="h2_time">fecha de registro: </h2><p class="p">{{ fechaActual }}</p>
+            </div>
+
+            <div class="cont_fechaTime">
+                <h2 class="h2_time">hora de registro: </h2><p class="p">{{ timeActual }}</p>
+            </div>
+
+
+            
+           
+
+           
+
+           
+
+          
+           
+
+            <div class="botones-container">
+                <!--button class="buttlimpiar" id="botonlimbiar">limpiar</button-->
+                <button  (click)="Regis_asistencia()" class="buttenviar" id="botonEnviar">Guardar Asistencia </button>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+        </div>
+       
+        
+        <div div class="columna-derecha" #columnaderecha></div>
+
+
+    </div>
+
+
+    </div>
+</body>
+<router-outlet></router-outlet>
+
+

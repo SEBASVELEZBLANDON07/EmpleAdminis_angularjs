@@ -8,8 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
  
+  //url al servidor 
   private URL = 'http://localhost:8080'; 
 
+  //correo de quien inicia secion
   correo: string = '';
 
   constructor( 
@@ -37,6 +39,16 @@ export class AuthService {
     return this.http.post(`${this.URL}/Empleado_edic/InsEmpleado`, formData);
   }
 
+  //Solicitud HTTP al servidor para insertar la cuenta bancaria del empleado
+  guardar_c(cuenta_b:any){
+    return this.http.post(`${this.URL}/Empleado_edic/cuenBancaria`, cuenta_b);
+  }
+
+  //Solicitud HTTP al servidor para insertar la asistencia
+  asistencia_i(datosasistencia:any){
+    return this.http.post(`${this.URL}/Empleado_edic/asistenciaR`, datosasistencia);
+  }
+
 
   //metodo para establecer el correo del usuario
   setCorreoUsuario(correologin: string) {
@@ -54,7 +66,19 @@ export class AuthService {
     return this.http.get(`${this.URL}/crearF_route/nombreEmpresa`, {params});
   }
 
-  
+  buscarEmpleado(EmpleadoBusar:any){
+    return this.http.post(`${this.URL}/Empleado_edic/buscarEmpleado`, EmpleadoBusar);
+  }
+
+/*
+  buscarEmpleado(EmpleadoBusar: any){
+    const params = new HttpParams()
+    .set('id_cedula', EmpleadoBusar.id_cedula)
+    .set('tipo_documento', EmpleadoBusar.tipo_documento);
+
+    return this.http.get(`${this.URL}/Empleado_edic/buscarEmpleado`, params);
+  }
+  */
 
   //se verifica si el usuario tiene un token 
   isAunt(): boolean{
