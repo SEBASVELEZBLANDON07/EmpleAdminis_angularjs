@@ -1,0 +1,67 @@
+<br><br><br>
+<body>
+    <div class="container_principal">
+
+    <header>
+        <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+
+            <nav class="menu"  id="particles-js" #menu>
+                <ul class="menu-contenido">
+                    <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                    <li><a href="#">Cerrar sesion</a></li>
+                    <li><a href="#">Actualizar Empleado</a></li>
+                    <li><a href="#">Actualizar Perfil</a></li>
+                    <!--li><a href="#">Incapacidad</a></li>
+                    <li><a href="#">Inventario</a></li>
+                    <li><a href="#">Borrar Empleado</a></li-->
+                </ul>
+            </nav>
+    </header>
+    <div  class="contenedor">
+       
+        <div class="columna-izquierda" #columnaizquierda></div>
+        
+        
+        <div class="columna-central" #columnacentral>
+            <div class="estilo">
+                <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
+            </div>
+            <div class="efectos-navegación">
+                <nav class="menu-central">
+                    <ul class="estilonav">
+                       <li><a class="a_menu" routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                        <li><a class="a_menu" routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
+                        <li><a class="a_menu" routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
+                        <li><a class="a_menu" routerLink="/horasExtras" routerLinkActive="active" >R.Horas Extras</a></li>
+                        <li><a class="a_menu_set" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
+                        <li><a class="a_menu" href="#">Inventario</a></li>
+                        <li><a class="a_menu" href="#">Borrar Empleado</a></li>
+
+                    </ul> 
+                </nav>
+            </div>
+<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+        </div>
+       
+        
+        <div div class="columna-derecha" #columnaderecha></div>
+
+
+    </div>
+
+
+    </div>
+</body>
+<router-outlet></router-outlet>
+
+
+
+

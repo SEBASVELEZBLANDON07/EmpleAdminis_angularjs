@@ -1,6 +1,6 @@
 <br><br><br>
 <body>
-<div class="container_principal">
+    <div class="container_principal">
 
     <header>
         <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
@@ -25,21 +25,20 @@
             <div class="estilo">
                 <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
             </div>
-
             <div class="efectos-navegación">
                 <nav class="menu-central">
                     <ul class="estilonav">
                         <li><a class="a_menu" routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
                         <li><a class="a_menu" routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
-                        <li><a class="a_menu_set" routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
-                        <li><a class="a_menu" routerLink="/horasExtras" routerLinkActive="active" >R.Horas Extras</a></li>
+                        <li><a class="a_menu" routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
+                        <li><a class="a_menu_set" routerLink="/horasExtras" routerLinkActive="active" >R.Horas Extras</a></li>
                         <li><a class="a_menu" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
                         <li><a class="a_menu" href="#">Inventario</a></li>
                         <li><a class="a_menu" href="#">Borrar Empleado</a></li>
                     </ul> 
                 </nav>
             </div>
-
+            
             <div class="contenerdo_formulario">
 
                 <!--animacion de gargando imagen-->
@@ -53,7 +52,7 @@
                 <div class="contForm">
 
                     <div class="cont_registro">
-                        <h1 class="text_registro">Registro Asistencia</h1>
+                        <h1 class="text_registro">Registro horas Extras </h1>
                     </div>
 
                     <div class="cont_form">
@@ -85,7 +84,6 @@
                         <div class="datosocultos" style="display: none;">
 
                             <h2 class="h2">Datos Del Empleado</h2>
-
                             <div class="cont_datos">
                                 <h2 class="h2">Nombre: </h2><p class="p">{{ nombre }}</p>
                             </div>
@@ -97,25 +95,40 @@
                             <h2 class="h2">Datos A Registrar</h2>
 
                             <div class="cont_fechaTime">
-                                <h2 class="h2_time">fecha de registro: </h2><p class="p">{{ fechaActual }}</p>
+                                <h2 class="h2_time">fecha de registro de la hora extras: </h2><p class="p">{{ fechaActual }}</p>
                             </div>
-
-                            <div class="cont_fechaTime">
-                                <h2 class="h2_time">hora de registro: </h2><p class="p">{{ timeActual }}</p>
-                            </div>
+                            
+                            <form class="form_fechaTime">
+                                <label  class="label_hora" for="horaInicio">Registrar Hora:</label>
+                                <p class="requiered">*</p><input [(ngModel)]="horaRegistro.horas_extras" name="hora_inicio" class="input_hora" type="number" id="horaInicio" placeholder="hh.mm" required>
+                            </form >
                             <div class="botones-container">
                                 <!--button class="buttlimpiar" id="botonlimbiar">limpiar</button-->
-                                <button  (click)="Regis_asistencia()" class="buttenviar" id="botonEnviar">Guardar Asistencia </button>
+                                <button (click)="registrarHoras()"  class="buttenviar" id="botonEnviar">Guardar Asistencia </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
         </div>
+       
+        
         <div div class="columna-derecha" #columnaderecha></div>
+
+
     </div>
-</div>
+
+
+    </div>
 </body>
 <router-outlet></router-outlet>
+
+
 
 

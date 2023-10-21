@@ -11,6 +11,8 @@ import { UserEmpresaComponent } from './components/user-empresa/user-empresa.com
 import { RegistroEmpleadoComponent } from './components/registro-empleado/registro-empleado.component';
 import { CuentaEmpleadoComponent } from './components/cuenta-empleado/cuenta-empleado.component';
 import { AsistenciaComponent } from './components/asistencia/asistencia.component';
+import { HorasExtrasComponent } from './components/horas-extras/horas-extras.component';
+import { IncapacidadComponent } from './components/incapacidad/incapacidad.component';
 
 const routes: Routes = [
   
@@ -29,12 +31,17 @@ const routes: Routes = [
   //ruta de ingresar un usuario nuevo a la base de datos //necesita tener token y rol admin
   { path: 'regitroEmpleado', component: RegistroEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
-  //ruta de ingresar un usuario nuevo a la base de datos //necesita tener token y rol admin
+  //ruta de ingresar la cuneta bancaria del empleado a la base de datos //necesita tener token y rol admin
   { path: 'cuentaEmpleado', component: CuentaEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
-  //ruta de ingresar un usuario nuevo a la base de datos //necesita tener token y rol admin
+  //ruta de ingresar la asistencia a la base de datos //necesita tener token y rol admin
   { path: 'asistencia', component: AsistenciaComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
+  //ruta de ingresar las horas extras de los empleados base de datos //necesita tener token y rol admin
+  { path: 'horasExtras', component: HorasExtrasComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+
+  //ruta de ingresar las horas extras de los empleados base de datos //necesita tener token y rol admin
+  { path: 'incapacidad', component: IncapacidadComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
 
   //ruta indefinido // necesita tener un token  

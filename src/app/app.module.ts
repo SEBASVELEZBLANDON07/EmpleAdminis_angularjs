@@ -27,6 +27,8 @@ import { UserEmpresaComponent } from './components/user-empresa/user-empresa.com
 import { RegistroEmpleadoComponent } from './components/registro-empleado/registro-empleado.component';
 import { CuentaEmpleadoComponent } from './components/cuenta-empleado/cuenta-empleado.component';
 import { AsistenciaComponent } from './components/asistencia/asistencia.component';
+import { HorasExtrasComponent } from './components/horas-extras/horas-extras.component';
+import { IncapacidadComponent } from './components/incapacidad/incapacidad.component';
 
 //import { File } from '@ionic-native/file/ngx';
 
@@ -44,6 +46,8 @@ import { AsistenciaComponent } from './components/asistencia/asistencia.componen
     RegistroEmpleadoComponent,
     CuentaEmpleadoComponent,
     AsistenciaComponent,
+    HorasExtrasComponent,
+    IncapacidadComponent,
   ],
   imports: [
     BrowserModule,

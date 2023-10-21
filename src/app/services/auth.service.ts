@@ -49,6 +49,10 @@ export class AuthService {
     return this.http.post(`${this.URL}/Empleado_edic/asistenciaR`, datosasistencia);
   }
 
+  //Solicitud HTTP al servidor para insertar la horas extras
+  horasExtras(horaRegistro:any){
+    return this.http.post(`${this.URL}/Empleado_edic/horasExtras`, horaRegistro);
+  }
 
   //metodo para establecer el correo del usuario
   setCorreoUsuario(correologin: string) {

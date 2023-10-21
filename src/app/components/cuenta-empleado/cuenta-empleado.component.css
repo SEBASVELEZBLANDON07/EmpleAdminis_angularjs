@@ -215,10 +215,16 @@
     /*background-color: #555555;*/
   }
  
-  .menu-central a {
+  .a_menu {
     color: inherit;
     text-decoration: none;
     transition: 0.25s ease;
+  }
+  .a_menu_set{
+   color: #ff0000;
+    text-decoration: none;
+    transition: 0.25s ease;
+    box-shadow: 0 2px 0 0 currentcolor;
   }
  
   .menu-central ul {
