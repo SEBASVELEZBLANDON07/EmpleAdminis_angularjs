@@ -11,16 +11,15 @@
     position: fixed; 
     top: 3.5%; 
     right: 80px; 
-    
     transform: translateY(-50%); 
     background-color: transparent;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    background-color: #9dc0c2;
     border: 2px solid #000000;
-    border-radius: 15px;
     z-index: 1000; 
+    background-color: #333;
+    border-radius: 20px
   }
 
   .abrir-navegacion:hover {

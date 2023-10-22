@@ -13,16 +13,15 @@
     position: fixed; 
     top: 3.5%; 
     right: 80px; 
-    
     transform: translateY(-50%); 
     background-color: transparent;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    background-color: #9dc0c2;
     border: 2px solid #000000;
-    border-radius: 15px;
     z-index: 1000; 
+    background-color: #333;
+    border-radius: 20px
   }
 
   .abrir-navegacion:hover {
@@ -199,20 +198,18 @@
     top: 0;
     left: 12%;
     height: 40px;
- 
-    width: 100%;
-    
+    width: 77%;
     font-family: "Inter", sans-serif;
-    /*background-color: #333;*/
     color: #2bff00;
     display: flex;
     align-items: center;
-    /*justify-content: center;*/
     font-size: 1.3rem;
     margin-top: 50px;
     margin-left: 68px;
     z-index: 1000;
-    /*background-color: #555555;*/
+    background-color: #333;
+    border-radius: 20px
+    
   }
  
   .a_menu {

@@ -184,7 +184,9 @@
                             
                                 <label class="label_imagen" for="cargarImagen">Selecciona una fotografia:</label>
                             <div class="cont_input_label">    
-                                <input [(ngModel)]="empleado_f.imagen" name="imagen" class="input_imagen" #inputImagen type="file" id="cargarImagen" accept="image/*" (change)="mostrarImagen($event)" required><p class="requiered">*</p>
+                                <i class="fa-solid fa-folder"></i>
+                                <input [(ngModel)]="empleado_f.imagen" name="imagen" class="input_imagen" #inputImagen type="file" id="cargarImagen" accept="image/*" (change)="mostrarImagen($event)" required>
+                                <p class="requiered">*</p>
                             </div>
                             <div class="cont_input_label">
                                 <label class="label_" for="">Cargo</label>

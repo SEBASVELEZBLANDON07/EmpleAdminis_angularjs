@@ -54,6 +54,11 @@ export class AuthService {
     return this.http.post(`${this.URL}/Empleado_edic/horasExtras`, horaRegistro);
   }
 
+  //Solicitud HTTP al servidor para insertar la horas extras
+  incapacidad(formData:any){
+    return this.http.post(`${this.URL}/Empleado_edic/incapacidad`, formData);
+  }
+
   //metodo para establecer el correo del usuario
   setCorreoUsuario(correologin: string) {
     this.correo = correologin;
@@ -69,7 +74,7 @@ export class AuthService {
     const params = new HttpParams().set('correo', correo)
     return this.http.get(`${this.URL}/crearF_route/nombreEmpresa`, {params});
   }
-
+  //Solicitud HTTP al servidor para buscar empleados para sus registros
   buscarEmpleado(EmpleadoBusar:any){
     return this.http.post(`${this.URL}/Empleado_edic/buscarEmpleado`, EmpleadoBusar);
   }
