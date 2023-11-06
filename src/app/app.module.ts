@@ -29,6 +29,7 @@ import { CuentaEmpleadoComponent } from './components/cuenta-empleado/cuenta-emp
 import { AsistenciaComponent } from './components/asistencia/asistencia.component';
 import { HorasExtrasComponent } from './components/horas-extras/horas-extras.component';
 import { IncapacidadComponent } from './components/incapacidad/incapacidad.component';
+import { DeleteEmpleadoComponent } from './components/delete-empleado/delete-empleado.component';
 
 //import { File } from '@ionic-native/file/ngx';
 
@@ -48,6 +49,7 @@ import { IncapacidadComponent } from './components/incapacidad/incapacidad.compo
     AsistenciaComponent,
     HorasExtrasComponent,
     IncapacidadComponent,
+    DeleteEmpleadoComponent,
   ],
   imports: [
     BrowserModule,

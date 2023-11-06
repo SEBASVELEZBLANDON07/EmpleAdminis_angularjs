@@ -1,0 +1,151 @@
+<br><br><br>
+<body>
+    <div class="container_principal">
+
+    <header>
+        <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+
+            <nav class="menu"  id="particles-js" #menu>
+                <ul class="menu-contenido">
+                    <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                    <li><a href="#">Cerrar sesion</a></li>
+                    <li><a href="#">Actualizar Empleado</a></li>
+                    <li><a href="#">Actualizar Perfil</a></li>
+                    <!--li><a href="#">Incapacidad</a></li>
+                    <li><a href="#">Inventario</a></li>
+                    <li><a href="#">Borrar Empleado</a></li-->
+                </ul>
+            </nav>
+    </header>
+    <div  class="contenedor">
+       
+        <div class="columna-izquierda" #columnaizquierda></div>
+        
+        
+        <div class="columna-central" #columnacentral>
+            <div class="estilo">
+                <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
+            </div>
+            <div class="efectos-navegación">
+                <nav class="menu-central">
+                    <ul class="estilonav">
+                       <li><a class="a_menu" routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                        <li><a class="a_menu" routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
+                        <li><a class="a_menu" routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
+                        <li><a class="a_menu" routerLink="/horasExtras" routerLinkActive="active" >R.Horas Extras</a></li>
+                        <li><a class="a_menu" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
+                        <li><a class="a_menu" href="#">Inventario</a></li>
+                        <li><a class="a_menu_set" routerLink="/deleteEmpleado" routerLinkActive="active">Borrar Empleado</a></li>
+
+                    </ul> 
+                </nav>
+            </div>
+
+            <div class="cont_registro">
+                <h1 class="text_registro">Borrar Empleado</h1>
+            </div>
+            
+            <div class="cont_buscar">
+
+                <form class="form">
+                    <h1 class="info">Digita los datos </h1>
+                    <div class="cont_select" >
+                        <p class="requiered">*</p>
+                        <select [(ngModel)]="EmpleadoBusar.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
+                            <option [ngValue]="''" disabled hidden>Tipo de documento</option>
+                            <option value="cc">Cédula de Ciudadanía</option>
+                            <option value="ce">Cédula de Extranjería</option>
+                        </select>
+                    </div>
+
+                    <div class="cont_posicion">
+                        <label class="label_" for="">Digite la cedula del empleado </label>
+                        <div class="cont_input">
+                            <input  [(ngModel)]="EmpleadoBusar.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required>
+                            <p class="requiered">*</p>
+                        </div>
+                    </div>
+
+                    <div class="botones-container">
+                        <button class="buttenviar" id="">Buscar Empleados Eliminados</button>
+                        <button (click)="buscarEmp()" class="buttenviar" id="botonEnviar">Buscar Empleado</button>
+                    </div>
+                </form>
+            </div>
+            <div class="contenerdo">
+
+                <!--animacion de gargando imagen-->
+                <div class="cargando-overlay" *ngIf="loading">
+                    <div class="cargando-alert">
+                        <div class="spinner"></div>
+                        <div>Cargando...</div>
+                    </div>
+                </div>
+                
+                <!--div class="datosocultos" style="display: none;"-->
+
+                    <div class="izquierda">
+                        
+                        <div class="cont">
+                            <div class="perfil">
+                                <div class="imagen">
+                                    <img src="../../../assets/perfil_empleado.PNG" alt="Imagen de Perfil">
+                                </div>
+                                <h2 class="nombre_apellido">Nombre Apellido</h2>
+                                <p class="id">CC: 12345</p>
+                                <div class="datos-personales">
+                                    <p><strong>Cargo:</strong> programador <strong>- Salario:</strong> $ 1 250 000</p>
+                                    <p><strong>Fecha de Nacimiento:</strong> 01/01/1990</p>
+                                    <p><strong>Cel:</strong> +0 3557525527</p>
+                                    <p><strong>Correo:</strong> ejemplo@correo.com</p>
+                                    <p><strong>Dirección:</strong> Dirección de ejemplo, Ciudad</p>
+                                </div>
+                                <div class="horario-trabajo">
+                                    <p><strong>Horario de Trabajo:</strong> 9:00 AM - 5:00 PM</p>
+                                    <p><strong>Días de Trabajo:</strong> Lunes - Viernes</p>
+                                </div>
+                            </div>      
+                        </div>
+                    </div>
+                    <div class="derecha">
+                        <div class="cont">
+                            <div class="perfil">
+                                
+                                <h1 class="info">Informacion del empleado en la empresa</h1>
+                                <div class="horario-trabajo">
+                                    <p><strong>Días trabajados en la empresa:</strong> [Número]</p>
+                                    <p><strong>Horas este mes:</strong> [Número]</p>
+                                    <p><strong>Inasistencias:</strong> [Número]</p>
+                                    <p><strong>Horas extras este mes:</strong> [Número]</p>
+                                    <p><strong>Incapacidades:</strong> [Información]</p>
+                                </div>
+
+                                <form class="form_motivo" action="">
+                                    <label class="laber_motivo" for="">Registra el motivo de la eliminación del empleado.</label>
+                                <br><br><div class="cont_input">
+                                        <textarea   name="" class="texMotivo" type="text" placeholder="motivo"  rows="6" cols="50"></textarea>
+                                        <p class="requiered">*</p>
+                                    </div>
+                                </form>
+
+                                <div class="botones-container">
+                                    <!--button class="buttlimpiar" id="botonlimbiar">limpiar</button-->
+                                    <button  class="butteliminar" id="">Eliminar Empleado </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                <!--/div-->     
+            </div>
+        </div>
+        
+        <div div class="columna-derecha" #columnaderecha></div>
+
+    </div>
+    </div>
+</body>
+<router-outlet></router-outlet>
+
+
+
+

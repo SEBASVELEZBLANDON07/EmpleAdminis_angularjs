@@ -114,7 +114,7 @@ export class RegistroComponent {
         this.loading = false;
         console.log('Error: ', error);
         Swal.fire({
-          title: 'No se pudo insertar la empresa',
+          title: 'LA EMPRESA SE ENCUENTRA SEGISTRADA',
           icon: 'error',
           confirmButtonText: 'Aceptar'
         });

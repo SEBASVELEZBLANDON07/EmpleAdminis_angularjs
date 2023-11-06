@@ -293,7 +293,7 @@
 
     /*texto Registro asistencia*/
     .text_registro {
-      display: flex;
+      margin-top: 10px;
       flex-direction: column;
       justify-content: center; 
       height: 6vh; 
