@@ -44,6 +44,11 @@ export class AuthService {
     return this.http.post(`${this.URL}/Empleado_edic/cuenBancaria`, cuenta_b);
   }
 
+  //Solicitud HTTP al servidor para buscar empleados para sus registros
+  buscarEmpleado(EmpleadoBusar:any){
+    return this.http.post(`${this.URL}/Empleado_edic/buscarEmpleado`, EmpleadoBusar);
+  }
+
   //Solicitud HTTP al servidor para insertar la asistencia
   asistencia_i(datosasistencia:any){
     return this.http.post(`${this.URL}/Empleado_edic/asistenciaR`, datosasistencia);
@@ -58,6 +63,13 @@ export class AuthService {
   incapacidad(formData:any){
     return this.http.post(`${this.URL}/Empleado_edic/incapacidad`, formData);
   }
+
+  //Solicitud HTTP al servidor para insertar la horas extras
+  eliminarRegistro(motivoData:any){
+    return this.http.post(`${this.URL}/delet_Empleado/RegisEmpleado_eliminado`, motivoData);
+  }
+
+
 
   //metodo para establecer el correo del usuario
   setCorreoUsuario(correologin: string) {
@@ -74,11 +86,22 @@ export class AuthService {
     const params = new HttpParams().set('correo', correo)
     return this.http.get(`${this.URL}/crearF_route/nombreEmpresa`, {params});
   }
-  //Solicitud HTTP al servidor para buscar empleados para sus registros
-  buscarEmpleado(EmpleadoBusar:any){
-    return this.http.post(`${this.URL}/Empleado_edic/buscarEmpleado`, EmpleadoBusar);
+
+  //Solicitud HTTP al servidor para obtener la fotografia del empleado
+  historialEmpleado(id: string): Observable<any> {
+    return this.http.get(`${this.URL}/info_empleado/infoEmpleadoEliminar/${id}`);
+  }
+  
+  //Solicitud HTTP al servidor para obtener la fotografia del empleado
+  buscarFotografia(id: string): Observable<Blob> {
+    return this.http.get(`${this.URL}/info_empleado/fotografiaDescargar/${id}`, { responseType: 'blob' });
   }
 
+  //Solicitud HTTP al servidor para eliminar el empleado
+  eliminarEmpleado(id: string): Observable<any> {
+    return this.http.delete(`${this.URL}/delet_Empleado/deleteEmpleado/${id}`);
+  }
+  
 /*
   buscarEmpleado(EmpleadoBusar: any){
     const params = new HttpParams()

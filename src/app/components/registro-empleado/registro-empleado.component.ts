@@ -34,6 +34,8 @@ export class RegistroEmpleadoComponent implements OnInit {
   @ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
   @ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
 
+  @ViewChild('fileInput', { static: true }) fileInput!: ElementRef;
+
   //variable para mostrar la imagen en pantalla 
   @ViewChild('imagenMostrada', { static: true }) imagenMostrada!: ElementRef;
 
@@ -84,6 +86,7 @@ export class RegistroEmpleadoComponent implements OnInit {
       imagen: null,
       nom_empresa: '',
     };
+    this.fileInput.nativeElement.value = '';
   }
 
   constructor(

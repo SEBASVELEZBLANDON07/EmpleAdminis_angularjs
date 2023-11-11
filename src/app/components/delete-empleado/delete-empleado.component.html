@@ -40,6 +40,7 @@
                     </ul> 
                 </nav>
             </div>
+            <br><br><br>
 
             <div class="cont_registro">
                 <h1 class="text_registro">Borrar Empleado</h1>
@@ -52,7 +53,7 @@
                     <div class="cont_select" >
                         <p class="requiered">*</p>
                         <select [(ngModel)]="EmpleadoBusar.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
-                            <option [ngValue]="''" disabled hidden>Tipo de documento</option>
+                            <option value="">Tipo de documento</option>
                             <option value="cc">Cédula de Ciudadanía</option>
                             <option value="ce">Cédula de Extranjería</option>
                         </select>
@@ -72,37 +73,40 @@
                     </div>
                 </form>
             </div>
-            <div class="contenerdo">
 
-                <!--animacion de gargando imagen-->
-                <div class="cargando-overlay" *ngIf="loading">
-                    <div class="cargando-alert">
-                        <div class="spinner"></div>
-                        <div>Cargando...</div>
-                    </div>
+            <!--animacion de gargando imagen-->
+            <div class="cargando-overlay" *ngIf="loading">
+                <div class="cargando-alert">
+                    <div class="spinner"></div>
+                    <div>Cargando...</div>
                 </div>
-                
-                <!--div class="datosocultos" style="display: none;"-->
+            </div>
 
+            <div class="datosocultos" style="display: none;">
+                <div class="contenerdo">
+                   
                     <div class="izquierda">
                         
                         <div class="cont">
                             <div class="perfil">
                                 <div class="imagen">
-                                    <img src="../../../assets/perfil_empleado.PNG" alt="Imagen de Perfil">
+
+                                    <img *ngIf="imagenSrcPredeterminada" [src]="imagenSrcPredeterminada" alt="Imagen de Perfil">
+                                    <img [src]="fotografia" alt="Imagen descargada" *ngIf="fotografia" />
+                                    
                                 </div>
-                                <h2 class="nombre_apellido">Nombre Apellido</h2>
-                                <p class="id">CC: 12345</p>
+                                <h2 class="nombre_apellido">{{ nombre }} {{ apellidos }}</h2>
+                                <p class="id">{{ cc }}: {{ numeroCedula }}</p>
                                 <div class="datos-personales">
-                                    <p><strong>Cargo:</strong> programador <strong>- Salario:</strong> $ 1 250 000</p>
-                                    <p><strong>Fecha de Nacimiento:</strong> 01/01/1990</p>
-                                    <p><strong>Cel:</strong> +0 3557525527</p>
-                                    <p><strong>Correo:</strong> ejemplo@correo.com</p>
-                                    <p><strong>Dirección:</strong> Dirección de ejemplo, Ciudad</p>
+                                    <p><strong>Cargo:</strong> {{ cargo }} <strong>- Salario:</strong> $ {{ formatoSalario(salario) }}</p>
+                                    <p><strong>Fecha de Nacimiento:</strong> {{ fechaNacimiento | date:'yyyy-MM-dd' }}</p>
+                                    <p><strong>Cel:</strong> {{ pais }} {{ cel }}</p>
+                                    <p><strong>Correo:</strong> {{ correo }}</p>
+                                    <p><strong>Dirección:</strong> {{ direccion }}</p>
                                 </div>
                                 <div class="horario-trabajo">
-                                    <p><strong>Horario de Trabajo:</strong> 9:00 AM - 5:00 PM</p>
-                                    <p><strong>Días de Trabajo:</strong> Lunes - Viernes</p>
+                                    <p><strong>Horario de Trabajo:</strong> {{ horaInicio }} - {{ horafin }}</p>
+                                    <p><strong>Días de Trabajo:</strong> {{ diaInicio }} - {{ diaFin }}</p>
                                 </div>
                             </div>      
                         </div>
@@ -113,29 +117,28 @@
                                 
                                 <h1 class="info">Informacion del empleado en la empresa</h1>
                                 <div class="horario-trabajo">
-                                    <p><strong>Días trabajados en la empresa:</strong> [Número]</p>
-                                    <p><strong>Horas este mes:</strong> [Número]</p>
-                                    <p><strong>Inasistencias:</strong> [Número]</p>
-                                    <p><strong>Horas extras este mes:</strong> [Número]</p>
-                                    <p><strong>Incapacidades:</strong> [Información]</p>
+                                    <p><strong>Días trabajados en la empresa:</strong> {{ diastrabajados }}</p>
+                                    <p><strong>Inasistencias:</strong> {{ inasistencias }}</p>
+                                    <p><strong>Horas extras realizadas:</strong> {{ horasExtras }}</p>
+                                    <p><strong>Incapacidades:</strong> {{ incapacidades }}</p>
                                 </div>
 
                                 <form class="form_motivo" action="">
                                     <label class="laber_motivo" for="">Registra el motivo de la eliminación del empleado.</label>
                                 <br><br><div class="cont_input">
-                                        <textarea   name="" class="texMotivo" type="text" placeholder="motivo"  rows="6" cols="50"></textarea>
+                                        <textarea [(ngModel)]="motivoData.motivo_eliminacion"  name="motivo_eliminacion" class="texMotivo" type="text" placeholder="motivo"  rows="6" cols="50" required></textarea>
                                         <p class="requiered">*</p>
                                     </div>
                                 </form>
 
                                 <div class="botones-container">
                                     <!--button class="buttlimpiar" id="botonlimbiar">limpiar</button-->
-                                    <button  class="butteliminar" id="">Eliminar Empleado </button>
+                                    <button (click)="butteliminar()" class="butteliminar" id="">Eliminar Empleado </button>
                                 </div>
                             </div>
                         </div>
                     </div>   
-                <!--/div-->     
+                </div>
             </div>
         </div>
         

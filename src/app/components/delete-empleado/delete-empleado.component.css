@@ -181,7 +181,7 @@
     top: 0;
     left: 12%;
     height: 40px;
-    width: 100%;
+    width: 77%;
     font-family: "Inter", sans-serif;
     color: #2bff00;
     display: flex;
@@ -228,7 +228,7 @@
 /*tex de componete*/
 .cont_registro {
   position: relative;
-  top: 7%;
+  top: auto;
   left: 6%;
   width: 300px;
   height: 40px;
@@ -256,7 +256,7 @@
   .cont_buscar{
     position: relative;
     margin-left: 5%;
-    top: 4%;
+    top: auto;
     width: 90%;
     transform: translateY(-2%); 
     background-color: #7e7b7b;
@@ -400,7 +400,7 @@
 .izquierda {
     flex: 1; 
     padding: 5px; 
-    margin-top: 3%;
+    margin-top: 1%;
     /* background-color: #f0f0f0; */
   }
 
@@ -529,7 +529,7 @@
 .derecha {
     flex: 1; 
     padding: 5px; 
-    margin-top: 3%;
+    margin-top: 1%;
   /* background-color: rgb(70, 70, 70); */
   }
 

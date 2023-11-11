@@ -62,7 +62,7 @@
                             <div class="cont_select" >
                                 <p class="requiered">*</p>
                                 <select [(ngModel)]="EmpleadoBusar.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
-                                    <option [ngValue]="''" disabled hidden>Tipo de documento</option>
+                                    <option value="">Tipo de documento</option>
                                     <option value="cc">Cédula de Ciudadanía</option>
                                     <option value="ce">Cédula de Extranjería</option>
                                 </select>
@@ -137,7 +137,7 @@
                             <label class="label_file" for="cargarImagen">Selecciona el archivo pdf:</label>
                             <div class="cont_input_label_file"> 
                                 <i class="fa-solid fa-folder"></i>
-                                <input (change)="onFileSelected($event)" name="archivo_incapacidad" class="input_file" type="file" accept="application/pdf"  required>
+                                <input (change)="onFileSelected($event)"  #fileInput name="archivo_incapacidad" class="input_file" type="file" accept="application/pdf"  required>
                                 <p class="requiered">*</p>
                             </div>
 

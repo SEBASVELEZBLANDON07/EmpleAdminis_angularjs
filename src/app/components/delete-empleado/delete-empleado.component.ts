@@ -24,13 +24,34 @@ export class DeleteEmpleadoComponent {
 
   //octener la fecha actual 
   fechaActual: string = '';
-  timeActual: string = '';
+
+  //imagen predeterminada
+  imagenSrcPredeterminada: string | null = '../../../assets/perfil_empleado.PNG';
 
   //datos del empleado
+  fotografia: string | null = null;
   nombre: string='';
   apellidos: string= '';
+  cc: string= '';
+  numeroCedula: string='';
+  cargo: string= '';
+  salario: number = 0;
+  fechaNacimiento: string= '';
+  pais: string='';
+  cel: string= '';
+  correo: string= '';
+  direccion: string= '';
+  horaInicio: string= '';
+  horafin: string= '';
+  diaInicio: string= '';
+  diaFin: string= '';
 
-
+  //historial breve del registro
+  diastrabajados: string= '';
+  inasistencias: string= '';
+  horasExtras: string= '';
+  incapacidades: string= '';
+  
    @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
    @ViewChild('menu', { static: true }) menu!: ElementRef;
    @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
@@ -49,6 +70,11 @@ export class DeleteEmpleadoComponent {
 
    //funcion para buscar el empleado 
  buscarEmp(){
+
+  //ocultamos los datos para buscar la informacion del empleado
+  this.ocultar_datos();
+
+  //varificamos que los campos esten llenos 
   const formulario = document.querySelector('.form');
   if (formulario) {
     const camposRequeridos = formulario.querySelectorAll('[required]');
@@ -74,17 +100,58 @@ export class DeleteEmpleadoComponent {
   //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
   this.loading = true;
 
-  //se busca el empleado a quien se le va a brindar la asistencia 
-  this.authService.buscarEmpleado(this.EmpleadoBusar).subscribe(
-    (res:any)=>{
+  //se busca el un breve historial del empleado
+  this.authService.historialEmpleado(this.EmpleadoBusar.id_cedula).subscribe(
+    (res)=>{
       //llamamos al div que se encuentra oculto
-      this.mostar_datos();
+      
 
-      //asicnamos las variables de nombre y pellidos 
-      this.nombre = res.nombre;
-      this.apellidos = res.apelidos;
+      this.authService.buscarFotografia(this.EmpleadoBusar.id_cedula).subscribe(
+        (response: Blob) => {
+          this.imagenSrcPredeterminada = null;
+          this.fotografia = URL.createObjectURL(response);
+          this.mostar_datos();
+          this.loading = false;
+        }, 
+        (error) => { 
+          this.loading = false;
+          console.log('error: ', error); 
+          Swal.fire({
+            title: 'error al encontar la imagen',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      )
 
-      this.loading = false;
+      //asignamos los datos a las variables
+      this.nombre = res.perfil[0].nombre;
+      this.apellidos = res.perfil[0].apellidos;
+      this.cc = res.perfil[0].tipo_documento;
+      this.numeroCedula = res.perfil[0].id_cedula;
+      this.cargo = res.perfil[0].cargo;
+
+      if (res.salario && res.salario.length > 0) {
+        this.salario = res.salario[0].salario;
+      }
+      
+      this.fechaNacimiento = res.perfil[0].fecha_nacimiento;
+      this.pais = res.perfil[0].pais;
+      this.cel = res.perfil[0].num_contacto;
+      this.correo = res.perfil[0].correo;
+      this.direccion = res.perfil[0].direccion;
+      this.horaInicio = res.perfil[0].hora_inicio;
+      this.horafin = res.perfil[0].hora_fin;
+      this.diaInicio = res.perfil[0].primer_dias_laboral;
+      this.diaFin = res.perfil[0].ultimo_dias_laboral;
+      this.diastrabajados = res.asistencia[0].total_inserciones_asistencias;
+      this.inasistencias = res.inasistencias[0].total_inserciones_inasistencias;
+
+      if (res.totalHorasExtras && res.totalHorasExtras.length > 0) {
+        this.horasExtras= res.totalHorasExtras[0].total;
+      }
+      this.incapacidades= res.incapacidades[0].total_inserciones_incapacidades;
+
     },
     (error)=>{
       this.loading = false;
@@ -96,57 +163,209 @@ export class DeleteEmpleadoComponent {
       });
     }
   );
-}
-
-
- //se oculta el contenedor de datos de asistencia 
- ocultar_datos(){
-  const datosocultos = document.querySelector('.datosocultos');
-  if(datosocultos instanceof HTMLElement){
-    if (datosocultos.style.display === "block") {
-      datosocultos.style.display = "none";
-    } 
-  }else{
-    console.log("error no se allo el div oculto ")
-    return;
   }
-  this.EmpleadoBusar.id_cedula = '',
-  this.EmpleadoBusar.tipo_documento = '';
-}
 
-//datos del contenedor que contiene los datos de asistensi
-mostar_datos(){
-  //se octinen la fecha actual del momento del registro 
-  const fecha = new Date();
-  const fechaOpcion: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: '2-digit', 
-    day: '2-digit',
-  };
-  this.fechaActual = fecha.toLocaleDateString('es-CO', fechaOpcion);
+  //separamos por grupos de 3 numeros al salario
+  formatoSalario(salario: number): string {
+    const salarioString = salario.toString();
+    const salarioFormateado = salarioString.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-  //se octinen la hora actual del registro
-  const hora= new Date();
-  const horaOpcion: Intl.DateTimeFormatOptions = {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: false,
-  };
-  this.timeActual = hora.toLocaleTimeString('es-CO', horaOpcion);
+    return salarioFormateado;
+  }
 
-  //para desocultar el contenedor 
-  const datosocultos = document.querySelector('.datosocultos');
-    //var div = document.getElementById("miDiv");
+  motivoData ={
+    id_empleados_eliminados: '',
+    motivo_eliminacion: '',
+    fechaEliminacion: '',
+  }
+
+  butteliminar(){
+    //se verifica que el campo requerido este completo 
+    const formulario = document.querySelector('.form_motivo');
+      if (formulario) {
+        const camposRequeridos = formulario.querySelectorAll('[required]');
+        const camposCompletos = Array.from(camposRequeridos).every((campo) => (campo as HTMLInputElement).value);
+        //se muestra un info en pantalla si faltan campos requeridos 
+        if (!camposCompletos) {
+          Swal.fire({
+            title: 'Por favor, complete todos los campos requeridos',
+            icon: 'info',
+            confirmButtonText: 'Aceptar'
+          });
+          return;
+        }
+      }else {
+        Swal.fire({
+          title: 'Error: No se encontró el primer formulario.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+        return;
+      }
+    //confirmamos la primera vez si esta seguro de eliminar
+    Swal.fire({
+      title: 'Se eliminará todo registro del empleado',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6"
+    }).then((result) => {
+      //si se le da aceptar para eliminar el empleado
+      if (result.isConfirmed) {
+        //confirmamos la la segunda vez si esta seguro de eliminar
+        Swal.fire({
+          title: `¿Estas seguro de eliminar al empleado ${this.nombre}?`,
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Aceptar',
+          cancelButtonText: 'Cancelar',
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6"
+        }).then((result) => {
+          //si se le da aceptar para eliminar el empleado
+          if (result.isConfirmed) {
+            
+            //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+            this.loading = true;
+
+            //sacamos la fecha del dia de eliminacion 
+            const fecha = new Date();
+            const fechaOpcion: Intl.DateTimeFormatOptions = {
+              year: 'numeric',
+              month: '2-digit', 
+              day: '2-digit',
+            };
+            this.fechaActual = fecha.toLocaleDateString('es-CO', fechaOpcion)
+              .split('/')
+              .reverse()
+              .join('-');
+
+            console.log(this.fechaActual);
+
+            
+            this.motivoData.fechaEliminacion = this.fechaActual;
+            this.motivoData.id_empleados_eliminados = this.EmpleadoBusar.id_cedula;
+
+            console.log(this.motivoData);
+            
+            //se busca el empleado a quien se le va a brindar la asistencia 
+            this.authService.eliminarRegistro(this.motivoData).subscribe(
+              (res)=>{
+
+                //se busca el empleado a quien se le va a brindar la asistencia 
+                this.authService.eliminarEmpleado(this.EmpleadoBusar.id_cedula).subscribe(
+                  (res)=>{
+                    //limbiamos los campos
+                    this.limbiardartos();
+                    //ocultamos los datos para buscar la informacion del empleado
+                    this.ocultar_datos();
+                    Swal.fire({
+                      title: 'Empleado Eliminado con exito ',
+                      icon: 'success',
+                      confirmButtonText: 'Aceptar'
+                    });
+                    this.loading = false;
+
+                },
+                (error)=>{
+                  this.loading = false;
+                  console.log('error: ', error); 
+                  Swal.fire({
+                    title: 'error al eliminar el empleado',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                  });
+                  this.loading = false;
+                }
+                )
+              },
+              (error)=>{
+                this.loading = false;
+                console.log('error: ', error); 
+                Swal.fire({
+                  title: 'error al registrar el registro de eliminacion',
+                  icon: 'error',
+                  confirmButtonText: 'Aceptar'
+                });
+                this.loading = false;
+              }
+            )
+            
+          //si las respuestas son cancerlar se sale sin ninguna funcion a realizar 
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+      
+      }
+    });
+  }
+
+  limbiardartos(){
+    this.imagenSrcPredeterminada = '../../../assets/perfil_empleado.PNG';
+    this.fotografia = null;
+    this.nombre ='';
+    this.apellidos = '';
+    this.cc = '';
+    this.numeroCedula ='';
+    this.cargo = '';
+    this.salario = 0;
+    this.fechaNacimiento = '';
+    this.pais ='';
+    this.cel = '';
+    this.correo = '';
+    this.direccion = '';
+    this.horaInicio = '';
+    this.horafin = '';
+    this.diaInicio = '';
+    this.diaFin = '';
+    this.diastrabajados = '';
+    this.inasistencias = '';
+    this.horasExtras = '';
+    this.incapacidades = '';
+    this.motivoData ={
+      id_empleados_eliminados: '',
+      motivo_eliminacion: '',
+      fechaEliminacion: '',
+    }
+
+    this.EmpleadoBusar = {
+      id_cedula: '',
+      tipo_documento: '',
+     }
+
+  }
+
+  //se oculta el contenedor de datos
+  ocultar_datos(){
+    const datosocultos = document.querySelector('.datosocultos');
     if(datosocultos instanceof HTMLElement){
-      if (datosocultos.style.display === "none") {
-        datosocultos.style.display = "block";
+      if (datosocultos.style.display === "block") {
+        datosocultos.style.display = "none";
       } 
     }else{
       console.log("error no se allo el div oculto ")
       return;
     }
-}
+  }
+
+  //datos del contenedor que contiene los datos de asistensi
+  mostar_datos(){
+    //para desocultar el contenedor 
+    const datosocultos = document.querySelector('.datosocultos');
+      //var div = document.getElementById("miDiv");
+      if(datosocultos instanceof HTMLElement){
+        if (datosocultos.style.display === "none") {
+          datosocultos.style.display = "block";
+        } 
+      }else{
+        console.log("error no se allo el div oculto ")
+        return;
+      }
+  }
 
  /*
    ngAfterViewInit() {
@@ -199,12 +418,9 @@ mostar_datos(){
  
   //se presiona el butt de abrir menu desplegable 
    buttabrirnavegacion(){
-     this.inicializarParticulas();
+     this.inicializarParticulas();  
    }
  
-
-
-
 
    ngOnInit() {
      // Recupera el valor almacenado en localStorage

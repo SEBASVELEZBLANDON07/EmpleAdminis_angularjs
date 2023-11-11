@@ -35,6 +35,8 @@ export class IncapacidadComponent {
   @ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
   @ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
 
+  @ViewChild('fileInput', { static: true }) fileInput!: ElementRef;
+
   constructor(
     private authService: AuthService,
     private route: Router,
@@ -334,6 +336,7 @@ export class IncapacidadComponent {
         //se reinicia todos los campos 
         this.limpiarCampos();
         this.ocultar_datos();
+        //this.datos_incapacidad.archivo_incapacidad = null;
   
         this.loading = false;
         Swal.fire({
@@ -360,6 +363,7 @@ export class IncapacidadComponent {
     this.datos_incapacidad.archivo_incapacidad = event.target.files[0];
   }
 
+
   //para limbiar los datos 
   limpiarCampos(): void {
     this.datos_incapacidad = {
@@ -367,10 +371,11 @@ export class IncapacidadComponent {
       fecha_incapacidad: '',
       causa: '',
       descripcion: '',
-      archivo_incapacidad: null as File | null,
+      archivo_incapacidad: null,
       cantidad_dias_incapacidad: '',
       id_cedula_i: '',
     }
+    this.fileInput.nativeElement.value = '';
   }
 
   ngOnInit() {
