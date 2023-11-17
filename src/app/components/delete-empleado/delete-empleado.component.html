@@ -149,12 +149,24 @@
                 <div class="centrado">
                     <div class="contenido-interno">
                        
-                        <h2 class="texEmpl">empleados eliminados </h2>
+                        <h2 class="texEmpl">Historial Empleados Eliminados</h2>
 
-                        <div>
-                            <input [(ngModel)]="numeroBuscado" type="number" placeholder="Número a buscar">
-                            <button (click)="buscarEnTabla()">Buscar</button>
-                        </div><br>
+                        <div class="formBuscar">
+                            <input class="inputBuscar"
+                              [(ngModel)]="numeroBuscado"
+                              type="number"
+                              name="search"
+                              pattern=".*\S.*"
+                              required
+                              placeholder="Ducumento a buscar"
+                              autocomplete="off"
+                              (keyup.enter)="buscarEnTabla()"
+                            />
+                            <button class="buttBuscar" (click)="buscarEnTabla()" type="button">
+                              <span>Search</span>
+                            </button>
+                        </div>
+                        <br>
                         
 
                         <table  class="container">
