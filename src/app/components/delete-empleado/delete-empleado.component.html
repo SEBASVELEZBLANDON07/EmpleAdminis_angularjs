@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="botones-container">
-                        <button class="buttenviar" id="">Buscar Empleados Eliminados</button>
+                        <button (click)="buttEmpleEliminados()" class="buttenviar" id="">Buscar Empleados Eliminados</button>
                         <button (click)="buscarEmp()" class="buttenviar" id="botonEnviar">Buscar Empleado</button>
                     </div>
                 </form>
@@ -81,6 +81,10 @@
                     <div>Cargando...</div>
                 </div>
             </div>
+
+
+            
+
 
             <div class="datosocultos" style="display: none;">
                 <div class="contenerdo">
@@ -140,6 +144,45 @@
                     </div>   
                 </div>
             </div>
+            <div class="datosocultosEmpleadosEliminados" style="display: none;">
+               
+                <div class="centrado">
+                    <div class="contenido-interno">
+                       
+                        <h2 class="texEmpl">empleados eliminados </h2>
+
+                        <div>
+                            <input [(ngModel)]="numeroBuscado" type="number" placeholder="Número a buscar">
+                            <button (click)="buscarEnTabla()">Buscar</button>
+                        </div><br>
+                        
+
+                        <table  class="container">
+                            <thead>
+                              <tr>
+                                <th><h1>Ducumento</h1></th>
+                                <th><h1>Motivo</h1></th>
+                                <th><h1>Fecha</h1></th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let datos of infoEMpleadosEliminados; let i = index" id="fila-{{ i }}">
+                                <td class="ducumentoEliminado">{{ datos.id_empleados_eliminados }}</td>
+                                <td class="motivoEliminacion">{{ datos.motivo_eliminacion }}</td>
+                                <td class="fechaEliminado">{{ datos.fechaEliminacion | date:'yyyy-MM-dd' }}</td>
+                              </tr>
+                            </tbody>
+                          </table><br>
+                    </div>
+                </div>   <br>
+            </div>
+
+
+
+
+
+
         </div>
         
         <div div class="columna-derecha" #columnaderecha></div>

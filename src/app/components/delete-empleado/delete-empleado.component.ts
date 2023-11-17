@@ -51,6 +51,12 @@ export class DeleteEmpleadoComponent {
   inasistencias: string= '';
   horasExtras: string= '';
   incapacidades: string= '';
+
+  //se crea un array que contrendra los datos enviados del servidor de los empleados eliminados  
+  infoEMpleadosEliminados: any[] = [];
+
+  //numero a buscar 
+  numeroBuscado: number | null = null;
   
    @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
    @ViewChild('menu', { static: true }) menu!: ElementRef;
@@ -73,6 +79,7 @@ export class DeleteEmpleadoComponent {
 
   //ocultamos los datos para buscar la informacion del empleado
   this.ocultar_datos();
+  this.ocultar_datos_empleados_eliminados()
 
   //varificamos que los campos esten llenos 
   const formulario = document.querySelector('.form');
@@ -165,6 +172,91 @@ export class DeleteEmpleadoComponent {
   );
   }
 
+  //funcion para traer el historial de empleados eliminados
+  buttEmpleEliminados(){
+    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    this.loading = true;
+
+    this.ocultar_datos();
+
+    this.authService.infoEliminarEmpleado(this.nom_empresa).subscribe(
+      (res)=>{
+
+        this.infoEMpleadosEliminados = res as any[];
+
+        this.loading = false;
+      },
+      (error)=>{
+        this.loading = false;
+        console.log('error: ', error); 
+        Swal.fire({
+          title: 'error al buscar los empleados eliminados',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+        this.loading = false;
+      }
+    )
+
+    this.mostar_datos_empleados_eliminados();
+
+  }
+
+  //funcion para buscar empleados por el ducumento en el historial de empleados eliminados
+buscarEnTabla() {
+  const indiceEncontrado = this.infoEMpleadosEliminados.findIndex(
+    (datos) => datos.id_empleados_eliminados === this.numeroBuscado
+  );
+
+  console.log(indiceEncontrado);
+
+  if (indiceEncontrado !== -1) {
+    // Mover el elemento encontrado al principio del array
+    const elementoEncontrado = this.infoEMpleadosEliminados.splice(indiceEncontrado, 1)[0];
+    this.infoEMpleadosEliminados.unshift(elementoEncontrado);
+
+    this.scrollIntoView(indiceEncontrado); 
+  }else{
+    Swal.fire({
+      title: 'ducumento no encontrado ',
+      icon: 'info',
+      confirmButtonText: 'Aceptar'
+    })
+  }
+}
+
+// resaltar el elemento encontrado 
+scrollIntoView(indice: number) {
+  const elemento = document.getElementById(`fila-${indice}`);
+
+  if (elemento) {
+    const estilosAnteriores = {
+      backgroundColor: elemento.style.backgroundColor,
+      boxShadow: elemento.style.boxShadow
+    };
+
+    elemento.style.backgroundColor = '#55585c';
+    elemento.style.boxShadow = '0 6px 6px -6px #0E1119';
+
+    const celdaDocumento = elemento.querySelector('.ducumentoEliminado');
+
+    // Simular evento mouseenter
+    if (celdaDocumento) {
+      celdaDocumento.classList.add('simular-mouseenter');
+    }
+
+    // restablecemos los valores predeterminados
+    setTimeout(() => {
+      elemento.style.backgroundColor = estilosAnteriores.backgroundColor;
+      elemento.style.boxShadow = estilosAnteriores.boxShadow;
+
+      if (celdaDocumento) {
+        celdaDocumento.classList.remove('simular-mouseenter');
+      }
+    }, 2000);
+  }
+}
+  
   //separamos por grupos de 3 numeros al salario
   formatoSalario(salario: number): string {
     const salarioString = salario.toString();
@@ -177,6 +269,7 @@ export class DeleteEmpleadoComponent {
     id_empleados_eliminados: '',
     motivo_eliminacion: '',
     fechaEliminacion: '',
+    empresa_empleado: '',
   }
 
   butteliminar(){
@@ -247,6 +340,8 @@ export class DeleteEmpleadoComponent {
             
             this.motivoData.fechaEliminacion = this.fechaActual;
             this.motivoData.id_empleados_eliminados = this.EmpleadoBusar.id_cedula;
+
+            this.motivoData.empresa_empleado = this.nom_empresa;
 
             console.log(this.motivoData);
             
@@ -330,6 +425,7 @@ export class DeleteEmpleadoComponent {
       id_empleados_eliminados: '',
       motivo_eliminacion: '',
       fechaEliminacion: '',
+      empresa_empleado: '',
     }
 
     this.EmpleadoBusar = {
@@ -337,6 +433,32 @@ export class DeleteEmpleadoComponent {
       tipo_documento: '',
      }
 
+  }
+
+  ocultar_datos_empleados_eliminados(){
+    const datosocultos = document.querySelector('.datosocultosEmpleadosEliminados');
+    if(datosocultos instanceof HTMLElement){
+      if (datosocultos.style.display === "block") {
+        datosocultos.style.display = "none";
+      } 
+    }else{
+      console.log("error no se allo el div oculto ")
+      return;
+    }
+  }
+
+  mostar_datos_empleados_eliminados(){
+    //para desocultar el contenedor 
+    const datosocultos = document.querySelector('.datosocultosEmpleadosEliminados');
+    //var div = document.getElementById("miDiv");
+    if(datosocultos instanceof HTMLElement){
+      if (datosocultos.style.display === "none") {
+        datosocultos.style.display = "block";
+      } 
+    }else{
+      console.log("error no se allo el div oculto ")
+      return;
+    }
   }
 
   //se oculta el contenedor de datos

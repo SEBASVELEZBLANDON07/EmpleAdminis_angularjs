@@ -101,6 +101,11 @@ export class AuthService {
   eliminarEmpleado(id: string): Observable<any> {
     return this.http.delete(`${this.URL}/delet_Empleado/deleteEmpleado/${id}`);
   }
+
+  //Solicitud HTTP al servidor para eliminar el empleado
+  infoEliminarEmpleado(id: string): Observable<any> {
+    return this.http.get(`${this.URL}/delet_Empleado//Empleado_eliminados/${id}`);
+  }
   
 /*
   buscarEmpleado(EmpleadoBusar: any){

@@ -573,4 +573,148 @@
                 0 0 25px #55ff06d3
 }
 
+.centrado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenido-interno {
+  
+  
+  
+
+ 
+  
+  width: 90%;
+ 
+  
+  background-color: #7e7b7b;
+  
+  border: 3px solid #000000;
+  border-radius: 20px; 
+  margin-top: 5px;
+  
+}
+
+
+.texEmpl {
+
+  font-size:2em; 
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height:1em;
+  padding-bottom: 0.5em;
+  color: #000000;
+  margin-top: 7px;
+}
+
+.container {
+ text-align: left;
+ overflow: hidden;
+ width: 80%;
+ margin: 0 auto;
+ display: table;
+ padding: 0 0 8em 0;
+ border-radius: 10px;
+}
+
+
+.container th h1 {
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+  color: #000000;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container td {
+    font-weight: normal;
+    font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+     -moz-box-shadow: 0 2px 2px -2px #0E1119;
+          box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.ducumentoEliminado{
+  max-width: 50px; 
+  text-align: center;
+}
+
+
+
+.motivoEliminacion {
+  max-width: 390px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; 
+}
+
+.fechaEliminado{
+  white-space: nowrap;
+}
+
+
+
+.container td, .container th {
+  padding-bottom: 2%;
+  padding-top: 2%;
+  padding-left: 2%; 
+  padding-right: 2%; 
+  font-family: 'Arial', sans-serif;
+  color: #000000;
+
+}
+
+
+.container tr:nth-child(odd) {
+    background-color: #AAAAAA;
+}
+
+
+.container tr:nth-child(even) {
+    background-color: #CCCCCC;
+}
+
+.container th {
+    background-color:  #BBBBBB;
+}
+
+.container td:first-child { color: rgb(255, 51, 0); }
+
+.container tr:hover {
+   background-color: #55585c;
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+     -moz-box-shadow: 0 6px 6px -6px #0E1119;
+          box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.container td:hover {
+  background-color: #dadada;
+  color: #000000;
+  font-weight: bold;
+  box-shadow: #1a1a1a -1px 1px, #1a1a1a -2px 2px, #1a1a1a -3px 3px, #1a1a1a -4px 4px, #1a1a1a -5px 5px, #1a1a1a -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  transition-delay: 0s;
+    transition-duration: 0.3s;
+    transition-property: all;
+  transition-timing-function: line;
+}
+
+.container tr.filaseleccionada {
+  background: #ff0000; /* Rojo */
+}
+
+.simular-mouseenter {
+  background-color: #dadada;
+  color: #000000;
+  font-weight: bold;
+  box-shadow: #1a1a1a -1px 1px, #1a1a1a -2px 2px, #1a1a1a -3px 3px, #1a1a1a -4px 4px, #1a1a1a -5px 5px, #1a1a1a -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  transition-delay: 0s;
+    transition-duration: 0.3s;
+    transition-property: all;
+  transition-timing-function: line;
+}
 
