@@ -34,7 +34,7 @@
                         <li><a class="a_menu" routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
                         <li><a class="a_menu" routerLink="/horasExtras" routerLinkActive="active" >R.Horas Extras</a></li>
                         <li><a class="a_menu" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
-                        <li><a class="a_menu" href="#">Inventario</a></li>
+                        <li><a class="a_menu" routerLink="/InventarioGeneral" routerLinkActive="active">Inventario</a></li>
                         <li><a class="a_menu_set" routerLink="/deleteEmpleado" routerLinkActive="active">Borrar Empleado</a></li>
 
                     </ul> 
@@ -166,26 +166,24 @@
                               <span>Search</span>
                             </button>
                         </div>
-                        <br>
-                        
 
                         <table  class="container">
                             <thead>
-                              <tr>
-                                <th><h1>Ducumento</h1></th>
-                                <th><h1>Motivo</h1></th>
-                                <th><h1>Fecha</h1></th>
-                                
-                              </tr>
+                                <tr>
+                                    <th><h1>Ducumento</h1></th>
+                                    <th><h1>Motivo</h1></th>
+                                    <th><h1>Fecha</h1></th>
+                                </tr>
+
                             </thead>
                             <tbody>
-                              <tr *ngFor="let datos of infoEMpleadosEliminados; let i = index" id="fila-{{ i }}">
-                                <td class="ducumentoEliminado">{{ datos.id_empleados_eliminados }}</td>
-                                <td class="motivoEliminacion">{{ datos.motivo_eliminacion }}</td>
-                                <td class="fechaEliminado">{{ datos.fechaEliminacion | date:'yyyy-MM-dd' }}</td>
-                              </tr>
+                                <tr *ngFor="let datos of infoEMpleadosEliminados; let i = index" id="fila-{{ i }}">
+                                    <td class="ducumentoEliminado">{{ datos.id_empleados_eliminados }}</td>
+                                    <td class="motivoEliminacion">{{ datos.motivo_eliminacion }}</td>
+                                    <td class="fechaEliminado">{{ datos.fechaEliminacion | date:'yyyy-MM-dd' }}</td>
+                                </tr>
                             </tbody>
-                          </table><br>
+                        </table><br>
                     </div>
                 </div>   <br>
             </div>

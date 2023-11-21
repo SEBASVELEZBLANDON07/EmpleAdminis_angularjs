@@ -14,6 +14,8 @@ import { AsistenciaComponent } from './components/asistencia/asistencia.componen
 import { HorasExtrasComponent } from './components/horas-extras/horas-extras.component';
 import { IncapacidadComponent } from './components/incapacidad/incapacidad.component';
 import { DeleteEmpleadoComponent } from './components/delete-empleado/delete-empleado.component';
+import { InventarioGereralComponent } from './components/inventario-gereral/inventario-gereral.component';
+import { DetalleEmpleadoComponent } from './components/detalle-empleado/detalle-empleado.component';
 
 const routes: Routes = [
   
@@ -41,11 +43,17 @@ const routes: Routes = [
   //ruta de ingresar las horas extras de los empleados base de datos //necesita tener token y rol admin
   { path: 'horasExtras', component: HorasExtrasComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
-  //ruta de ingresar las horas extras de los empleados base de datos //necesita tener token y rol admin
+  //ruta de ingresar las incapacidades de los empleados base de datos //necesita tener token y rol admin
   { path: 'incapacidad', component: IncapacidadComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
-  //ruta de ingresar las horas extras de los empleados base de datos //necesita tener token y rol admin
+  //ruta para eliminar los empleados de la base de datos y archivos guardados en drive de este enpleado, se puede ver el historial de empleados eliminados en la empresa //necesita tener token y rol admin
   { path: 'deleteEmpleado', component: DeleteEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+
+  //ruta para ver el inventario del total de trabajadores ingresados en la empresa //necesita tener token y rol admin
+  { path: 'InventarioGeneral', component: InventarioGereralComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+
+  //ruta para ver el registro de un solo empleado//necesita tener token y rol admin
+  { path: 'InventarioGeneral/detalle-empleado/:idCedula', component: DetalleEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
 
   //ruta indefinido // necesita tener un token  

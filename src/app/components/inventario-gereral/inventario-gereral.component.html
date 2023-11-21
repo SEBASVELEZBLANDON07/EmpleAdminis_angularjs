@@ -1,0 +1,119 @@
+<br><br><br>
+<body>
+    <div class="container_principal">
+
+    <header>
+        <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+
+            <nav class="menu"  id="particles-js" #menu>
+                <ul class="menu-contenido">
+                    <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                    <li><a href="#">Cerrar sesion</a></li>
+                    <li><a href="#">Actualizar Empleado</a></li>
+                    <li><a href="#">Actualizar Perfil</a></li>
+                    <!--li><a href="#">Incapacidad</a></li>
+                    <li><a href="#">Inventario</a></li>
+                    <li><a href="#">Borrar Empleado</a></li-->
+                </ul>
+            </nav>
+    </header>
+    <div  class="contenedor">
+       
+        <div class="columna-izquierda" #columnaizquierda></div>
+        
+        
+        <div class="columna-central" #columnacentral>
+            <div class="estilo">
+                <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
+            </div>
+            <div class="efectos-navegación">
+                <nav class="menu-central">
+                    <ul class="estilonav">
+                       <li><a class="a_menu" routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                        <li><a class="a_menu" routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
+                        <li><a class="a_menu" routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
+                        <li><a class="a_menu" routerLink="/horasExtras" routerLinkActive="active" >R.Horas Extras</a></li>
+                        <li><a class="a_menu" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
+                        <li><a class="a_menu_set" routerLink="/InventarioGeneral" routerLinkActive="active">Inventario</a></li>
+                        <li><a class="a_menu" routerLink="/deleteEmpleado" routerLinkActive="active">Borrar Empleado</a></li>
+
+                    </ul> 
+                </nav>
+            </div>
+
+             <!--animacion de gargando imagen-->
+             <div class="cargando-overlay" *ngIf="loading">
+                <div class="cargando-alert">
+                    <div class="spinner"></div>
+                    <div>Cargando...</div>
+                </div>
+            </div>
+
+            <br><br><br>
+            
+            <div class="centrado">
+                <div class="contenido-interno">
+                   
+                    <h2 class="texEmpl">Inventario General</h2>
+
+                    <div class="formBuscar">
+                        <input class="inputBuscar"
+                          [(ngModel)]="numeroBuscado"
+                          type="number"
+                          name="search"
+                          pattern=".*\S.*"
+                          required
+                          placeholder="Ducumento a buscar"
+                          autocomplete="off"
+                          (keyup.enter)="buscarEnTabla()"
+                        />
+                        <button class="buttBuscar" (click)="buscarEnTabla()" type="button">
+                          <span>Search</span>
+                        </button>
+                    </div>
+                    
+                    <table  class="container">
+                        <thead>
+                          <tr>
+                            <th><h1>Ducumento</h1></th>
+                            <th><h1>Tipo</h1></th>
+                            <th><h1>Nombre</h1></th>
+                            <th><h1>Apellidos</h1></th>
+                            <th><h1>Correo</h1></th>
+                            <th><h1>Cargo</h1></th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let datos of infoEmpleados; let i = index" (click)="redireccionar(datos.id_cedula)" id="fila-{{ i }}">
+                            <td class="ducumento">{{ datos.id_cedula }}</td>
+                            <td >{{ datos.tipo_documento }}</td>
+                            <td >{{ datos.nombre }}</td>
+                            <td >{{ datos.apellidos }}</td>
+                            <td >{{ datos.correo }}</td>
+                            <td >{{ datos.cargo }}</td>
+                          </tr>
+                        </tbody>
+                      </table><br>
+                </div>
+            </div>   <br>
+
+
+
+
+
+        </div>
+       
+        
+        <div div class="columna-derecha" #columnaderecha></div>
+
+
+    </div>
+
+
+    </div>
+</body>
+<router-outlet></router-outlet>
+
+
+
