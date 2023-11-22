@@ -21,7 +21,6 @@
         
             <div class="columna-izquierda" #columnaizquierda></div>
             
-            
             <div class="columna-central" #columnacentral>
                 <div class="estilo">
                     <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
@@ -36,23 +35,78 @@
                             <li><a class="a_menu" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
                             <li><a class="a_menu_set" routerLink="/InventarioGeneral" routerLinkActive="active">Inventario</a></li>
                             <li><a class="a_menu" routerLink="/deleteEmpleado" routerLinkActive="active">Borrar Empleado</a></li>
-
                         </ul> 
                     </nav>
                 </div>
-                    <br><br><br><br><br><br><br><br><br><br>
-                    <br><br><br><br><br><br><br><br><br><br>
 
-                    <br><br><br><br><br><br><br><br><br><br>
+                <br><br><br>
+                    
+                <div class="cont">
+                    <div class="perfil">
+                        <div class="primero">
+                            <div class="imagen">
+                                <img *ngIf="imagenSrcPredeterminada" [src]="imagenSrcPredeterminada" alt="Imagen de Perfil">
+                                <img [src]="fotografia" alt="Imagen descargada" *ngIf="fotografia" />
+                            </div>
+                            <div class="infoBasico">
+                                <div class="cedula">
+                                    <i class="fa-solid fa-id-card"></i>
+                                    <p class="id"><strong>{{ cc }}</strong>:{{ numeroCedula }}</p>
+                                </div>
+                                <div class="email">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <p class="correo"><strong>Correo:</strong> {{ correo }}</p>
+                                </div>
+                                <div class="contacto">
+                                    <i class="fa-solid fa-phone"></i> 
+                                    <p class="cel"><strong>Cel:</strong> {{ pais }} {{ cel }}</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="nombre_cargo">
+                            <h2 class="nombre_apellido">{{ nombre }} {{ apellidos }}</h2>
+                            <p class="cargo">{{ cargo }} </p>
+                        </div>
+                       
+                        <div class="contenerdo">
+
+                            <div class="izquierda">
+
+                                <h2 class="texPerfil">PERFIL</h2>
+
+                                <div class="contened">
+                                    <div class="datos-personales">
+                                        <p><strong>Fecha de Nacimiento:</strong> {{ fechaNacimiento | date:'yyyy-MM-dd' }}</p>
+                                        <p><strong>Dirección:</strong> {{ direccion }}</p>
+                                    </div>
+
+                                    <div class="horario-trabajo">
+                                        <p><strong>Horario de Trabajo:</strong> {{ horaInicio }} - {{ horafin }}</p>
+                                        <p><strong>Días de Trabajo:</strong> {{ diaInicio }} - {{ diaFin }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="derecha">
+
+                                <div class="contened">
+                                
+                                    <div class="cuentaBancaria">
+                                        <p><strong>Entidad Bancaria </strong></p>
+                                        <p><strong>tipo de cuenta</strong></p>
+                                        <p><strong>numero de cuenta: </strong>    </p>
+                                        <p><strong>Salario:</strong> $ {{ formatoSalario(salario) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>      
+                </div>
+                <br>
             </div>
-       
-        
             <div div class="columna-derecha" #columnaderecha></div>
-    
-    
         </div>
-    
-    
     </div>
 </body>
 <router-outlet></router-outlet>

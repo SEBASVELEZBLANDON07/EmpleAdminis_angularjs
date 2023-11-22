@@ -21,6 +21,32 @@ export class DetalleEmpleadoComponent {
  //variable del id del empleado
  idCedula: string = '';
 
+//imagen predeterminada
+imagenSrcPredeterminada: string | null = '../../../assets/perfil_empleado.PNG';
+
+//datos del empleado
+fotografia: string | null = null;
+nombre: string='sebastian';
+apellidos: string= 'velez blandon';
+cc: string= '10100100029';
+numeroCedula: string='';
+cargo: string= 'auxiliar administrativo';
+salario: number = 0;
+fechaNacimiento: string= '';
+pais: string='';
+cel: string= '12344556778989';
+correo: string= 'contact@example.com';
+direccion: string= '';
+horaInicio: string= '';
+horafin: string= '';
+diaInicio: string= '';
+diaFin: string= '';
+
+//historial breve del registro
+diastrabajados: string= '';
+inasistencias: string= '';
+horasExtras: string= '';
+incapacidades: string= '';
 
  @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
  @ViewChild('menu', { static: true }) menu!: ElementRef;
@@ -38,6 +64,14 @@ export class DetalleEmpleadoComponent {
    this.inicializarParticulas();
  }
 */
+
+//separamos por grupos de 3 numeros al salario
+formatoSalario(salario: number): string {
+  const salarioString = salario.toString();
+  const salarioFormateado = salarioString.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+  return salarioFormateado;
+}
 
  inicializarParticulas(){
    //menu izquierda animacion
@@ -194,8 +228,4 @@ export class DetalleEmpleadoComponent {
    }
 
  }  
-
-
-
-
 }
