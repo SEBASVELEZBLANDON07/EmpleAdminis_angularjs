@@ -89,6 +89,7 @@ export class AsistenciaComponent {
   }
 
  EmpleadoBusar = {
+  nom_empresa: '',
   id_cedula: '',
   tipo_documento: '',
  }
@@ -119,6 +120,8 @@ export class AsistenciaComponent {
 
     //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
     this.loading = true;
+    
+    this.EmpleadoBusar.nom_empresa = this.nom_empresa;
 
     //se busca el empleado a quien se le va a brindar la asistencia 
     this.authService.buscarEmpleado(this.EmpleadoBusar).subscribe(

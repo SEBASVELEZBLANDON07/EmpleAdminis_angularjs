@@ -70,6 +70,7 @@ export class DeleteEmpleadoComponent {
   ){}
 
   EmpleadoBusar = {
+    nom_empresa: '',
     id_cedula: '',
     tipo_documento: '',
    }
@@ -107,58 +108,72 @@ export class DeleteEmpleadoComponent {
   //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
   this.loading = true;
 
-  //se busca el un breve historial del empleado
-  this.authService.historialEmpleado(this.EmpleadoBusar.id_cedula).subscribe(
-    (res)=>{
-      //llamamos al div que se encuentra oculto
-      
+  this.EmpleadoBusar.nom_empresa = this.nom_empresa;
 
-      this.authService.buscarFotografia(this.EmpleadoBusar.id_cedula).subscribe(
-        (response: Blob) => {
-          this.imagenSrcPredeterminada = null;
-          this.fotografia = URL.createObjectURL(response);
-          this.mostar_datos();
-          this.loading = false;
-        }, 
-        (error) => { 
+  this.authService.buscarEmpleado(this.EmpleadoBusar).subscribe(
+    (res:any)=>{
+
+      //se busca el un breve historial del empleado
+      this.authService.historialEmpleado(this.EmpleadoBusar.id_cedula).subscribe(
+        (res)=>{
+
+          this.authService.buscarFotografia(this.EmpleadoBusar.id_cedula).subscribe(
+            (response: Blob) => {
+              this.imagenSrcPredeterminada = null;
+              this.fotografia = URL.createObjectURL(response);
+              this.mostar_datos();
+              this.loading = false;
+            }, 
+            (error) => { 
+              this.loading = false;
+              console.log('error: ', error); 
+              Swal.fire({
+                title: 'error al encontar la imagen',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+              });
+            }
+          )
+
+          //asignamos los datos a las variables
+          this.nombre = res.perfil[0].nombre;
+          this.apellidos = res.perfil[0].apellidos;
+          this.cc = res.perfil[0].tipo_documento;
+          this.numeroCedula = res.perfil[0].id_cedula;
+          this.cargo = res.perfil[0].cargo;
+
+          if (res.salario && res.salario.length > 0) {
+            this.salario = res.salario[0].salario;
+          }
+          
+          this.fechaNacimiento = res.perfil[0].fecha_nacimiento;
+          this.pais = res.perfil[0].pais;
+          this.cel = res.perfil[0].num_contacto;
+          this.correo = res.perfil[0].correo;
+          this.direccion = res.perfil[0].direccion;
+          this.horaInicio = res.perfil[0].hora_inicio;
+          this.horafin = res.perfil[0].hora_fin;
+          this.diaInicio = res.perfil[0].primer_dias_laboral;
+          this.diaFin = res.perfil[0].ultimo_dias_laboral;
+          this.diastrabajados = res.asistencia[0].total_inserciones_asistencias;
+          this.inasistencias = res.inasistencias[0].total_inserciones_inasistencias;
+
+          if (res.totalHorasExtras && res.totalHorasExtras.length > 0) {
+            this.horasExtras= res.totalHorasExtras[0].total;
+          }
+          this.incapacidades= res.incapacidades[0].total_inserciones_incapacidades;
+
+        },
+        (error)=>{
           this.loading = false;
           console.log('error: ', error); 
           Swal.fire({
-            title: 'error al encontar la imagen',
+            title: 'usuario no encontrado',
             icon: 'error',
             confirmButtonText: 'Aceptar'
           });
         }
-      )
-
-      //asignamos los datos a las variables
-      this.nombre = res.perfil[0].nombre;
-      this.apellidos = res.perfil[0].apellidos;
-      this.cc = res.perfil[0].tipo_documento;
-      this.numeroCedula = res.perfil[0].id_cedula;
-      this.cargo = res.perfil[0].cargo;
-
-      if (res.salario && res.salario.length > 0) {
-        this.salario = res.salario[0].salario;
-      }
-      
-      this.fechaNacimiento = res.perfil[0].fecha_nacimiento;
-      this.pais = res.perfil[0].pais;
-      this.cel = res.perfil[0].num_contacto;
-      this.correo = res.perfil[0].correo;
-      this.direccion = res.perfil[0].direccion;
-      this.horaInicio = res.perfil[0].hora_inicio;
-      this.horafin = res.perfil[0].hora_fin;
-      this.diaInicio = res.perfil[0].primer_dias_laboral;
-      this.diaFin = res.perfil[0].ultimo_dias_laboral;
-      this.diastrabajados = res.asistencia[0].total_inserciones_asistencias;
-      this.inasistencias = res.inasistencias[0].total_inserciones_inasistencias;
-
-      if (res.totalHorasExtras && res.totalHorasExtras.length > 0) {
-        this.horasExtras= res.totalHorasExtras[0].total;
-      }
-      this.incapacidades= res.incapacidades[0].total_inserciones_incapacidades;
-
+      );
     },
     (error)=>{
       this.loading = false;
@@ -169,7 +184,7 @@ export class DeleteEmpleadoComponent {
         confirmButtonText: 'Aceptar'
       });
     }
-  );
+    );
   }
 
   //funcion para traer el historial de empleados eliminados
@@ -429,6 +444,7 @@ scrollIntoView(indice: number) {
     }
 
     this.EmpleadoBusar = {
+      nom_empresa: '',
       id_cedula: '',
       tipo_documento: '',
      }

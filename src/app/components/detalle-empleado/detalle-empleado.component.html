@@ -76,31 +76,169 @@
                                 <h2 class="texPerfil">PERFIL</h2>
 
                                 <div class="contened">
+
+                                    <h2 class="textitulo">datos pesonales</h2>
+
                                     <div class="datos-personales">
                                         <p><strong>Fecha de Nacimiento:</strong> {{ fechaNacimiento | date:'yyyy-MM-dd' }}</p>
                                         <p><strong>Dirección:</strong> {{ direccion }}</p>
                                     </div>
 
+                                    <h2 class="textitulo">tiempos de trabajo</h2>
+
                                     <div class="horario-trabajo">
                                         <p><strong>Horario de Trabajo:</strong> {{ horaInicio }} - {{ horafin }}</p>
                                         <p><strong>Días de Trabajo:</strong> {{ diaInicio }} - {{ diaFin }}</p>
                                     </div>
+
+                                    <h2 class="textitulo"> asistencias </h2>
+
+                                    <div class="asistencias">
+                                        <p><strong>fecha: </strong>  2024-01-02</p>
+                                        <p><strong>hora registro: </strong> 07:00:00 </p>
+                                        
+                                        <table  class="tablacontener">
+                                            <thead>
+                                                <tr class="filatitulo">
+                                                    <th><h1 class="mes"> Mes </h1></th>
+                                                    <th><h1 class="fecha"> Fecha </h1></th>
+                                                    <th><h1 class="horaR"> Hora de registro </h1></th>
+                                                </tr>
+                
+                                            </thead>
+                                            <tbody>
+                                                <tr class="filacontenido">
+                                                    <td class="mes-contenido"> 12 </td>
+                                                    <td class="fecha-contenido">  2024-01-02/ / </td>
+                                                    <td class="horaR-contenido">  7:00:00 </td>
+                                                </tr>
+                                                
+                                              
+                                            </tbody>
+                                        </table><br>
+                                        <button class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
+                                    </div>
+
+                                    <h1 class="textitulo">Incapacidad</h1>
+
+                                    <div class="incapacidad">
+                                        <div class="contenedor-incapacidad">
+                                            <p><strong>fecha de registro: </strong> 2024-01-02</p>
+                                            <p><strong>fecha de incapacidad: </strong>2024-01-02</p>
+                                            <p><strong>causa: </strong>fuerte caida con las escaleras </p>
+                                            <p><strong>descicion: </strong>al pasar por las escaleras el trabajador sebastian velez blandon se resvalla por uno de los escalones por no contar con los actiresvaladores, la caida produce varias edidas de dravedada en las eestremidades superiores y inferiores con una lebe contucion en la besa</p>
+                                            <p><strong>comprobante de incapacidad: </strong><a href="https://drive.google.com/file/d/1Q_FvK3zXhRrzmcOdVlll-rTMABD_SJjg" target="_blank">archivo pdf de incapacidad</a></p>
+                                            <p><strong>dias de incapacidad: </strong> 6 </p>
+                                        </div>
+                                        <div class="contenedor-incapacidad">
+                                            <p><strong>fecha de registro: </strong> 2024-01-02</p>
+                                            <p><strong>fecha de incapacidad: </strong>2024-01-02</p>
+                                            <p><strong>causa: </strong>fuerte caida con las escaleras </p>
+                                            <p><strong>descicion: </strong>al pasar por las escaleras el trabajador sebastian velez blandon se resvalla por uno de los escalones por no contar con los actiresvaladores, la caida produce varias edidas de dravedada en las eestremidades superiores y inferiores con una lebe contucion en la besa</p>
+                                            <p><strong>comprobante de incapacidad: </strong><a href="https://drive.google.com/file/d/1Q_FvK3zXhRrzmcOdVlll-rTMABD_SJjg" target="_blank">archivo pdf de incapacidad</a></p>
+                                            <p><strong>dias de incapacidad: </strong> 6 </p>
+                                        </div>
+                                        <div class="contenedor-incapacidad">
+                                            <p><strong>fecha de registro: </strong> 2024-01-02</p>
+                                            <p><strong>fecha de incapacidad: </strong>2024-01-02</p>
+                                            <p><strong>causa: </strong>fuerte caida con las escaleras </p>
+                                            <p><strong>descicion: </strong>al pasar por las escaleras el trabajador sebastian velez blandon se resvalla por uno de los escalones por no contar con los actiresvaladores, la caida produce varias edidas de dravedada en las eestremidades superiores y inferiores con una lebe contucion en la besa</p>
+                                            <p><strong>comprobante de incapacidad: </strong><a href="https://drive.google.com/file/d/1Q_FvK3zXhRrzmcOdVlll-rTMABD_SJjg" target="_blank">archivo pdf de incapacidad</a></p>
+                                            <p><strong>dias de incapacidad: </strong> 6 </p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
                             <div class="derecha">
 
-                                <div class="contened">
                                 
+
+                                <div class="contened">
+
+                                    <h2 class="textitulo">Cuenta Bancaria</h2>
+
                                     <div class="cuentaBancaria">
-                                        <p><strong>Entidad Bancaria </strong></p>
-                                        <p><strong>tipo de cuenta</strong></p>
-                                        <p><strong>numero de cuenta: </strong>    </p>
+                                        <p><strong>Entidad Bancaria </strong> bancolombia </p>
+                                        <p><strong>tipo de cuenta</strong> corriente </p>
+                                        <p><strong>numero de cuenta: </strong> 32345654566</p>
                                         <p><strong>Salario:</strong> $ {{ formatoSalario(salario) }}</p>
+                                    </div>
+
+                                    <h1 class="textitulo">Horas Extras</h1>
+                                    <div class="horas-extras">
+                                        <p><strong>Fecha: </strong> 2024-01-02</p>
+                                        <p><strong>horas extras: </strong> 2 </p>
+                                        <p><strong>total: </strong> 10 </p>
+
+                                        <table class="tablacontener">
+                                            <thead>
+                                                <tr class="filatitulo">
+                                                    <th><h1 class="fecha">Fecha:</h1></th>
+                                                    <th><h1 class="horasExtras">horas Extras:</h1></th>
+                                                    <th><h1 class="total">Total horas:</h1></th>
+                                                </tr>                                               
+                                            </thead>
+                                            <tbody>
+                                                <tr class="filacontenido">
+                                                    <td class="fecha-contenido"> 2024-01-02</td>
+                                                    <td class="fechaExtas-contenido"> 1 </td>
+                                                    <td class="total-contenido"> 1 </td>
+                                                </tr>
+                                                <tr class="filacontenido">
+                                                    <td class="fecha-contenido"> 2024-01-02</td>
+                                                    <td class="fechaExtras-contenido"> 3 </td>
+                                                    <td class="total-contenido"> 4 </td>
+                                                </tr>
+                                                <tr class="filacontenido">
+                                                    <td class="fecha-contenido"> 2024-01-02</td>
+                                                    <td class="horasextras-contenido"> 4 </td>
+                                                    <td class="total-contenido"> 8 </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
+
+
+                                    </div>
+
+                                    <h1 class="textitulo">Inasistencias </h1>
+
+                                    <div class="inasistencia">
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+                                        <div class="contenedor-fecha-inasistencia">
+                                            <p><strong>fecha: </strong> 2024-01-02</p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                        </div>  
+
+                        </div>
                     </div>      
                 </div>
                 <br>

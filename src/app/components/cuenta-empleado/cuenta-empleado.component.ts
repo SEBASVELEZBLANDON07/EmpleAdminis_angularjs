@@ -150,7 +150,7 @@ guardar_c(){
       console.log('error', error);
       this.loading = false;
       Swal.fire({
-        title: 'No se pudo ingresar la cuenta',
+        title: 'Cuenta bancaria ya ingresada, verifique los campos e intente de nuevo ',
         icon: 'error',
         confirmButtonText: 'Aceptar'
       });

@@ -198,14 +198,14 @@ export class RegistroEmpleadoComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       });
       
-      this.route.navigate(['cuentaEmpleado']);
+      this.route.navigate(['regitroEmpleado/cuentaEmpleado']);
 
     }, 
     (error) => {
       console.log('Error: ', error);
       this.loading = false;
       Swal.fire({
-        title: 'No se pudo insertar el Empleado',
+        title: 'Empleado ya ingresado, verifique los campos e intente de nuevo',
         icon: 'error',
         confirmButtonText: 'Aceptar'
       });

@@ -62,7 +62,7 @@
                     <div class="cont_posicion">
                         <label class="label_" for="">Digite la cedula del empleado </label>
                         <div class="cont_input">
-                            <input  [(ngModel)]="EmpleadoBusar.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required>
+                            <input  [(ngModel)]="EmpleadoBusar.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required (keyup.enter)="buscarEmp()">
                             <p class="requiered">*</p>
                         </div>
                     </div>

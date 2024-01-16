@@ -31,16 +31,16 @@ apellidos: string= 'velez blandon';
 cc: string= '10100100029';
 numeroCedula: string='';
 cargo: string= 'auxiliar administrativo';
-salario: number = 0;
-fechaNacimiento: string= '';
-pais: string='';
+salario: number = 3000000;
+fechaNacimiento: string= ' 2024-01-02';
+pais: string='+57';
 cel: string= '12344556778989';
 correo: string= 'contact@example.com';
-direccion: string= '';
-horaInicio: string= '';
-horafin: string= '';
-diaInicio: string= '';
-diaFin: string= '';
+direccion: string= ' carrera 40-27';
+horaInicio: string= '07:00:00';
+horafin: string= '18:00:00';
+diaInicio: string= 'lunes';
+diaFin: string= 'sabado';
 
 //historial breve del registro
 diastrabajados: string= '';

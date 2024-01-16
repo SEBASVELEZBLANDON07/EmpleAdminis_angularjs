@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'regitroEmpleado', component: RegistroEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
   //ruta de ingresar la cuneta bancaria del empleado a la base de datos //necesita tener token y rol admin
-  { path: 'cuentaEmpleado', component: CuentaEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
+  { path: 'regitroEmpleado/cuentaEmpleado', component: CuentaEmpleadoComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},
 
   //ruta de ingresar la asistencia a la base de datos //necesita tener token y rol admin
   { path: 'asistencia', component: AsistenciaComponent, canActivate: [RoleGuard], data: {expectedRole: 'admin'}},

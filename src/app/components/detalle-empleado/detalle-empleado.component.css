@@ -258,11 +258,12 @@
   content: '';
   position: absolute;
   width: 100%;
-  height: 80%;
+  height: auto;
   background: linear-gradient(to right, #7e7b7b, #696767, #4e4e4e, #302d2d);
-  border-radius: 60% 35% 10px 10px;
+  border-radius: 625px 340px 10px 10px; /*60% 35% /// 625px 340px */
   bottom: 0;
   z-index: -1;
+  top: 140px
 }
 
 .primero {
@@ -377,11 +378,22 @@ margin-top: 30px;
   right: 0;
 }
 
+.textitulo {
+  text-align: left;
+  position: relative;
+  font-family: 'Bookman Old Style', serif;
+  color: #000000; 
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-weight: 900;
+}
+
 /*contenedor izquierda*/
 .izquierda {
   flex: 2.5; 
   padding: 5px; 
-  margin-top: -10px;
+  margin-top: 10px;
   width: 80%;
  /* background-color: #f0f0f0; */
 }
@@ -393,49 +405,125 @@ margin-top: 30px;
   margin-right: 10px;
 }
 
-.datos-personales, .horario-trabajo {
+.datos-personales, .horario-trabajo, .cuentaBancaria, .asistencias, .horas-extras, .incapacidad, .inasistencia, .contenedor-incapacidad, .contenedor-fecha-inasistencia{
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 1, 0.274);
   font-family: Arial, sans-serif;
-  text-align: left;
   padding-left: 20px;
   margin-top: 20px;
-}
+} 
 
-.datos-personales p, .horario-trabajo p {
+.datos-personales p, .horario-trabajo p, .asistencias p, .horas-extras p, .incapacidad p, .inasistencia p{
   font-size: 18px;
   color: rgba(0, 0, 0, 0.993);
   margin: 8px 0;
 }
 
-.datos-personales  strong, .horario-trabajo  strong {
+.datos-personales  strong, .horario-trabajo  strong, .asistencias strong, .horas-extras strong, .incapacidad strong, .inasistencia strong {
   font-weight: bold;
   color: rgba(0, 0, 0, 0.904);
   margin-right: 10px;
 } 
 
+/*estilos tabla de asistrencia*/
+.asistencias{
+  position: relative;
+}
+
+
+.tablacontener {
+  width: 95%;
+  border-spacing: 0; 
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden; 
+  border: 10px solid #44474b; 
+}
+
+
+.filatitulo {
+  background-color: #44474b; 
+  color: #fff; 
+}
+
+.filatitulo th {
+  padding: 12px;
+  text-align: left;
+}
+
+
+.filacontenido {
+  background-color: #a09a9a;
+}
+
+
+.filacontenido td {
+  padding: 8px;
+  text-align: left;
+
+}
+
+.filacontenido:hover  {
+  background-color: #16cf82;
+  border-radius: 15px;
+  box-shadow: 0 0 5px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3,
+              0 0 25px #55ff06d3
+}
+
+.mes, .fecha, .horaR {
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.mes-contenido, .fecha-contenido, .horaR-contenido {
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
+
+.tablacontener, .tablacontener th, .tablacontener td {
+  border: 1px solid #ddd;
+}
+
+
+.butt-abrir {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff00;
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .butt-abrir:hover {
+    background-color: #0057b37c;
+  }
+  
+
+
+
 /*contenedor derecha*/
 .derecha {
   flex: 1.5; 
   padding: 5px; 
-  margin-top: 20px;
+  margin-top: 40px;
   width: 23%; 
- /* background-color: rgb(70, 70, 70);*/ 
+ /*background-color: rgb(70, 70, 70);*/
 }
 
-.diagrama{
-  /*background-color: #b6b5b5;*/
-  border-radius: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
 
 .cuentaBancaria {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
 }
 
 .cuentaBancaria p {
@@ -448,4 +536,7 @@ margin-top: 30px;
   font-weight: bold;
 }
 
+.horas-extras{
+  position: relative;
+}
 

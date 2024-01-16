@@ -36,19 +36,30 @@ export class RoleGuard implements CanActivate {
       const  {email, role} = decode;
       //console.log(role)
 
-      if(!this.authService.isAunt() || role !== expectedRole){
+      if(!this.authService.isAunt() ){
         //console.log("no estas autorizado")
-        alert("no autorizado")
+        alert("La sesión ha caducado inicia sesión de nuevo")
         this.route.navigate(['login']);
         //retorna salse si el token no es autorizado 
-        return false;
+        return false; 
       }else{
-        console.log("autorizado")
-        //alert("autorizado")
+        if(role !== expectedRole){
+          //console.log("no estas autorizado")
+          alert("Usuario no autorizado ")
+          this.route.navigate(['login']);
+          //retorna salse si el token no es autorizado 
+          return false;
+        }else{
+          console.log("autorizado")
+          //alert("autorizado")
+        }
+        
       }
     } else {
       // Manejar el caso en que el token no sea una cadena válida o esté vacío
       console.error('Token no válido');
+      alert("No autorizado inicia sesión");
+      this.route.navigate(['login']);
     }
     // true si cumple la autenticación
     return true; 

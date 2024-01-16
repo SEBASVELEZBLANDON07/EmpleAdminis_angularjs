@@ -97,8 +97,9 @@ export class IncapacidadComponent {
   }
 
   EmpleadoBusar = {
-  id_cedula: '',
-  tipo_documento: '',
+    nom_empresa: '',
+    id_cedula: '',
+    tipo_documento: '',
   }
 
   //funcion para buscar el empleado 
@@ -127,6 +128,8 @@ export class IncapacidadComponent {
 
   //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
   this.loading = true;
+
+  this.EmpleadoBusar.nom_empresa = this.nom_empresa;
 
   //se busca el empleado a quien se le va a brindar la asistencia 
   this.authService.buscarEmpleado(this.EmpleadoBusar).subscribe(
@@ -350,7 +353,7 @@ export class IncapacidadComponent {
         console.log('Error: ', error);
         this.loading = false;
         Swal.fire({
-          title: 'No se pudo insertar el la incapacidad',
+          title: 'No se pudo insertar la incapacidad',
           icon: 'error',
           confirmButtonText: 'Aceptar'
         });
