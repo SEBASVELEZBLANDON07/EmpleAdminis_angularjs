@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-//manejo de mensajes personalizados 
+//Manejo de mensajes personalizados. 
 import Swal from 'sweetalert2';
 
 // Declaración para particlesJS
@@ -15,31 +15,28 @@ declare var particlesJS: any;
 })
 export class RegistroEmpleadoComponent implements OnInit {
 
-  //variable titulo empresa 
+  //Variable título, empresa. 
   nom_empresa: string = 'empresa';
 
-  //vartiable de imagen 
+  //Variable de imagen 
   imagenSrc: string | ArrayBuffer | null = null;
   imagenSrcPredeterminada: string | null = '../../../assets/perfil_empleado.PNG';
 
-  //estado de cargando los datos al servidor 
+  // Estado de cargando los datos al servidor. 
   loading: boolean = false;
 
   public notificaion: string = '';
 
-  //variable para el menu desplegable
+  // Referencias a elementos HTML utilizados en la plantilla del componente
   @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
   @ViewChild('menu', { static: true }) menu!: ElementRef;
   @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
   @ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
   @ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
-
-  @ViewChild('fileInput', { static: true }) fileInput!: ElementRef;
-
-  //variable para mostrar la imagen en pantalla 
+  @ViewChild('fileInput', { static: true }) fileInput!: ElementRef; 
   @ViewChild('imagenMostrada', { static: true }) imagenMostrada!: ElementRef;
 
-  //almacenar las variables de los datos de los empleados 
+  //variables de los datos de los empleados 
   empleado_f = {
     id_cedula: '',
     tipo_documento: '',
@@ -59,7 +56,7 @@ export class RegistroEmpleadoComponent implements OnInit {
     nom_empresa: '',
   }
 
-  //restablecer imagen predeterminada
+  //Restablecer imagen predeterminada
   imagenpredeterminada(){
     this.imagenSrc= null,
     this.imagenSrcPredeterminada = '../../../assets/perfil_empleado.PNG';
@@ -94,13 +91,13 @@ export class RegistroEmpleadoComponent implements OnInit {
     private route: Router,
   ){}
 
-  //butt limbia todo los campos del formulario
+  //butt limpiar todos los campos del formulario
   botonlimbiar(){
     this.limpiarCampos();
     this.imagenpredeterminada();
   }
 
-  //butt enviar el formulario al servidor 
+  //Función para registrar al nuevo empleado 
   enviar_f(){
 
     // Verifica si los campos requeridos del primer formulario están completos
@@ -108,7 +105,7 @@ export class RegistroEmpleadoComponent implements OnInit {
     if (formulario1) {
       const camposRequeridos1 = formulario1.querySelectorAll('[required]');
       const camposCompletos1 = Array.from(camposRequeridos1).every((campo) => (campo as HTMLInputElement).value);
-      //se muestra un error en pantalla si faltan campos requeridos 
+      //Se muestra un error en pantalla si faltan campos requeridos 
       if (!camposCompletos1) {
         Swal.fire({
           title: 'Por favor, complete todos los campos requeridos',
@@ -123,7 +120,6 @@ export class RegistroEmpleadoComponent implements OnInit {
         icon: 'error',
         confirmButtonText: 'Aceptar'
       });
-      
       return;
     }
 
@@ -132,7 +128,7 @@ export class RegistroEmpleadoComponent implements OnInit {
     if (formulario2) {
       const camposRequeridos2 = formulario2.querySelectorAll('[required]');
       const camposCompletos2 = Array.from(camposRequeridos2).every((campo) => (campo as HTMLInputElement).value);
-      //se muestra un error en pantalla si faltan campos requeridos 
+      //Se muestra un error en pantalla si faltan campos requeridos 
       if (!camposCompletos2) {
         Swal.fire({
           title: 'Por favor, complete todos los campos requeridos',
@@ -150,16 +146,16 @@ export class RegistroEmpleadoComponent implements OnInit {
       return;
     }
     
-    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    //Se cambia el loadinf de false a true para que comience a cargar mientras se procesan los datos 
     this.loading = true;
 
-    //se almacena el nombre de la empresa almacenada en el localStorage
+    //Se almacena el nombre de la empresa almacenado en el localStorage
     this.empleado_f.nom_empresa = this.nom_empresa;
 
-    //se inicia el constructor de recopilacion de formulario 
+    //Se inicia el constructor de recopilación de datos del formulario 
     const formData = new FormData();
 
-    //se almacenan los datos en el constructor 
+    //Se almacenan los datos en el constructor
     formData.append('id_cedula', this.empleado_f.id_cedula);
     formData.append('tipo_documento', this.empleado_f.tipo_documento);
     formData.append('nombre', this.empleado_f.nombre);
@@ -180,15 +176,16 @@ export class RegistroEmpleadoComponent implements OnInit {
     if (this.empleado_f.imagen) {
       formData.append('imagen', this.empleado_f.imagen, 'fotografia_empleado_ingrasado.jpg');
     }
-    //guadamos el id_cedula y el nombre en el localStorage
+    //Sé guarda el id_cedula y el nombre en el localStorage
     localStorage.setItem('id_cedula', this.empleado_f.id_cedula);
     localStorage.setItem('nombre', this.empleado_f.nombre);
 
-    //insercion del empleado de la empresa 
+    //Se hace la solicitud al servidor para registrar al empleado en la empresa 
     this.authService.regis_empleado(formData).subscribe(   
     (res: any) => {
       this.loading = false;
       
+      // Se limpian los campos
       this.limpiarCampos();
       this.imagenpredeterminada();
 
@@ -198,6 +195,7 @@ export class RegistroEmpleadoComponent implements OnInit {
         confirmButtonText: 'Aceptar'
       });
       
+      // Se redirige al registro de cuenta bancaria 
       this.route.navigate(['regitroEmpleado/cuentaEmpleado']);
 
     }, 
@@ -213,13 +211,9 @@ export class RegistroEmpleadoComponent implements OnInit {
     );
   }
 
-  /*
-  ngAfterViewInit() {
-    this.inicializarParticulas();
-  }
-*/
+  // particles-js
   inicializarParticulas(){
-    //menu izquierda animacion
+    //Menú izquierdo animación
     particlesJS('particles-js', {
       "particles": {
         "number": {
@@ -261,16 +255,16 @@ export class RegistroEmpleadoComponent implements OnInit {
     });
   }
 
-  //se presiona el butt de abrir menu desplegable 
+  //Se presiona el butt de abrir menú desplegable 
   buttabrirnavegacion(){
     this.inicializarParticulas();
   }
 
-
-  //metodo para insertar en la pantalla la imagen suvida por el usuario
+  //Función para visualizar la imagen subida por el usuario
   mostrarImagen(event: any) {
     const input = event.target;
 
+    // Se verifica si se seleccionó un archivo
     if (input.files && input.files[0]) {
       const file: File = input.files[0];
       const lector = new FileReader();
@@ -278,6 +272,7 @@ export class RegistroEmpleadoComponent implements OnInit {
         //se almacena la imagen para enviarla al servidor 
         this.empleado_f.imagen = file;
 
+        //Se oculta la imagen predeterminada y se muestra la imagen subida por el usuario 
         this.imagenSrcPredeterminada = null;
         this.imagenSrc = e.target?.result as string;
         this.mostrarImagenMostrada();
@@ -286,41 +281,41 @@ export class RegistroEmpleadoComponent implements OnInit {
     }
   }
 
-  //se muestra la imagen en pantalla 
+  //Función para poner la imagen subida por el usuario en vista 
   mostrarImagenMostrada() {
     if (this.imagenMostrada) {
       this.imagenMostrada.nativeElement.style.display = 'block';
     }
   }
 
+  // Ejecuciones automáticas, se ejecutan una vez que se inicie el componente 
   ngOnInit() {
     // Recupera el valor almacenado en localStorage
     const nom_empresaGuardada = localStorage.getItem('nom_empresa');
 
-    //verificamos si hay un valor almacenado en localStorage, 
+    //Verificamos si hay un valor almacenado en localStorage 
     if (nom_empresaGuardada) {
-      // lo asigna a la variable nom_empresa
+      // Lo asigna a la variable nom_empresa
       this.nom_empresa = nom_empresaGuardada;
     } else {
       // Si no hay un valor almacenado, puedes proporcionar un valor predeterminado
       this.nom_empresa = 'perfil empresa x';
     }
 
-
-    //metodo para abrir navegacion desplegable
-    //definimos variables de estado
+    //Método para abrir navegación desplegable
+    //Definimos variables de estado
     let botoncerrar = 0;
     let botonabrir = 0;
     let estado= false;
 
-    //cuando se presiona el butt para abrir la navegacion 
+    //Cuando se presiona el butt para abrir la navegación 
     this.abrirnavegacion.nativeElement.addEventListener('click', () => {
       estado = true;
       botonabrir=1;
       botoncerrar=botoncerrar+1;
     })
 
-    //se se seleciona algona ocion del menu desplegable 
+    //Se selecciona alguna opción del menú desplegable  
     this.menu.nativeElement.addEventListener('click', (elemento: MouseEvent) => {
       estado = false;
       if(elemento.target instanceof HTMLElement) {
@@ -331,7 +326,7 @@ export class RegistroEmpleadoComponent implements OnInit {
       }
     });
 
-    //dependiendo que se presiona se define el evento de cierre o desplegar el menu 
+    //Dependiendo de qué se presiona, se define el evento de cierre o desplegar el menú  
     document.addEventListener('click', () => {
 
       if(estado == true && botoncerrar === 2){
@@ -381,10 +376,7 @@ export class RegistroEmpleadoComponent implements OnInit {
       estado= false;
     });
 
-      
-    window.onload = () => {
-        
+    window.onload = () => {  
     }
-
   }   
 }

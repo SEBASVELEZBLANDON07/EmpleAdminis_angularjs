@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Route, Router, ActivatedRoute  } from '@angular/router';
+import { ActivatedRoute  } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
- // Declaración para particlesJS
+// Declaración para particlesJS
 declare var particlesJS: any;
 
 @Component({
@@ -21,10 +21,11 @@ declare var particlesJS: any;
 })
 export class InicioComponent implements OnInit {
 
-  //variables del titulo empresa x
+  //Variable título, empresa
   nom_empresa: string = 'empresa';
   CorreoUsuario: string = '';
   
+  // Referencias a elementos HTML utilizados en la plantilla del componente
   @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
   @ViewChild('menu', { static: true }) menu!: ElementRef;
   @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
@@ -36,13 +37,15 @@ export class InicioComponent implements OnInit {
     private authService: AuthService,
   ) {}
 
+  // Obtener el correo electrónico del usuario que inició sesión y consultar el nombre de la empresa al servidor
   ngAfterViewInit() {
     this.obtenerCorreoUsuario();
     this.obtenerCorreoUsuarioPorCorreo(this.CorreoUsuario);
   }
 
+  // particles-js
   inicializarParticulas(){
-    //menu izquierda animacion
+    //Menú izquierdo animación
     particlesJS('particles-js', {
       "particles": {
         "number": {
@@ -84,24 +87,24 @@ export class InicioComponent implements OnInit {
     });
   }
 
- //se presiona el butt de abrir menu desplegable 
-buttabrirnavegacion(){
-  this.inicializarParticulas();
-}
+  //Se presiona el butt de abrir menú desplegable 
+  buttabrirnavegacion(){
+    this.inicializarParticulas();
+  }
 
-
-  //obtengo el correo con el que se ingreso el usuario 
+  // Obtengo el correo con el que se ingresó el usuario 
   obtenerCorreoUsuario() {
     this.CorreoUsuario = this.authService.getCorreoUsuario();
   }
 
+  // Función para consultar el nombre de la empresa que inició sesión 
   obtenerCorreoUsuarioPorCorreo(correo: string) {
-    //hacemos la consulta para identificar el nombre de la empresa con la que se inicio sesion 
+    //Hacemos la consulta para identificar el nombre de la empresa con la que se inició sesión 
     this.authService.obtenerNomEmpresa(correo).subscribe(
       (response: any) => {
         this.nom_empresa = response.nomEmpresa;
 
-        //lo guardamos en el localStorage
+        //Se guarda el nombre de la empresa en el localStorage 
         localStorage.setItem('nom_empresa', this.nom_empresa);
       },
       (error) => { 
@@ -110,13 +113,14 @@ buttabrirnavegacion(){
     );
   }
 
+  // Ejecuciones automáticas, se ejecutan una vez que se inicie el componente 
   ngOnInit() {
     // Recupera el valor almacenado en localStorage
     const nom_empresaGuardada = localStorage.getItem('nom_empresa');
 
-    //verificamos si hay un valor almacenado en localStorage, 
+    //Verificamos si hay un valor almacenado en localStorage 
     if (nom_empresaGuardada) {
-      // lo asigna a la variable nom_empresa
+      // Lo asigna a la variable nom_empresa
       this.nom_empresa = nom_empresaGuardada;
       this.inicializarParticulas();
     } else {
@@ -124,21 +128,20 @@ buttabrirnavegacion(){
       this.nom_empresa = 'perfil empresa x';
     }
 
-
-    //metodo para abrir navegacion desplegable
+    //Método para abrir navegación desplegable
     //definimos variables de estado
     let botoncerrar = 0;
     let botonabrir = 0;
     let estado= false;
 
-    //cuando se presiona el butt para abrir la navegacion 
+    //Cuando se presiona el butt para abrir la navegación 
     this.abrirnavegacion.nativeElement.addEventListener('click', () => {
       estado = true;
       botonabrir=1;
       botoncerrar=botoncerrar+1;
     })
 
-    //se se seleciona algona ocion del menu desplegable 
+    //Se selecciona alguna opción del menú desplegable  
     this.menu.nativeElement.addEventListener('click', (elemento: MouseEvent) => {
       estado = false;
       if(elemento.target instanceof HTMLElement) {
@@ -149,7 +152,7 @@ buttabrirnavegacion(){
       }
     });
 
-    //dependiendo que se presiona se define el evento de cierre o desplegar el menu 
+    //Dependiendo de qué se presiona, se define el evento de cierre o desplegar el menú  
     document.addEventListener('click', () => {
 
       if(estado == true && botoncerrar === 2){
@@ -198,7 +201,6 @@ buttabrirnavegacion(){
       }
       estado= false;
     });
-
     window.onload = () => {  
     }
   }

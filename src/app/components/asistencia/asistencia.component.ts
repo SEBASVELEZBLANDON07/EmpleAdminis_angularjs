@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Host} from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-//manejo de mensajes personalizados 
+//Manejo de mensajes personalizados.  
 import Swal from 'sweetalert2';
 
 // Declaración para particlesJS
@@ -15,20 +15,21 @@ declare var particlesJS: any;
 })
 export class AsistenciaComponent {
 
- //variable titulo empresa 
+ //Variable título empresa. 
  nom_empresa: string = 'empresa';
 
- //estado de cargando los datos al servidor 
+ // Estado de cargando los datos al servidor.. 
  loading: boolean = false;
 
- //octener la fecha actual 
+ //Obtener la fecha actual 
  fechaActual: string = '';
  timeActual: string = '';
 
- //datos del empleado
+ //Datos del empleado. 
  nombre: string='';
  apellidos: string= '';
 
+ // Referencias a elementos HTML utilizados en la plantilla del componente
  @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
  @ViewChild('menu', { static: true }) menu!: ElementRef;
  @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
@@ -40,8 +41,9 @@ export class AsistenciaComponent {
     private route: Router,
   ){}
 
+  // particles-js
  inicializarParticulas(){
-   //menu izquierda animacion
+   //Menú izquierdo animación. 
    particlesJS('particles-js', {
      "particles": {
        "number": {
@@ -83,24 +85,25 @@ export class AsistenciaComponent {
    });
  }
 
-  //se presiona el butt de abrir menu desplegable 
+  //Se presiona el butt para abrir menú desplegable. 
   buttabrirnavegacion(){
     this.inicializarParticulas();
   }
 
+  // Restablecer los campos de búsqueda 
  EmpleadoBusar = {
   nom_empresa: '',
   id_cedula: '',
   tipo_documento: '',
  }
 
- //funcion para buscar el empleado 
+ //Función para buscar el empleado. 
  buscarEmp(){
     const formulario = document.querySelector('.form');
     if (formulario) {
       const camposRequeridos = formulario.querySelectorAll('[required]');
       const camposCompletos = Array.from(camposRequeridos).every((campo) => (campo as HTMLInputElement).value);
-      //se muestra un info en pantalla si faltan campos requeridos 
+      //Se muestra una info en pantalla si faltan campos requeridos. 
       if (!camposCompletos) {
         Swal.fire({
           title: 'Por favor, complete todos los campos requeridos',
@@ -118,7 +121,7 @@ export class AsistenciaComponent {
       return;
     }
 
-    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    //Se cambia el loadinf de false a true para que comience a cargar mientras se procesan los datos. 
     this.loading = true;
     
     this.EmpleadoBusar.nom_empresa = this.nom_empresa;
@@ -126,10 +129,10 @@ export class AsistenciaComponent {
     //se busca el empleado a quien se le va a brindar la asistencia 
     this.authService.buscarEmpleado(this.EmpleadoBusar).subscribe(
       (res:any)=>{
-        //llamamos al div que se encuentra oculto
+        //Llamamos al div que se encuentra oculto.
         this.datos_de_fechas();
 
-        //asicnamos las variables de nombre y pellidos 
+        //Asignamos las variables de nombre y apellidos 
         this.nombre = res.nombre;
         this.apellidos = res.apelidos;
 
@@ -147,32 +150,34 @@ export class AsistenciaComponent {
     );
   }
 
-// Función para oganizar el formato de la fecha
-cambiarFormatoFecha(fecha: string): string {
-  const [dia, mes, anio] = fecha.split("/");
-  return `${anio}/${mes}/${dia}`;
-}
- 
-datosasistencia={
-  fecha: '',
-  horario: '',
-  id_cedula_a: '',
-}
+  // Función para organizar el formato de la fecha.
+  cambiarFormatoFecha(fecha: string): string {
+    const [dia, mes, anio] = fecha.split("/");
+    return `${anio}/${mes}/${dia}`;
+  }
+  
+  // Restablecer los campos de asistencia. 
+  datosasistencia={
+    fecha: '',
+    horario: '',
+    id_cedula_a: '',
+  }
 
-  //se registra la sistencia del empleado
+  //Se registra la asistencia del empleado.
   Regis_asistencia(){
-    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    //Se cambia el loadinf de false a true para que comience a cargar mientras se procesan los datos. 
     this.loading = true;
 
-    //organizamos el formato de fecha
+    //Organizamos el formato de fecha. 
     const convertirFecha = this.fechaActual;
     const fechaEnOrden = this.cambiarFormatoFecha(convertirFecha);
 
-    //asignamos valores 
+    //Asignamos valores.  
     this.datosasistencia.fecha=fechaEnOrden;
     this.datosasistencia.horario=this.timeActual;
     this.datosasistencia.id_cedula_a=this.EmpleadoBusar.id_cedula;
     
+    //Se envía la solicitud de al servidor para almacenar la asistencia. 
     this.authService.asistencia_i(this.datosasistencia).subscribe(   
       (res: any) => {
         this.loading = false;
@@ -195,7 +200,7 @@ datosasistencia={
     );
   }
 
-  //se oculta el contenedor de datos de asistencia 
+  //Se oculta el contenedor con los campos de asistencia.  
   ocultar_datos_de_fechas(){
     const datosocultos = document.querySelector('.datosocultos');
     if(datosocultos instanceof HTMLElement){
@@ -210,9 +215,9 @@ datosasistencia={
     this.EmpleadoBusar.tipo_documento = '';
   }
 
-  //datos del contenedor que contiene los datos de asistensi
+  //Datos del contenedor que contiene los campos de asistencia.
   datos_de_fechas(){
-    //se octinen la fecha actual del momento del registro 
+    //Se obtienen la fecha actual del momento del registro. 
     const fecha = new Date();
     const fechaOpcion: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -221,7 +226,7 @@ datosasistencia={
     };
     this.fechaActual = fecha.toLocaleDateString('es-CO', fechaOpcion);
 
-    //se octinen la hora actual del registro
+    //Se obtienen la hora actual del registro.
     const hora= new Date();
     const horaOpcion: Intl.DateTimeFormatOptions = {
       hour: '2-digit',
@@ -231,7 +236,7 @@ datosasistencia={
     };
     this.timeActual = hora.toLocaleTimeString('es-CO', horaOpcion);
 
-    //para desocultar el contenedor 
+    //Función Se des oculta el contenedor. 
     const datosocultos = document.querySelector('.datosocultos');
       //var div = document.getElementById("miDiv");
       if(datosocultos instanceof HTMLElement){
@@ -244,32 +249,33 @@ datosasistencia={
       }
   }
 
+  // Ejecuciones automáticas, se ejecutan una vez que se inicie el componente 
   ngOnInit(): void {
     // Recupera el valor almacenado en localStorage
     const nom_empresaGuardada = localStorage.getItem('nom_empresa');
-    //verificamos si hay un valor almacenado en localStorage, 
+    //Verificamos si hay un valor almacenado en localStorage 
     if (nom_empresaGuardada) {
-      // lo asigna a la variable nom_empresa
+      // Lo asigna a la variable nom_empresa 
       this.nom_empresa = nom_empresaGuardada;
     } else {
-      // Si no hay un valor almacenado, puedes proporcionar un valor predeterminado
+      // Si no hay un valor almacenado, se designa un valor predeterminado 
       this.nom_empresa = 'perfil empresa x';
     }
 
-    //metodo para abrir navegacion desplegable
-    //definimos variables de estado
+    // método para abrir navegación desplegable.
+    // Definimos variables de estado.
     let botoncerrar = 0;
     let botonabrir = 0;
     let estado= false;
 
-    //cuando se presiona el butt para abrir la navegacion 
+    //Cuando se presiona el butt para abrir la navegación 
     this.abrirnavegacion.nativeElement.addEventListener('click', () => {
       estado = true;
       botonabrir=1;
       botoncerrar=botoncerrar+1;
     })
 
-    //se se seleciona algona ocion del menu desplegable 
+    //Se selecciona alguna opción del menú desplegable. 
     this.menu.nativeElement.addEventListener('click', (elemento: MouseEvent) => {
       estado = false;
       if(elemento.target instanceof HTMLElement) {
@@ -280,7 +286,7 @@ datosasistencia={
       }
     });
 
-    //dependiendo que se presiona se define el evento de cierre o desplegar el menu 
+    //Dependiendo de qué se presiona, se define el evento de cierre o desplegar el menú 
     document.addEventListener('click', () => {
 
       if(estado == true && botoncerrar === 2){
@@ -330,12 +336,9 @@ datosasistencia={
       estado= false;
     });
 
-      
     window.onload = () => {
         
     }
-
-  }  
-
+  } 
 
 }

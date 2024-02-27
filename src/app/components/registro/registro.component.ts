@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ViewChild, OnInit, ElementRef } from '@angula
 import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-//manejo de mensajes personalizados 
+//Manejo de mensajes personalizados. 
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,54 +12,56 @@ import Swal from 'sweetalert2';
 })
 export class RegistroComponent {
 
-  //estado de cargando los datos al servidor 
+  // Estado de cargando los datos al servidor. 
   loading: boolean = false;
 
+  // Referencias a elementos HTML utilizados en la plantilla del componente
   @ViewChild('password', { static: true }) password!: ElementRef;
   @ViewChild('logoojo', { static: true }) logoojo!: ElementRef;
-
-  ngAfterViewInit() {
-
-    //se establece el estado de la contraseña de visible a oculta
-    let passwordVisible = false;
-
-    this.logoojo.nativeElement.addEventListener('click', () => {
-      passwordVisible = !passwordVisible;
-      const type = passwordVisible ? 'text' : 'password';
-      this.password.nativeElement.setAttribute('type', type);
-
-      const iconElement = this.logoojo.nativeElement;
-      iconElement.innerHTML = passwordVisible ? '👁️' : '<i class="fa-solid fa-eye-slash"></i>';
-      iconElement.style.color = '#fff';
-    });
-  }
-
-  //almacenamos el nombre de la empresa ingresado al formulario
-  user_f = {
-    nom_empresa: '',
-  }
-
-  //almacenamos los datos del usuario administrador de la empresa 
-  user_fP ={
-    correo: '',
-    password: '',
-    nom_empresa: '',
-  }
 
   constructor(
     private authService: AuthService,
     private route: Router,
   ){}
 
-  // hacemos la insercion a la base de datos de la empresa y su usuario 
+  ngAfterViewInit() {
+
+    //Se establece el estado de la contraseña de visible a oculta
+    let passwordVisible = false;
+
+    //Se ejecuta el cambio de estado del ojo, invierte el estado en que se encuentre 
+    this.logoojo.nativeElement.addEventListener('click', () => {
+      passwordVisible = !passwordVisible;
+      const type = passwordVisible ? 'text' : 'password';
+      this.password.nativeElement.setAttribute('type', type);
+
+      // Se muestra el nuevo estilo del ojo de vista de la contraseña 
+      const iconElement = this.logoojo.nativeElement;
+      iconElement.innerHTML = passwordVisible ? '👁️' : '<i class="fa-solid fa-eye-slash"></i>';
+      iconElement.style.color = '#fff';
+    });
+  }
+
+  //Nombre de la empresa 
+  user_f = {
+    nom_empresa: '',
+  }
+
+  //Datos del usuario administrador de la empresa.
+  user_fP ={
+    correo: '',
+    password: '',
+    nom_empresa: '',
+  }
+
+  //Función para registrar la empresa en la plataforma
   crearf() {
-    
     // Verifica si los campos requeridos del formulario están completos
     const formulario = document.querySelector('.login_form');
     if (formulario) {
       const camposRequeridos = formulario.querySelectorAll('[required]');
       const camposCompletos = Array.from(camposRequeridos).every((campo) => (campo as HTMLInputElement).value);
-      //se muestra un indo en pantalla si faltan campos requeridos 
+      //Se muestra una info en pantalla si faltan campos requeridos. 
       if (!camposCompletos) {
         Swal.fire({
           title: 'Por favor, complete todos los campos requeridos',
@@ -76,17 +78,17 @@ export class RegistroComponent {
       });
       return;
     }
-    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    //Se cambia el loadinf de false a true para que comience a cargar mientras se procesan los datos 
     this.loading = true;
 
-    //gauadamos el nombre de empresa para el usuario admin   
+    //Se guarda el nombre de la empresa para el usuario admin  
     this.user_fP.nom_empresa = this.user_f.nom_empresa;
     
-    //insercion de la empresa 
+    //Se hace la solicitud al servidor para registrar la empresa 
     this.authService.crearf(this.user_f).subscribe(
       (res: any) => {
         
-        //insercion del usuario de la empresa 
+        //Se hace la solicitud al servidor para registrar los datos del usuario administrador 
         this.authService.crearfP(this.user_fP).subscribe(   
           (res: any) => {
             this.loading = false;
@@ -95,7 +97,8 @@ export class RegistroComponent {
               icon: 'success',
               confirmButtonText: 'Aceptar'
             });
-              this.route.navigate(['login']);
+            //Si se registró la empresa con éxito, se redirige al login 
+            this.route.navigate(['login']);
             //alert('Empresa insertada exitosamente');
           }, 
           (error) => {
@@ -108,7 +111,6 @@ export class RegistroComponent {
             });
           }
         );
-
       },
       (error) => {
         this.loading = false;
@@ -122,6 +124,3 @@ export class RegistroComponent {
     );
   }
 }
-
-
-

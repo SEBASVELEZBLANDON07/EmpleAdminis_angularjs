@@ -11,9 +11,6 @@
                         <li><a routerLink="/regitroEmpleado" routerLinkActive="active" >Cerrar sesion</a></li>
                         <li><a href="#">Actualizar Empleado</a></li>
                         <li><a href="#">Actualizar Perfil</a></li>
-                        <!--li><a href="#">Incapacidad</a></li>
-                        <li><a href="#">Inventario</a></li>
-                        <li><a href="#">Borrar Empleado</a></li-->
                     </ul>
                 </nav>
         </header>
@@ -37,7 +34,6 @@
                             <li><a class="a_menu" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
                             <li><a class="a_menu" routerLink="/InventarioGeneral" routerLinkActive="active">Inventario</a></li>
                             <li><a class="a_menu" routerLink="/deleteEmpleado" routerLinkActive="active" >Borrar Empleado</a></li>
-                 
                         </ul> 
                     </nav>
                 </div>
@@ -127,7 +123,6 @@
                                 <div class="cont_input_label" >
                                     <label class="label_" for="correo">Correo Electrónico:</label>
                                     <input [(ngModel)]="empleado_f.correo" name="correo" class="input_" type="email" id="correo"  placeholder="Ejemplo: correo@ejemplo.com" required><p class="requiered">*</p>
-
                                 </div>
                                 <div class="cont_input_label">
                                     <label class="label_" for="direccion">Dirección:</label>
@@ -142,25 +137,25 @@
                                     <label class="label_" for="diaInicio">Día de inicio:</label>
                                     <select [(ngModel)]="empleado_f.primer_dias_laboral" name="primer_dias_laboral" class="select_" id="diaInicio" required>
                                         <option value="">Dia inicial</option>
-                                        <option value="Lunes">Lunes</option>
-                                        <option value="Martes">Martes</option>
-                                        <option value="Miercoles">Miércoles</option>
-                                        <option value="Jueves">Jueves</option>
-                                        <option value="Viernes">Viernes</option>
-                                        <option value="Sabado">Sabado</option>
-                                        <option value="Domingo">Domingo</option>
+                                        <option value="lunes">Lunes</option>
+                                        <option value="martes">Martes</option>
+                                        <option value="miércoles">Miércoles</option>
+                                        <option value="jueves">Jueves</option>
+                                        <option value="viernes">Viernes</option>
+                                        <option value="sábado">Sabado</option>
+                                        <option value="domingo">Domingo</option>
                                     </select>
                                 
                                     <label class="label_" for="diaFinal">Día final:</label>
                                     <select [(ngModel)]="empleado_f.ultimo_dias_laboral" name="ultimo_dias_laboral" class="select_" id="diaFinal" required>    
-                                        <option value="">Dia final</option>
-                                        <option value="Lunes">Lunes</option>
-                                        <option value="Martes">Martes</option>
-                                        <option value="Miercoles">Miércoles</option>
-                                        <option value="Jueves">Jueves</option>
-                                        <option value="Viernes">Viernes</option>
-                                        <option value="Sabado">Sabado</option>
-                                        <option value="Domingo">Domingo</option>   
+                                        <option value="">Dia inicial</option>
+                                        <option value="lunes">Lunes</option>
+                                        <option value="martes">Martes</option>
+                                        <option value="miércoles">Miércoles</option>
+                                        <option value="jueves">Jueves</option>
+                                        <option value="viernes">Viernes</option>
+                                        <option value="sábado">Sabado</option>
+                                        <option value="domingo">Domingo</option> 
                                     </select>
                                     <p class="requiered">*</p>
                                 </div>

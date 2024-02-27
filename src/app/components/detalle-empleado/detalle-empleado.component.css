@@ -405,7 +405,7 @@ margin-top: 30px;
   margin-right: 10px;
 }
 
-.datos-personales, .horario-trabajo, .cuentaBancaria, .asistencias, .horas-extras, .incapacidad, .inasistencia, .contenedor-incapacidad, .contenedor-fecha-inasistencia{
+.datos-personales, .horario-trabajo, .cuentaBancaria, .asistencias, .horas-extras, .incapacidad, .inasistencia, .contenedor-incapacidad, .contenedo-mes{
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 1, 0.274);
@@ -413,6 +413,12 @@ margin-top: 30px;
   padding-left: 20px;
   margin-top: 20px;
 } 
+
+.contenedo-mes{
+  padding: 5px;
+  margin-top: 10px;
+  padding-left: 0px;
+}
 
 .datos-personales p, .horario-trabajo p, .asistencias p, .horas-extras p, .incapacidad p, .inasistencia p{
   font-size: 18px;
@@ -427,19 +433,21 @@ margin-top: 30px;
 } 
 
 /*estilos tabla de asistrencia*/
-.asistencias{
+.asistencias, .inasistencia, .horas-extras, .incapacidad{
   position: relative;
 }
 
 
 .tablacontener {
-  width: 95%;
+  width: 98%;
   border-spacing: 0; 
-  margin-top: 20px;
+  margin: 5px;
   border-radius: 10px;
   overflow: hidden; 
   border: 10px solid #44474b; 
 }
+
+
 
 
 .filatitulo {
@@ -452,16 +460,13 @@ margin-top: 30px;
   text-align: left;
 }
 
-
 .filacontenido {
   background-color: #a09a9a;
 }
 
-
 .filacontenido td {
   padding: 8px;
-  text-align: left;
-
+  text-align: center;
 }
 
 .filacontenido:hover  {
@@ -473,18 +478,24 @@ margin-top: 30px;
               0 0 25px #55ff06d3
 }
 
-.mes, .fecha, .horaR {
+.th-class{
   margin: 0;
   font-size: 16px;
   font-family: 'Helvetica Neue', Arial, sans-serif;
+  text-align: center;
 }
 
-.mes-contenido, .fecha-contenido, .horaR-contenido {
+.td-class {
+  margin: 0;
   font-weight: bold;
   font-family: 'Georgia', serif;
+  text-align: center;
+
 }
 
-.tablacontener, .tablacontener th, .tablacontener td {
+
+
+.tablacontener, .tablacontener-inicistencia, .tablacontener th, .tablacontener-inicistencia th, .tablacontener td, .tablacontener-inicistencia td {
   border: 1px solid #ddd;
 }
 
@@ -536,7 +547,6 @@ margin-top: 30px;
   font-weight: bold;
 }
 
-.horas-extras{
-  position: relative;
-}
+
+
 

@@ -2,202 +2,185 @@
 <body>
     <div class="container_principal">
 
-    <header>
-        <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+        <header>
+            <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
 
-            <nav class="menu"  id="particles-js" #menu>
-                <ul class="menu-contenido">
-                    <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
-                    <li><a href="#">Cerrar sesion</a></li>
-                    <li><a href="#">Actualizar Empleado</a></li>
-                    <li><a href="#">Actualizar Perfil</a></li>
-                    <!--li><a href="#">Incapacidad</a></li>
-                    <li><a href="#">Inventario</a></li>
-                    <li><a href="#">Borrar Empleado</a></li-->
-                </ul>
-            </nav>
-    </header>
-    <div  class="contenedor">
-       
-        <div class="columna-izquierda" #columnaizquierda></div>
-        
-        
-        <div class="columna-central" #columnacentral>
-            <div class="estilo">
-                <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
-            </div>
-            <div class="efectos-navegación">
-                <nav class="menu-central">
-                    <ul class="estilonav">
-                       <li><a class="a_menu" routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
-                        <li><a class="a_menu" routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
-                        <li><a class="a_menu" routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
-                        <li><a class="a_menu" routerLink="/horasExtras" routerLinkActive="active" >R.Horas Extras</a></li>
-                        <li><a class="a_menu" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
-                        <li><a class="a_menu" routerLink="/InventarioGeneral" routerLinkActive="active">Inventario</a></li>
-                        <li><a class="a_menu_set" routerLink="/deleteEmpleado" routerLinkActive="active">Borrar Empleado</a></li>
-
-                    </ul> 
+                <nav class="menu"  id="particles-js" #menu>
+                    <ul class="menu-contenido">
+                        <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                        <li><a href="#">Cerrar sesion</a></li>
+                        <li><a href="#">Actualizar Empleado</a></li>
+                        <li><a href="#">Actualizar Perfil</a></li>
+                    </ul>
                 </nav>
-            </div>
-            <br><br><br>
-
-            <div class="cont_registro">
-                <h1 class="text_registro">Borrar Empleado</h1>
-            </div>
+        </header>
+        <div  class="contenedor">
+        
+            <div class="columna-izquierda" #columnaizquierda></div>
             
-            <div class="cont_buscar">
-
-                <form class="form">
-                    <h1 class="info">Digita los datos </h1>
-                    <div class="cont_select" >
-                        <p class="requiered">*</p>
-                        <select [(ngModel)]="EmpleadoBusar.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
-                            <option value="">Tipo de documento</option>
-                            <option value="cc">Cédula de Ciudadanía</option>
-                            <option value="ce">Cédula de Extranjería</option>
-                        </select>
-                    </div>
-
-                    <div class="cont_posicion">
-                        <label class="label_" for="">Digite la cedula del empleado </label>
-                        <div class="cont_input">
-                            <input  [(ngModel)]="EmpleadoBusar.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required (keyup.enter)="buscarEmp()">
-                            <p class="requiered">*</p>
-                        </div>
-                    </div>
-
-                    <div class="botones-container">
-                        <button (click)="buttEmpleEliminados()" class="buttenviar" id="">Buscar Empleados Eliminados</button>
-                        <button (click)="buscarEmp()" class="buttenviar" id="botonEnviar">Buscar Empleado</button>
-                    </div>
-                </form>
-            </div>
-
-            <!--animacion de gargando imagen-->
-            <div class="cargando-overlay" *ngIf="loading">
-                <div class="cargando-alert">
-                    <div class="spinner"></div>
-                    <div>Cargando...</div>
+            <div class="columna-central" #columnacentral>
+                <div class="estilo">
+                    <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
                 </div>
-            </div>
-
-
-            
-
-
-            <div class="datosocultos" style="display: none;">
-                <div class="contenerdo">
-                   
-                    <div class="izquierda">
-                        
-                        <div class="cont">
-                            <div class="perfil">
-                                <div class="imagen">
-
-                                    <img *ngIf="imagenSrcPredeterminada" [src]="imagenSrcPredeterminada" alt="Imagen de Perfil">
-                                    <img [src]="fotografia" alt="Imagen descargada" *ngIf="fotografia" />
-                                    
-                                </div>
-                                <h2 class="nombre_apellido">{{ nombre }} {{ apellidos }}</h2>
-                                <p class="id">{{ cc }}: {{ numeroCedula }}</p>
-                                <div class="datos-personales">
-                                    <p><strong>Cargo:</strong> {{ cargo }} <strong>- Salario:</strong> $ {{ formatoSalario(salario) }}</p>
-                                    <p><strong>Fecha de Nacimiento:</strong> {{ fechaNacimiento | date:'yyyy-MM-dd' }}</p>
-                                    <p><strong>Cel:</strong> {{ pais }} {{ cel }}</p>
-                                    <p><strong>Correo:</strong> {{ correo }}</p>
-                                    <p><strong>Dirección:</strong> {{ direccion }}</p>
-                                </div>
-                                <div class="horario-trabajo">
-                                    <p><strong>Horario de Trabajo:</strong> {{ horaInicio }} - {{ horafin }}</p>
-                                    <p><strong>Días de Trabajo:</strong> {{ diaInicio }} - {{ diaFin }}</p>
-                                </div>
-                            </div>      
+                <div class="efectos-navegación">
+                    <nav class="menu-central">
+                        <ul class="estilonav">
+                        <li><a class="a_menu" routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
+                            <li><a class="a_menu" routerLink="/regitroEmpleado" routerLinkActive="active">R.Empleado</a></li>
+                            <li><a class="a_menu" routerLink="/asistencia" routerLinkActive="active">R.Asistencia</a></li>
+                            <li><a class="a_menu" routerLink="/horasExtras" routerLinkActive="active" >R.Horas Extras</a></li>
+                            <li><a class="a_menu" routerLink="/incapacidad" routerLinkActive="active">R.Incapacidad</a></li>
+                            <li><a class="a_menu" routerLink="/InventarioGeneral" routerLinkActive="active">Inventario</a></li>
+                            <li><a class="a_menu_set" routerLink="/deleteEmpleado" routerLinkActive="active">Borrar Empleado</a></li>
+                        </ul> 
+                    </nav>
+                </div>
+                <br><br><br>
+                <div class="cont_registro">
+                    <h1 class="text_registro">Borrar Empleado</h1>
+                </div>
+                
+                <div class="cont_buscar">
+                    <form class="form">
+                        <h1 class="info">Digita los datos </h1>
+                        <div class="cont_select" >
+                            <p class="requiered">*</p>
+                            <select [(ngModel)]="EmpleadoBusar.tipo_documento" name="tipo_documento" class="select_" id="tipo_documento" required>
+                                <option value="">Tipo de documento</option>
+                                <option value="cc">Cédula de Ciudadanía</option>
+                                <option value="ce">Cédula de Extranjería</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="derecha">
-                        <div class="cont">
-                            <div class="perfil">
-                                
-                                <h1 class="info">Informacion del empleado en la empresa</h1>
-                                <div class="horario-trabajo">
-                                    <p><strong>Días trabajados en la empresa:</strong> {{ diastrabajados }}</p>
-                                    <p><strong>Inasistencias:</strong> {{ inasistencias }}</p>
-                                    <p><strong>Horas extras realizadas:</strong> {{ horasExtras }}</p>
-                                    <p><strong>Incapacidades:</strong> {{ incapacidades }}</p>
-                                </div>
 
-                                <form class="form_motivo" action="">
-                                    <label class="laber_motivo" for="">Registra el motivo de la eliminación del empleado.</label>
-                                <br><br><div class="cont_input">
-                                        <textarea [(ngModel)]="motivoData.motivo_eliminacion"  name="motivo_eliminacion" class="texMotivo" type="text" placeholder="motivo"  rows="6" cols="50" required></textarea>
-                                        <p class="requiered">*</p>
-                                    </div>
-                                </form>
-
-                                <div class="botones-container">
-                                    <!--button class="buttlimpiar" id="botonlimbiar">limpiar</button-->
-                                    <button (click)="butteliminar()" class="butteliminar" id="">Eliminar Empleado </button>
-                                </div>
+                        <div class="cont_posicion">
+                            <label class="label_" for="">Digite la cedula del empleado </label>
+                            <div class="cont_input">
+                                <input  [(ngModel)]="EmpleadoBusar.id_cedula" name="id_cedula" class="input_" type="number" id="num_documento"  placeholder="Ingrese el numero de documento" inputmode="numeric" required (keyup.enter)="buscarEmp()">
+                                <p class="requiered">*</p>
                             </div>
                         </div>
-                    </div>   
+
+                        <div class="botones-container">
+                            <button (click)="buttEmpleEliminados()" class="buttenviar" id="">Buscar Empleados Eliminados</button>
+                            <button (click)="buscarEmp()" class="buttenviar" id="botonEnviar">Buscar Empleado</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Animación de cargando. -->
+                <div class="cargando-overlay" *ngIf="loading">
+                    <div class="cargando-alert">
+                        <div class="spinner"></div>
+                        <div>Cargando...</div>
+                    </div>
+                </div>
+                
+                <div class="datosocultos" style="display: none;">
+                    <div class="contenerdo">
+                    
+                        <div class="izquierda">
+                            
+                            <div class="cont">
+                                <div class="perfil">
+                                    <div class="imagen">
+
+                                        <img *ngIf="imagenSrcPredeterminada" [src]="imagenSrcPredeterminada" alt="Imagen de Perfil">
+                                        <img [src]="fotografia" alt="Imagen descargada" *ngIf="fotografia" />
+                                        
+                                    </div>
+                                    <h2 class="nombre_apellido">{{ nombre }} {{ apellidos }}</h2>
+                                    <p class="id">{{ cc }}: {{ numeroCedula }}</p>
+                                    <div class="datos-personales">
+                                        <p><strong>Cargo:</strong> {{ cargo }} <strong>- Salario:</strong> $ {{ formatoSalario(salario) }}</p>
+                                        <p><strong>Fecha de Nacimiento:</strong> {{ fechaNacimiento | date:'yyyy-MM-dd' }}</p>
+                                        <p><strong>Cel:</strong> {{ pais }} {{ cel }}</p>
+                                        <p><strong>Correo:</strong> {{ correo }}</p>
+                                        <p><strong>Dirección:</strong> {{ direccion }}</p>
+                                    </div>
+                                    <div class="horario-trabajo">
+                                        <p><strong>Horario de Trabajo:</strong> {{ horaInicio }} - {{ horafin }}</p>
+                                        <p><strong>Días de Trabajo:</strong> {{ diaInicio }} - {{ diaFin }}</p>
+                                    </div>
+                                </div>      
+                            </div>
+                        </div>
+                        <div class="derecha">
+                            <div class="cont">
+                                <div class="perfil">
+                                    
+                                    <h1 class="info">Informacion del empleado en la empresa</h1>
+                                    <div class="horario-trabajo">
+                                        <p><strong>Días trabajados en la empresa:</strong> {{ diastrabajados }}</p>
+                                        <p><strong>Inasistencias:</strong> {{ inasistencias }}</p>
+                                        <p><strong>Horas extras realizadas:</strong> {{ horasExtras }}</p>
+                                        <p><strong>Incapacidades:</strong> {{ incapacidades }}</p>
+                                    </div>
+
+                                    <form class="form_motivo" action="">
+                                        <label class="laber_motivo" for="">Registra el motivo de la eliminación del empleado.</label>
+                                    <br><br><div class="cont_input">
+                                            <textarea [(ngModel)]="motivoData.motivo_eliminacion"  name="motivo_eliminacion" class="texMotivo" type="text" placeholder="motivo"  rows="6" cols="50" required></textarea>
+                                            <p class="requiered">*</p>
+                                        </div>
+                                    </form>
+
+                                    <div class="botones-container">
+                                        <!--button class="buttlimpiar" id="botonlimbiar">limpiar</button-->
+                                        <button (click)="butteliminar()" class="butteliminar" id="">Eliminar Empleado </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+                <div class="datosocultosEmpleadosEliminados" style="display: none;">
+                
+                    <div class="centrado">
+                        <div class="contenido-interno">
+                        
+                            <h2 class="texEmpl">Historial Empleados Eliminados</h2>
+
+                            <div class="formBuscar">
+                                <input class="inputBuscar"
+                                [(ngModel)]="numeroBuscado"
+                                type="number"
+                                name="search"
+                                pattern=".*\S.*"
+                                required
+                                placeholder="Ducumento a buscar"
+                                autocomplete="off"
+                                (keyup.enter)="buscarEnTabla()"
+                                />
+                                <button class="buttBuscar" (click)="buscarEnTabla()" type="button">
+                                <span>Search</span>
+                                </button>
+                            </div>
+
+                            <table  class="container">
+                                <thead>
+                                    <tr>
+                                        <th><h1>Ducumento</h1></th>
+                                        <th><h1>Motivo</h1></th>
+                                        <th><h1>Fecha</h1></th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let datos of infoEMpleadosEliminados; let i = index" id="fila-{{ i }}">
+                                        <td class="ducumentoEliminado">{{ datos.id_empleados_eliminados }}</td>
+                                        <td class="motivoEliminacion">{{ datos.motivo_eliminacion }}</td>
+                                        <td class="fechaEliminado">{{ datos.fechaEliminacion | date:'yyyy-MM-dd' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table><br>
+                        </div>
+                    </div>
+                    <br>
                 </div>
             </div>
-            <div class="datosocultosEmpleadosEliminados" style="display: none;">
-               
-                <div class="centrado">
-                    <div class="contenido-interno">
-                       
-                        <h2 class="texEmpl">Historial Empleados Eliminados</h2>
-
-                        <div class="formBuscar">
-                            <input class="inputBuscar"
-                              [(ngModel)]="numeroBuscado"
-                              type="number"
-                              name="search"
-                              pattern=".*\S.*"
-                              required
-                              placeholder="Ducumento a buscar"
-                              autocomplete="off"
-                              (keyup.enter)="buscarEnTabla()"
-                            />
-                            <button class="buttBuscar" (click)="buscarEnTabla()" type="button">
-                              <span>Search</span>
-                            </button>
-                        </div>
-
-                        <table  class="container">
-                            <thead>
-                                <tr>
-                                    <th><h1>Ducumento</h1></th>
-                                    <th><h1>Motivo</h1></th>
-                                    <th><h1>Fecha</h1></th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let datos of infoEMpleadosEliminados; let i = index" id="fila-{{ i }}">
-                                    <td class="ducumentoEliminado">{{ datos.id_empleados_eliminados }}</td>
-                                    <td class="motivoEliminacion">{{ datos.motivo_eliminacion }}</td>
-                                    <td class="fechaEliminado">{{ datos.fechaEliminacion | date:'yyyy-MM-dd' }}</td>
-                                </tr>
-                            </tbody>
-                        </table><br>
-                    </div>
-                </div>   <br>
-            </div>
-
-
-
-
-
-
+            
+            <div div class="columna-derecha" #columnaderecha></div>
         </div>
-        
-        <div div class="columna-derecha" #columnaderecha></div>
-
-    </div>
     </div>
 </body>
 <router-outlet></router-outlet>

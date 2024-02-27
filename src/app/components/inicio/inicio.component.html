@@ -1,55 +1,52 @@
 <br><br><br>
 <body>   
-<div class="container_principal">
-    <header class="heatitulo" >
+    <div class="container_principal">
+        <header class="heatitulo" >
 
-        <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
+            <button (click)="buttabrirnavegacion()"  class="abrir-navegacion" #abrirnavegacion>&#9776;</button>
 
-            <nav class="menu"  id="particles-js" #menu>
-                <ul class="menu-contenido">
-                    <li><a routerLink="/inicio" routerLinkActive="active" >Inicio</a></li>
-                    <li><a href="#" >Cerrar sesion</a></li>
-                    <li><a href="#">Actualizar Empleado</a></li>
-                    <li><a href="#">Actualizar Perfil</a></li>
-                    <!--li><a href="#">Incapacidad</a></li>
-                    <li><a href="#">Inventario</a></li>
-                    <li><a href="#">Borrar Empleado</a></li-->
-                </ul>
-            </nav>
-    </header>
-    
-    <div class="contenedor">
+                <nav class="menu"  id="particles-js" #menu>
+                    <ul class="menu-contenido">
+                        <li><a routerLink="/inicio" routerLinkActive="active" >Inicio</a></li>
+                        <li><a href="#" >Cerrar sesion</a></li>
+                        <li><a href="#">Actualizar Empleado</a></li>
+                        <li><a href="#">Actualizar Perfil</a></li>
+                    </ul>
+                </nav>
+        </header>
+        
+        <div class="contenedor">
 
-        <div class="columna-izquierda" #columnaizquierda></div>
+            <div class="columna-izquierda" #columnaizquierda></div>
 
-        <div class="columna-central" #columnacentral>
-            
-            <div class="estilo">
-                <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
-            </div>
+            <div class="columna-central" #columnacentral>
+                
+                <div class="estilo">
+                    <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
+                </div>
 
-            <div class="conteinerimgs">
-                <img src="../../../assets/logo_logo.png" class="centrar-imagen">
-            </div>
+                <div class="conteinerimgs">
+                    <img src="../../../assets/logo_logo.png" class="centrar-imagen">
+                </div>
 
-            <nav class="menuclas">
-                <ul class="menu-bolitas">
-                    <li><a routerLink="/horasExtras" routerLinkActive="active"  class="bolita bolita-1"></a><span class="nombreuno">Horas Extras</span></li>
-                    <li><a routerLink="/asistencia" routerLinkActive="active" class="cuadradouno" class="bolita bolita-2"></a><span class="nombredos">Asistencia</span></li>
-                    <li><a routerLink="/incapacidad" routerLinkActive="active" class="bolita bolita-3"></a><span class="nombretres">Incapacidad</span></li>
-                    <li><a routerLink="/regitroEmpleado" routerLinkActive="active" class="cuadradouno">Regitrar Nuevo Empleado </a></li>
-                    <li><a routerLink="/deleteEmpleado" routerLinkActive="active" class="cuadradodos">Borrar Empleado</a></li>
-                    <li><a routerLink="/InventarioGeneral" routerLinkActive="active" class="cuadradotres">Inventario</a></li>
-                </ul>
-            </nav>
-            <div class="cerrar-seccion">
-                <button class="boton-cerrar">logout <i class="fa-solid fa-right-from-bracket"></i></button>
-            </div>
-            <br><br><br><br><br><br>
-        </div>        
-        <div class="columna-derecha" #columnaderecha></div>
-    </div>
-</div>    
+                <nav class="menuclas">
+                    <ul class="menu-bolitas">
+                        <li><a routerLink="/horasExtras" routerLinkActive="active"  class="bolita bolita-1"></a><span class="nombreuno">Horas Extras</span></li>
+                        <li><a routerLink="/asistencia" routerLinkActive="active" class="cuadradouno" class="bolita bolita-2"></a><span class="nombredos">Asistencia</span></li>
+                        <li><a routerLink="/incapacidad" routerLinkActive="active" class="bolita bolita-3"></a><span class="nombretres">Incapacidad</span></li>
+                        <li><a routerLink="/regitroEmpleado" routerLinkActive="active" class="cuadradouno">Regitrar Nuevo Empleado </a></li>
+                        <li><a routerLink="/deleteEmpleado" routerLinkActive="active" class="cuadradodos">Borrar Empleado</a></li>
+                        <li><a routerLink="/InventarioGeneral" routerLinkActive="active" class="cuadradotres">Inventario</a></li>
+                    </ul>
+                </nav>
+                <div class="cerrar-seccion">
+                    <button class="boton-cerrar">logout <i class="fa-solid fa-right-from-bracket"></i></button>
+                </div>
+                <br><br><br><br><br><br>
+            </div>        
+            <div class="columna-derecha" #columnaderecha></div>
+        </div>
+    </div>    
 </body>
 
 <router-outlet></router-outlet>

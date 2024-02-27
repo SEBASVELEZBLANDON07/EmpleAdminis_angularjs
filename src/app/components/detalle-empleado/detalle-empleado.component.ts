@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
  // Declaración para particlesJS
 declare var particlesJS: any;
 
-//manejo de mensajes personalizados 
+//Manejo de mensajes personalizados. 
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./detalle-empleado.component.css']
 })
 export class DetalleEmpleadoComponent {
- //variable titulo empresa 
+ //Variable título, empresa. 
  nom_empresa: string = 'empresa';
 
  //variable del id del empleado
@@ -24,7 +24,7 @@ export class DetalleEmpleadoComponent {
 //imagen predeterminada
 imagenSrcPredeterminada: string | null = '../../../assets/perfil_empleado.PNG';
 
-//datos del empleado
+//Datos del empleado
 fotografia: string | null = null;
 nombre: string='sebastian';
 apellidos: string= 'velez blandon';
@@ -48,11 +48,12 @@ inasistencias: string= '';
 horasExtras: string= '';
 incapacidades: string= '';
 
- @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
- @ViewChild('menu', { static: true }) menu!: ElementRef;
- @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
- @ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
- @ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
+// Referencias a elementos HTML utilizados en la plantilla del componente
+@ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
+@ViewChild('menu', { static: true }) menu!: ElementRef;
+@ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
+@ViewChild('columnaderecha', { static: true }) columnaderecha!: ElementRef;
+@ViewChild('columnacentral', { static: true }) columnacentral!: ElementRef;
 
  constructor(
   private authService: AuthService,
@@ -65,7 +66,7 @@ incapacidades: string= '';
  }
 */
 
-//separamos por grupos de 3 numeros al salario
+//Apartamos por grupos de 3 números al salario
 formatoSalario(salario: number): string {
   const salarioString = salario.toString();
   const salarioFormateado = salarioString.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -73,8 +74,9 @@ formatoSalario(salario: number): string {
   return salarioFormateado;
 }
 
+ // particles-js
  inicializarParticulas(){
-   //menu izquierda animacion
+   ////Menú izquierdo animación
    particlesJS('particles-js', {
      "particles": {
        "number": {
@@ -116,13 +118,12 @@ formatoSalario(salario: number): string {
    });
  }
 
-//se presiona el butt de abrir menu desplegable 
+//Se presiona el butt de abrir menú desplegable 
  buttabrirnavegacion(){
    this.inicializarParticulas();
  }
 
  ngOnInit(): void {
-
   // Obtener el parámetro de la ruta
   this.router.params.subscribe((params: Params) => {
     this.idCedula = params['idCedula'];
@@ -138,7 +139,7 @@ formatoSalario(salario: number): string {
    // Recupera el valor almacenado en localStorage
    const nom_empresaGuardada = localStorage.getItem('nom_empresa');
 
-   //verificamos si hay un valor almacenado en localStorage, 
+   //Verificamos si hay un valor almacenado en localStorage 
    if (nom_empresaGuardada) {
      // lo asigna a la variable nom_empresa
      this.nom_empresa = nom_empresaGuardada;
@@ -148,20 +149,20 @@ formatoSalario(salario: number): string {
    }
 
 
-   //metodo para abrir navegacion desplegable
+   //Método para abrir navegación desplegable
    //definimos variables de estado
    let botoncerrar = 0;
    let botonabrir = 0;
    let estado= false;
 
-   //cuando se presiona el butt para abrir la navegacion 
+   //Cuando se presiona el butt para abrir la navegación 
    this.abrirnavegacion.nativeElement.addEventListener('click', () => {
      estado = true;
      botonabrir=1;
      botoncerrar=botoncerrar+1;
    })
 
-   //se se seleciona algona ocion del menu desplegable 
+   //Se selecciona alguna opción del menú desplegable  
    this.menu.nativeElement.addEventListener('click', (elemento: MouseEvent) => {
      estado = false;
      if(elemento.target instanceof HTMLElement) {
@@ -172,7 +173,7 @@ formatoSalario(salario: number): string {
      }
    });
 
-   //dependiendo que se presiona se define el evento de cierre o desplegar el menu 
+   //Dependiendo de qué se presiona, se define el evento de cierre o desplegar el menú  
    document.addEventListener('click', () => {
 
      if(estado == true && botoncerrar === 2){

@@ -1,6 +1,3 @@
-
-
-
 /*titulo*/
 .heatitulo {
     
@@ -40,7 +37,6 @@
     display: inline-block;
     transform-origin: center center;
   }
-
 
   /*pie de pagina*/
   .pie_pagina {
@@ -144,8 +140,6 @@
         bottom: var(--distance, 10rem);
     }
   }
-
-
 
   .creditos {
     grid-column: 1/-1;

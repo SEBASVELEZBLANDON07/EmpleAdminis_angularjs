@@ -1,78 +1,67 @@
+<body>  
+    <div class="contenedor">
+        
+        <div class="columna-izquierda"></div>
 
-<body>
-   
-<div class="contenedor">
-    
-    <div class="columna-izquierda"></div>
+        <div class="columna-central">
 
-    <div class="columna-central">
-
-        <br><br><br><br>
-        <div class="estilo">
-            <h2 class="titulo-empresa">Inicio sesion</h2>
-        </div>
-
-        <div class="container">
-            
-            <div class="cont_icon">
-                <i class="fa-solid fa-user icon"></i>
+            <br><br><br><br>
+            <div class="estilo">
+                <h2 class="titulo-empresa">Inicio sesion</h2>
             </div>
-           
-            <div class="container_login">
-    
-                <!--animacion de gargando imagen-->
-                <div class="cargando-overlay" *ngIf="loading">
-                    <div class="cargando-alert">
-                        <div class="spinner"></div>
-                        <div>Cargando...</div>
-                     </div>
+
+            <div class="container">
+                
+                <div class="cont_icon">
+                    <i class="fa-solid fa-user icon"></i>
                 </div>
-
-                <h2 class="login_h2">Administrativo</h2>
-                <form class="login_form">
-                    <div class="cont_user_pass">
-                        <input [(ngModel)]="user.correo" class="input_login" type="email" name="correo" required="">
-                        <label class="label_login" form="correo">Dirección de correo electrónico</label>
+            
+                <div class="container_login">
+        
+                    <!--animacion de gargando imagen-->
+                    <div class="cargando-overlay" *ngIf="loading">
+                        <div class="cargando-alert">
+                            <div class="spinner"></div>
+                            <div>Cargando...</div>
+                        </div>
                     </div>
-                    <div class="cont_user_pass">
-                        <input  [(ngModel)]="user.password" class="input_login" id="password" type="password" name="password" required="" #password>
-                        <span class="password-logo" id="logoojo" #logoojo><i class="fa-solid fa-eye-slash ojoicon"></i></span>
-                        <label form="password" class="label_login" >Contraseña</label>
-                    </div>
-    
-                        <a class="olvi_a" href="#">Olvidé mi contraseña</a>
-    
-                        <button (click)="logIn()" class="login_a" type="submit">
-                            <span class="ligin_spam">__</span><!--arriba-->
-                            <span class="ligin_spam"></span><!--bajando-->
-                            <span class="ligin_spam"></span><!--abajo-->
-                            <span class="ligin_spam">**</span><!--subir-->
-                            Iniciar Sesión
-                        </button>
 
-                        <a class="login_b" routerLink="/registro" routerLinkActive="active">
-                            <span class="ligin_spam">__</span><!--arriba-->
-                            <span class="ligin_spam"></span><!--bajando-->
-                            <span class="ligin_spam"></span><!--abajo-->
-                            <span class="ligin_spam">**</span><!--subir-->
-                            Registrarme
-                        </a>
-                </form>
+                    <h2 class="login_h2">Administrativo</h2>
+                    <form class="login_form">
+                        <div class="cont_user_pass">
+                            <input [(ngModel)]="user.correo" class="input_login" type="email" name="correo" required="">
+                            <label class="label_login" form="correo">Dirección de correo electrónico</label>
+                        </div>
+                        <div class="cont_user_pass">
+                            <input  [(ngModel)]="user.password" class="input_login" id="password" type="password" name="password" required="" #password>
+                            <span class="password-logo" id="logoojo" #logoojo><i class="fa-solid fa-eye-slash ojoicon"></i></span>
+                            <label form="password" class="label_login" >Contraseña</label>
+                        </div>
+        
+                            <a class="olvi_a" href="#">Olvidé mi contraseña</a>
+        
+                            <button (click)="logIn()" class="login_a" type="submit">
+                                <span class="ligin_spam">__</span><!--arriba-->
+                                <span class="ligin_spam"></span><!--bajando-->
+                                <span class="ligin_spam"></span><!--abajo-->
+                                <span class="ligin_spam">**</span><!--subir-->
+                                Iniciar Sesión
+                            </button>
+
+                            <a class="login_b" routerLink="/registro" routerLinkActive="active">
+                                <span class="ligin_spam">__</span><!--arriba-->
+                                <span class="ligin_spam"></span><!--bajando-->
+                                <span class="ligin_spam"></span><!--abajo-->
+                                <span class="ligin_spam">**</span><!--subir-->
+                                Registrarme
+                            </a>
+                    </form>
+                </div>
             </div>
-        </div>
-        <!--a routerLink="/admin" routerLinkActive="active">admin</a><br>
-        <a routerLink="/empleado" routerLinkActive="active">empleado</a>
-        
-        
-        
-        <a routerLink="/admin" routerLinkActive="active">admin</a><br>
-        <a routerLink="/login" routerLinkActive="active">login</a><br>
-        <a routerLink="/empleado" routerLinkActive="active">empleado</a-->
+        </div>  
 
-    </div>        
-    <div class="columna-derecha"></div>
-
-</div>
+        <div class="columna-derecha"></div>
+    </div>
 </body>
 <router-outlet></router-outlet>
 

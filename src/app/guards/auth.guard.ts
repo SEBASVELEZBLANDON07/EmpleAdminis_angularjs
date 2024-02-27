@@ -1,6 +1,5 @@
-import { Observable} from 'rxjs';
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -13,17 +12,16 @@ export class AuthGuard implements CanActivate {
     private route: Router
   ){}
 
-  //se verifica el estado del token 
+  //Se verifica el estado del token 
   canActivate(): 
   boolean {
       if(!this.authService.isAunt()){
-        //console.log("token no vlido inicia seccion de nuevo");
         this.route.navigate(['login'])
         alert ('token caducado inicia sesion')
-        // false si el token caduco
+        // False si el token caduco
         return false;
       }
-      // true si se cumple la autenticación
+      // True si se cumple la autenticación  
        return true; 
   }
 }

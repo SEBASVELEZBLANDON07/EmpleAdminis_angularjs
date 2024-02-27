@@ -20,7 +20,7 @@ declare var particlesJS: any;
 export class AppComponent {
   title = 'frontend';
  
-  //titulo girando 
+  //Título girando 
   animation1 = 'in';
   animation2 = 'in';
   animation3 = 'in';
@@ -34,9 +34,10 @@ export class AppComponent {
   animation11 = 'in';
   animation12 = 'in';
 
+  // Ejecuciones automáticas, se ejecutan una vez que se inicie el componente 
   ngAfterViewInit() {
    
-    //se definen los tiempos de cada letra para girar 
+    //Se definen los tiempos de cada letra para girar 
     this.inicializarParticulas();
 
     interval(2000).subscribe(() => {
@@ -89,7 +90,7 @@ export class AppComponent {
     
   }
 
-  //se define la animacion
+  //Se define la animación
   rotateTitle() { 
     this.animation1 = 'out'; 
     setTimeout(() => {
@@ -97,7 +98,7 @@ export class AppComponent {
     }, 900);
   } 
 
-  //se define la animacion
+  //Se define la animación
   rotateTitledos() {
     this.animation2 = 'out'; 
     setTimeout(() => {
@@ -105,7 +106,7 @@ export class AppComponent {
     }, 900);
   }
 
-  //se define la animacion
+  //Se define la animación
   rotateTitletres() {
     this.animation3 = 'out'; 
     setTimeout(() => {
@@ -113,7 +114,7 @@ export class AppComponent {
     }, 900);
   }
 
-  //se define la animacion
+  //Se define la animación
   rotateTitlecuatro(){
     this.animation4 = 'out'; 
     setTimeout(() => {
@@ -121,7 +122,7 @@ export class AppComponent {
     }, 900);
   } 
 
-  //se define la animacion
+  //Se define la animación
   rotateTitlecinco() {
     this.animation5 = 'out'; 
     setTimeout(() => {
@@ -129,7 +130,7 @@ export class AppComponent {
     }, 900); 
   } 
 
-  //se define la animacion
+  //Se define la animación
   rotateTitleseis() {
     this.animation6 = 'out'; 
     setTimeout(() => {
@@ -137,7 +138,7 @@ export class AppComponent {
     }, 900);
   }
  
-  //se define la animacion
+  //Se define la animación
   rotateTitlesiete(){
     this.animation7 = 'out'; 
     setTimeout(() => {
@@ -145,7 +146,7 @@ export class AppComponent {
     }, 900);
   } 
 
-  //se define la animacion
+  //Se define la animación
   rotateTitleocho() {
     this.animation8 = 'out'; 
     setTimeout(() => {
@@ -153,7 +154,7 @@ export class AppComponent {
     }, 900); 
   } 
 
-  //se define la animacion
+  //Se define la animación
   rotateTitlenueve() { 
     this.animation9 = 'out'; 
     setTimeout(() => {
@@ -161,7 +162,7 @@ export class AppComponent {
     }, 900); 
   } 
 
-  //se define la animacion
+  //Se define la animación
   rotateTitlediez() {
     this.animation10 = 'out'; 
     setTimeout(() => {
@@ -169,7 +170,7 @@ export class AppComponent {
     }, 900);
   }
   
-  //se define la animacion
+  //Se define la animación
   rotateTitleonce(){
     this.animation11 = 'out'; 
     setTimeout(() => {
@@ -177,7 +178,7 @@ export class AppComponent {
     }, 900);
   } 
 
-  //se define la animacion
+  //Se define la animación
   rotateTitledose() {
     this.animation12 = 'out'; 
     setTimeout(() => {
@@ -185,9 +186,9 @@ export class AppComponent {
     }, 200); 
   } 
 
-
+  // particles-js
   inicializarParticulas(){
-    //titulo animacion
+    //Título animación 
     particlesJS('particles', {
       "particles": {
         "number": {
@@ -228,9 +229,4 @@ export class AppComponent {
       },
     });
   }
-
-
 }
-
-
-

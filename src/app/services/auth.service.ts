@@ -8,16 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
  
-  //url al servidor 
+  //URL al servidor  
   private URL = 'http://localhost:8080'; 
 
-  //correo de quien inicia secion
+  //Correo de quién inicia sesión
   correo: string = '';
 
   constructor( 
     private http: HttpClient,
     private jwtHerper: JwtHelperService
   ){}
+
+  //Solicitudes por el método post 
 
   //Solicitud HTTP al servidor para iniciar sesión 
   Login(user:any){
@@ -59,27 +61,18 @@ export class AuthService {
     return this.http.post(`${this.URL}/Empleado_edic/horasExtras`, horaRegistro);
   }
 
-  //Solicitud HTTP al servidor para insertar la horas extras
+  //Solicitud HTTP al servidor para insertar la incapacidad
   incapacidad(formData:any){
     return this.http.post(`${this.URL}/Empleado_edic/incapacidad`, formData);
   }
 
-  //Solicitud HTTP al servidor para insertar la horas extras
+  //Solicitud HTTP al servidor para registrar el empleado eliminado 
   eliminarRegistro(motivoData:any){
     return this.http.post(`${this.URL}/delet_Empleado/RegisEmpleado_eliminado`, motivoData);
   }
 
 
-
-  //metodo para establecer el correo del usuario
-  setCorreoUsuario(correologin: string) {
-    this.correo = correologin;
-  }
-
-  // método para obtener el correo del usuario
-  getCorreoUsuario() {
-    return this.correo;
-  }
+  //Solicitudes por el método get 
 
   //Solicitud HTTP al servidor para obtener el nombre de la empresa
   obtenerNomEmpresa(correo: string): Observable<any>{
@@ -87,7 +80,7 @@ export class AuthService {
     return this.http.get(`${this.URL}/crearF_route/nombreEmpresa`, {params});
   }
 
-  //Solicitud HTTP al servidor para obtener la fotografia del empleado
+  //Solicitud HTTP al servidor para obtener historial breve del empleado a eliminar
   historialEmpleado(id: string): Observable<any> {
     return this.http.get(`${this.URL}/info_empleado/infoEmpleadoEliminar/${id}`);
   }
@@ -97,39 +90,41 @@ export class AuthService {
     return this.http.get(`${this.URL}/info_empleado/fotografiaDescargar/${id}`, { responseType: 'blob' });
   }
 
+  //Solicitud HTTP al servidor para buscar empleados eliminados 
+  infoEliminarEmpleado(id: string): Observable<any> {
+    return this.http.get(`${this.URL}/delet_Empleado/Empleado_eliminados/${id}`);
+  }
+
+  //Solicitud HTTP al servidor para obtener los empleados de la empresa 
+  inventarioGeneral(id: string): Observable<any> {
+    return this.http.get(`${this.URL}/inventarioEmple/inventarioGeneral/${id}`);
+  }
+
+  //Solicitudes por el método delete 
+
   //Solicitud HTTP al servidor para eliminar el empleado
   eliminarEmpleado(id: string): Observable<any> {
     return this.http.delete(`${this.URL}/delet_Empleado/deleteEmpleado/${id}`);
   }
 
-  //Solicitud HTTP al servidor para eliminar el empleado
-  infoEliminarEmpleado(id: string): Observable<any> {
-    return this.http.get(`${this.URL}/delet_Empleado//Empleado_eliminados/${id}`);
+  //Método para establecer el correo del usuario
+  setCorreoUsuario(correologin: string) {
+    this.correo = correologin;
   }
 
-  //Solicitud HTTP al servidor para eliminar el empleado
-  inventarioGeneral(id: string): Observable<any> {
-    return this.http.get(`${this.URL}/inventarioEmple/inventarioGeneral/${id}`);
+  // Método para obtener el correo del usuario 
+  getCorreoUsuario() {
+    return this.correo;
   }
   
-/*
-  buscarEmpleado(EmpleadoBusar: any){
-    const params = new HttpParams()
-    .set('id_cedula', EmpleadoBusar.id_cedula)
-    .set('tipo_documento', EmpleadoBusar.tipo_documento);
-
-    return this.http.get(`${this.URL}/Empleado_edic/buscarEmpleado`, params);
-  }
-  */
-
-  //se verifica si el usuario tiene un token 
+  //Se verifica si el usuario tiene un token 
   isAunt(): boolean{
     const token = localStorage.getItem('token');
     if(this.jwtHerper.isTokenExpired(token) || !localStorage.getItem('token')){
-      //flser si no lo tienen 
+      //false si no lo tienen.
       return false;
     }
-    //true si lo tiene
+    //True si lo tiene 
     return true;
   }
 }

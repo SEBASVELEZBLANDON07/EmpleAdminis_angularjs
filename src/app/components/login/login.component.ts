@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ViewChild, OnInit, ElementRef } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import {  Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-//manejo de mensajes personalizados 
+//Manejo de mensajes personalizados. 
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,22 +12,30 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
- //estado de cargando los datos al servidor 
+ // Estado de cargando los datos al servidor. 
  loading: boolean = false;
 
+  // Referencias a elementos HTML utilizados en la plantilla del componente
   @ViewChild('password', { static: true }) password!: ElementRef;
   @ViewChild('logoojo', { static: true }) logoojo!: ElementRef;
+
+  constructor(
+    private authService: AuthService,
+    private route: Router,
+  ){}
  
   ngAfterViewInit() {
 
-    //se establece el estado de la contraseña de visible a oculta
+    //Se establece el estado de la contraseña de visible a oculta
     let passwordVisible = false;
 
+    //Se ejecuta el cambio de estado del ojo, invierte el estado en que se encuentre  
     this.logoojo.nativeElement.addEventListener('click', () => {
       passwordVisible = !passwordVisible;
       const type = passwordVisible ? 'text' : 'password';
       this.password.nativeElement.setAttribute('type', type);
 
+      // Se muestra el nuevo estilo del ojo de vista de la contraseña 
       const iconElement = this.logoojo.nativeElement;
       iconElement.innerHTML = passwordVisible ? '👁️' : '<i class="fa-solid fa-eye-slash"></i>';
       iconElement.style.color = '#fff';
@@ -35,27 +43,22 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
-  //se almacenan los datos enviados del formulario
+  //Se almacenan los datos enviados del formulario
   user = {
     correo: '',
     password: ''
   }
 
-  constructor(
-    private authService: AuthService,
-    private route: Router,
-  ){}
-
+  //Función para verificar al usuario que está iniciando sesión, Si los campos son correctos, lo redirige al inicio. 
   logIn(){
     // Verifica si los campos requeridos del formulario están completos
     const formulario = document.querySelector('.login_form');
     if (formulario) {
       const camposRequeridos = formulario.querySelectorAll('[required]');
       const camposCompletos = Array.from(camposRequeridos).every((campo) => (campo as HTMLInputElement).value);
-      //se muestra un info en pantalla si faltan campos requeridos 
+      //Se muestra una info en pantalla si faltan campos requeridos 
       if (!camposCompletos) {
         Swal.fire({
           title: 'Por favor, complete todos los campos requeridos',
@@ -73,18 +76,19 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    //Se cambia el loadinf de false a true para que comience a cargar mientras se procesan los datos 
     this.loading = true;
     
-    //almacenar el correo 
+    //Almacenar el correo 
     const correo = this.user.correo;
     
-    //se inicia sesion 
+    // Se hace la solicitud de verificación del usuario al servidor
     this.authService.Login(this.user).subscribe( 
       (res:any) =>{
         // Almacena el dato en el auth.servicio el correo de usuario 
         this.authService.setCorreoUsuario(correo); 
         
+        // Se almacena el token en el localStorege para su autenticación con el servidor
         localStorage.setItem('token', res.token);
 
         this.loading = false;
@@ -94,6 +98,7 @@ export class LoginComponent implements OnInit {
           confirmButtonText: 'Aceptar'
         });
 
+        // Se redirige al inicio 
         this.route.navigate(['inicio']);
       }, 
       error =>{

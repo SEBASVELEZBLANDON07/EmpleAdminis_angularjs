@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Host} from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-//manejo de mensajes personalizados 
+//Manejo de mensajes personalizados. 
 import Swal from 'sweetalert2';
 
 // Declaración para particlesJS
@@ -14,20 +14,21 @@ declare var particlesJS: any;
   styleUrls: ['./horas-extras.component.css']
 })
 export class HorasExtrasComponent {
-//variable titulo empresa 
+//Variable título, empresa. 
 nom_empresa: string = 'empresa';
 
- //estado de cargando los datos al servidor 
+ // Estado de cargando los datos al servidor. 
  loading: boolean = false;
 
- //octener la fecha actual 
+ //Obtener la fecha y hora actual
  fechaActual: string = '';
  timeActual: string = '';
 
- //datos del empleado
+ //Datos del empleado
  nombre: string='';
  apellidos: string= '';
 
+ // Referencias a elementos HTML utilizados en la plantilla del componente
   @ViewChild('abrirnavegacion', { static: true }) abrirnavegacion!: ElementRef;
   @ViewChild('menu', { static: true }) menu!: ElementRef;
   @ViewChild('columnaizquierda', { static: true }) columnaizquierda!: ElementRef;
@@ -39,8 +40,9 @@ nom_empresa: string = 'empresa';
     private route: Router,
   ){}
 
+  // particles-js
   inicializarParticulas(){
-    //menu izquierda animacion
+    //Menú izquierdo animación
     particlesJS('particles-js', {
       "particles": {
         "number": {
@@ -82,23 +84,25 @@ nom_empresa: string = 'empresa';
     });
   }
 
-  //se presiona el butt de abrir menu desplegable 
+  //Se presiona el butt de abrir menú desplegable 
   buttabrirnavegacion(){
     this.inicializarParticulas();
   }
+
+  // Restablecer los campos de búsqueda 
   EmpleadoBusar = {
     nom_empresa: '',
     id_cedula: '',
     tipo_documento: '',
   }
   
-  //funcion para buscar el empleado 
+  //Función para buscar el empleado
   buscarEmp(){
     const formulario = document.querySelector('.form');
     if (formulario) {
       const camposRequeridos = formulario.querySelectorAll('[required]');
       const camposCompletos = Array.from(camposRequeridos).every((campo) => (campo as HTMLInputElement).value);
-      //se muestra un info en pantalla si faltan campos requeridos 
+      //Se muestra una info en pantalla si faltan campos requeridos  
       if (!camposCompletos) {
         Swal.fire({
           title: 'Por favor, complete todos los campos requeridos',
@@ -116,18 +120,18 @@ nom_empresa: string = 'empresa';
       return;
     }
 
-    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    //Se cambia el loadinf de false a true para que comience a cargar mientras se procesan los datos 
     this.loading = true;
 
     this.EmpleadoBusar.nom_empresa = this.nom_empresa;
 
-    //se busca el empleado a quien se le va a brindar la asistencia 
+    //Se busca el empleado a quien se le va a asignar las horas extras 
     this.authService.buscarEmpleado(this.EmpleadoBusar).subscribe(
       (res:any)=>{
-        //llamamos al div que se encuentra oculto
+        //Llamamos al div que se encuentra oculto
         this.datos_de_fechas();
 
-        //asicnamos las variables de nombre y pellidos 
+        //Asignamos las variables de nombre y apellidos 
         this.nombre = res.nombre;
         this.apellidos = res.apelidos;
 
@@ -145,15 +149,15 @@ nom_empresa: string = 'empresa';
     );
   }
 
-  // Función para oganizar el formato de la fecha
+  // Función para organizar el formato de la fecha
   cambiarFormatoFecha(fecha: string): string {
     const [dia, mes, anio] = fecha.split("/");
     return `${anio}/${mes}/${dia}`;
   }
 
-  //datos del contenedor que contiene los datos 
+  // Función para mostrar la información oculta
   datos_de_fechas(){
-    //se octinen la fecha actual del momento del registro 
+    //Se obtiene la fecha actual del momento del registro 
     const fecha = new Date();
     const fechaOpcion: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -162,7 +166,7 @@ nom_empresa: string = 'empresa';
     };
     this.fechaActual = fecha.toLocaleDateString('es-CO', fechaOpcion);
 
-    //para desocultar el contenedor 
+    //Se des oculta el contenedor 
     const datosocultos = document.querySelector('.datosocultos');
       //var div = document.getElementById("miDiv");
       if(datosocultos instanceof HTMLElement){
@@ -175,7 +179,7 @@ nom_empresa: string = 'empresa';
       }
   }
 
-  //se oculta el contenedor de datos de asistencia 
+  //se oculta el contenedor de datos de horas extras
   ocultar_datos_de_fechas(){
     const datosocultos = document.querySelector('.datosocultos');
     if(datosocultos instanceof HTMLElement){
@@ -191,20 +195,21 @@ nom_empresa: string = 'empresa';
     this.horaRegistro.horas_extras= '';
   }
 
+  //Restablecer los datos de registro 
   horaRegistro= {
     fecha:'',
     horas_extras: '',
     id_cedula_h: '',
   }
 
-  //se se envia los datos al servidor 
+  //Función para registrar las horas extras
   registrarHoras(){
     const formulario = document.querySelector('.form_fechaTime');
     if (formulario) {
       console.log("pasa")
       const camposRequeridos = formulario.querySelectorAll('[required]');
       const camposCompletos = Array.from(camposRequeridos).every((campo) => (campo as HTMLInputElement).value);
-      //se muestra un info en pantalla si faltan campos requeridos 
+      //Se muestra una info en pantalla si faltan campos requeridos 
       if (!camposCompletos) {
         Swal.fire({
           title: 'Por favor, complete todos los campos requeridos',
@@ -222,14 +227,14 @@ nom_empresa: string = 'empresa';
       return;
     }
      
-    //se cambia el loadinf de false a true para que comiense acargar mientras se procesa los datos 
+    //Se cambia el loadinf de false a true para que comience a cargar mientras se procesan los datos 
     this.loading = true;
 
-    //organizamos el formato de fecha
+    //Organizamos el formato de fecha
     const convertirFecha = this.fechaActual;
     const fechaEnOrden = this.cambiarFormatoFecha(convertirFecha)
 
-    //asignamos valores
+    //Asignamos valores
     this.horaRegistro.fecha=fechaEnOrden;
     this.horaRegistro.id_cedula_h=this.EmpleadoBusar.id_cedula;
 
@@ -258,34 +263,34 @@ nom_empresa: string = 'empresa';
     );
   }
 
+  //Ejecuciones automáticas, se ejecutan una vez que se inicie el componente
   ngOnInit() {
     // Recupera el valor almacenado en localStorage
     const nom_empresaGuardada = localStorage.getItem('nom_empresa');
 
-    //verificamos si hay un valor almacenado en localStorage, 
+    //Verificamos si hay un valor almacenado en localStorage 
     if (nom_empresaGuardada) {
-      // lo asigna a la variable nom_empresa
+      // Lo asigna a la variable nom_empresa
       this.nom_empresa = nom_empresaGuardada;
     } else {
       // Si no hay un valor almacenado, puedes proporcionar un valor predeterminado
       this.nom_empresa = 'perfil empresa x';
     }
 
-
-    //metodo para abrir navegacion desplegable
-    //definimos variables de estado
+    //Método para abrir navegación desplegable
+    //Definimos variables de estado
     let botoncerrar = 0;
     let botonabrir = 0;
     let estado= false;
 
-    //cuando se presiona el butt para abrir la navegacion 
+    //Cuando se presiona el butt para abrir la navegación 
     this.abrirnavegacion.nativeElement.addEventListener('click', () => {
       estado = true;
       botonabrir=1;
       botoncerrar=botoncerrar+1;
     })
 
-    //se se seleciona algona ocion del menu desplegable 
+    //Se selecciona alguna opción del menú desplegable  
     this.menu.nativeElement.addEventListener('click', (elemento: MouseEvent) => {
       estado = false;
       if(elemento.target instanceof HTMLElement) {
@@ -296,7 +301,7 @@ nom_empresa: string = 'empresa';
       }
     });
 
-    //dependiendo que se presiona se define el evento de cierre o desplegar el menu 
+    //Dependiendo de qué se presiona, se define el evento de cierre o desplegar el menú  
     document.addEventListener('click', () => {
 
       if(estado == true && botoncerrar === 2){
@@ -346,10 +351,7 @@ nom_empresa: string = 'empresa';
       estado= false;
     });
 
-      
-    window.onload = () => {
-        
+    window.onload = () => { 
     }
-
   }  
 }
