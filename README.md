@@ -1,4 +1,4 @@
-# EmpleAdminis
+# EmpleAdminis  <img src="https://img.icons8.com/color/20/000000/angularjs.png" width="30" height="30"/> 
 
 EmpleAdminis es una plataforma de administración de empleados desarrollada en Angular, que se comunica con un microservicio de Node.js. Este proyecto permite a las empresas gestionar el registro de empleados, sus cuentas bancarias, asistencias, horas extras, incapacidades, inventario general y más.
 
