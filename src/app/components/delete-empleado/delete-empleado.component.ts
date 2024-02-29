@@ -138,32 +138,41 @@ export class DeleteEmpleadoComponent {
             )
 
             //Asignamos los datos a las variables. 
-            this.nombre = res.perfil[0].nombre;
-            this.apellidos = res.perfil[0].apellidos;
-            this.cc = res.perfil[0].tipo_documento;
-            this.numeroCedula = res.perfil[0].id_cedula;
-            this.cargo = res.perfil[0].cargo;
-
+            if(res.perfil && res.perfil.length > 0){
+              this.nombre = res.perfil[0].nombre;
+              this.apellidos = res.perfil[0].apellidos;
+              this.cc = res.perfil[0].tipo_documento;
+              this.numeroCedula = res.perfil[0].id_cedula;
+              this.cargo = res.perfil[0].cargo;
+              this.fechaNacimiento = res.perfil[0].fecha_nacimiento;
+              this.pais = res.perfil[0].pais;
+              this.cel = res.perfil[0].num_contacto;
+              this.correo = res.perfil[0].correo;
+              this.direccion = res.perfil[0].direccion;
+              this.horaInicio = res.perfil[0].hora_inicio;
+              this.horafin = res.perfil[0].hora_fin;
+              this.diaInicio = res.perfil[0].primer_dias_laboral;
+              this.diaFin = res.perfil[0].ultimo_dias_laboral;
+            }
+          
             if (res.salario && res.salario.length > 0) {
               this.salario = res.salario[0].salario;
             }
+
+            if (res.asistencia && res.asistencia.length > 0) {
+              this.diastrabajados = res.asistencia[0].total_inserciones_asistencias;
+            }
             
-            this.fechaNacimiento = res.perfil[0].fecha_nacimiento;
-            this.pais = res.perfil[0].pais;
-            this.cel = res.perfil[0].num_contacto;
-            this.correo = res.perfil[0].correo;
-            this.direccion = res.perfil[0].direccion;
-            this.horaInicio = res.perfil[0].hora_inicio;
-            this.horafin = res.perfil[0].hora_fin;
-            this.diaInicio = res.perfil[0].primer_dias_laboral;
-            this.diaFin = res.perfil[0].ultimo_dias_laboral;
-            this.diastrabajados = res.asistencia[0].total_inserciones_asistencias;
-            this.inasistencias = res.inasistencias[0].total_inserciones_inasistencias;
+            if (res.inasistencias && res.inasistencias.length > 0) {
+              this.inasistencias = res.inasistencias[0].total_inserciones_inasistencias;
+            }
 
             if (res.totalHorasExtras && res.totalHorasExtras.length > 0) {
               this.horasExtras= res.totalHorasExtras[0].total;
             }
-            this.incapacidades= res.incapacidades[0].total_inserciones_incapacidades;
+            if(res.incapacidades && res.incapacidades.length > 0){
+              this.incapacidades= res.incapacidades[0].total_inserciones_incapacidades;
+            }
 
           },
           (error)=>{

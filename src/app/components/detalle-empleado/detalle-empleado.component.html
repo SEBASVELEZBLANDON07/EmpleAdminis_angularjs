@@ -10,10 +10,6 @@
                         <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
                         <li><a href="#">Cerrar sesion</a></li>
                         <li><a href="#">Actualizar Empleado</a></li>
-                        <li><a href="#">Actualizar Perfil</a></li>
-                        <!--li><a href="#">Incapacidad</a></li>
-                        <li><a href="#">Inventario</a></li>
-                        <li><a href="#">Borrar Empleado</a></li-->
                     </ul>
                 </nav>
         </header>
@@ -25,7 +21,7 @@
                 <div class="estilo">
                     <h2 class="titulo-empresa">{{ nom_empresa }}.</h2>
                 </div>
-                <div class="efectos-navegación">
+                <div class="efectos-navegación"> 
                     <nav class="menu-central">
                         <ul class="estilonav">
                         <li><a class="a_menu" routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
@@ -39,8 +35,16 @@
                     </nav>
                 </div>
 
+                <!--animacion de gargando imagen-->
+                <div class="cargando-overlay" *ngIf="loading">
+                    <div class="cargando-alert">
+                        <div class="spinner"></div>
+                        <div>Cargando...</div>
+                    </div>
+                </div>
+
                 <br><br><br>
-                    
+
                 <div class="cont">
                     <div class="perfil">
                         <div class="primero">
@@ -62,7 +66,6 @@
                                     <p class="cel"><strong>Cel:</strong> {{ pais }} {{ cel }}</p>
                                 </div>
                             </div>
-                            
                         </div>
                         <div class="nombre_cargo">
                             <h2 class="nombre_apellido">{{ nombre }} {{ apellidos }}</h2>
@@ -94,93 +97,90 @@
                                     <h2 class="textitulo"> asistencias </h2>
 
                                     <div class="asistencias">
-                                        <p><strong>fecha: </strong>  2024-01-02</p>
-                                        <p><strong>hora registro: </strong> 07:00:00 </p>
+                                        <div class="contenedo_asistencia_datostablas" style="display: block;">
+                                            <p><strong>fecha: </strong>  {{ fechaAsistencia | date:'yyyy-MM-dd' }} </p>
+                                            <p><strong>hora registro: </strong> {{ horario }} </p>
+                                        </div>
                                         
-                                        <div class="contenedo-mes">
-                                            <table  class="tablacontener">
-                                                <thead>
-                                                    <tr class="filatitulo">
-                                                        <th><h1 class="th-class"> Mes </h1></th>
-                                                        <th><h1 class="th-class"> Fecha </h1></th>
-                                                        <th><h1 class="th-class"> Hora de registro </h1></th>
-                                                    </tr>
-                    
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class"> 12 </td>
-                                                        <td class="td-class">  2024-01-02/ / </td>
-                                                        <td class="td-class">  7:00:00 </td>
-                                                    </tr>
-                                                    
-                                                  
-                                                </tbody>
-                                            </table>
+                                        <div class="contenedo_asistencia" style="display: none;">
+                                            <div *ngFor="let tabla of ContTablaAsistenciaPorMes">
+                                                <table class="tablacontener">
+                                                    <thead>
+                                                        <tr class="filatitulo">
+                                                            <th><h1 class="th-class"> Mes </h1></th>
+                                                            <th><h1 class="th-class"> Fecha </h1></th>
+                                                            <th><h1 class="th-class"> Hora de registro </h1></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let datos of tabla.arrayDatos" class="filacontenido">
+                                                            <td class="td-class"> {{ tabla.mes | date:'MM' }} </td>
+                                                            <td class="td-class"> {{ datos.fecha | date:'yyyy-MM-dd' }} </td>
+                                                            <td class="td-class"> {{ datos.horario }} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                         <br>
-                                        <button class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
+                                        <button (click)="buttAsistencia()" class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
                                     </div>
 
                                     <h1 class="textitulo">Incapacidad</h1>
 
                                     <div class="incapacidad">
 
-                                        <button class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
+                                        <button (click)="buttIncapacidad()" class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
 
+                                        <div class="contenedor-incapacidad_datostablas" style="display: block;">
+                                            <p><strong>fecha de registro: </strong>{{ fechaRegistroIncapacidad | date:'yyyy-MM-dd' }} </p>
+                                            <p><strong>fecha de incapacidad: </strong> {{ fecha_incapacidad | date:'yyyy-MM-dd' }} </p>
+                                            <p><strong>causa: </strong> {{ causa }} </p>
+                                            <p><strong>descicion: </strong> {{ descripcion }}</p>
+                                            <p><strong>comprobante de incapacidad: </strong><a [href]= "archivo_incapacidad" target="_blank">Archivo pdf de incapacidad</a></p>
+                                            <p><strong>dias de incapacidad: </strong>  {{ cantidad_dias_incapacidad }} </p>
+                                        </div>
 
-                                        <div class="contenedor-incapacidad">
-                                            <p><strong>fecha de registro: </strong> 2024-01-02</p>
-                                            <p><strong>fecha de incapacidad: </strong>2024-01-02</p>
-                                            <p><strong>causa: </strong>fuerte caida con las escaleras </p>
-                                            <p><strong>descicion: </strong>al pasar por las escaleras el trabajador sebastian velez blandon se resvalla por uno de los escalones por no contar con los actiresvaladores, la caida produce varias edidas de dravedada en las eestremidades superiores y inferiores con una lebe contucion en la besa</p>
-                                            <p><strong>comprobante de incapacidad: </strong><a href="https://drive.google.com/file/d/1Q_FvK3zXhRrzmcOdVlll-rTMABD_SJjg" target="_blank">archivo pdf de incapacidad</a></p>
-                                            <p><strong>dias de incapacidad: </strong> 6 </p>
-                                        </div>
-                                        <div class="contenedor-incapacidad">
-                                            <p><strong>fecha de registro: </strong> 2024-01-02</p>
-                                            <p><strong>fecha de incapacidad: </strong>2024-01-02</p>
-                                            <p><strong>causa: </strong>fuerte caida con las escaleras </p>
-                                            <p><strong>descicion: </strong>al pasar por las escaleras el trabajador sebastian velez blandon se resvalla por uno de los escalones por no contar con los actiresvaladores, la caida produce varias edidas de dravedada en las eestremidades superiores y inferiores con una lebe contucion en la besa</p>
-                                            <p><strong>comprobante de incapacidad: </strong><a href="https://drive.google.com/file/d/1Q_FvK3zXhRrzmcOdVlll-rTMABD_SJjg" target="_blank">archivo pdf de incapacidad</a></p>
-                                            <p><strong>dias de incapacidad: </strong> 6 </p>
-                                        </div>
-                                        <div class="contenedor-incapacidad">
-                                            <p><strong>fecha de registro: </strong> 2024-01-02</p>
-                                            <p><strong>fecha de incapacidad: </strong>2024-01-02</p>
-                                            <p><strong>causa: </strong>fuerte caida con las escaleras </p>
-                                            <p><strong>descicion: </strong>al pasar por las escaleras el trabajador sebastian velez blandon se resvalla por uno de los escalones por no contar con los actiresvaladores, la caida produce varias edidas de dravedada en las eestremidades superiores y inferiores con una lebe contucion en la besa</p>
-                                            <p><strong>comprobante de incapacidad: </strong><a href="https://drive.google.com/file/d/1Q_FvK3zXhRrzmcOdVlll-rTMABD_SJjg" target="_blank">archivo pdf de incapacidad</a></p>
-                                            <p><strong>dias de incapacidad: </strong> 6 </p>
+                                        <div class="contenedo_incapacidad" style="display: none;" >
+                                            <div *ngFor="let tabla of ContTablaIncapacidadPorMes" >
+                                                <div *ngFor="let datos of tabla.arrayDatos" class="contenedor-incapacidad">
+                                                    <p><strong>fecha de registro: </strong>{{ datos.fecha_registro | date:'yyyy-MM-dd' }} </p>
+                                                    <p><strong>fecha de incapacidad: </strong> {{ datos.fecha_incapacidad | date:'yyyy-MM-dd' }} </p>
+                                                    <p><strong>causa: </strong> {{ datos.causa }} </p>
+                                                    <p><strong>descicion: </strong> {{ datos.descripcion }}</p>
+                                                    <p><strong>comprobante de incapacidad: </strong><a [href]= "datos.archivo_incapacidad" target="_blank">Archivo pdf de incapacidad</a></p>
+                                                    <p><strong>dias de incapacidad: </strong>  {{ datos.cantidad_dias_incapacidad }} </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
                             <div class="derecha">
-
-                                
 
                                 <div class="contened">
 
                                     <h2 class="textitulo">Cuenta Bancaria</h2>
 
                                     <div class="cuentaBancaria">
-                                        <p><strong>Entidad Bancaria </strong> bancolombia </p>
-                                        <p><strong>tipo de cuenta</strong> corriente </p>
-                                        <p><strong>numero de cuenta: </strong> 32345654566</p>
+                                        <p><strong>Entidad Bancaria </strong> {{ nom_banco }} </p>
+                                        <p><strong>tipo de cuenta</strong> {{ tipo_cuenta }} </p>
+                                        <p><strong>numero de cuenta: </strong> {{ num_cuenta_bancaria }} </p>
                                         <p><strong>Salario:</strong> $ {{ formatoSalario(salario) }}</p>
                                     </div>
 
                                     <h1 class="textitulo">Horas Extras</h1>
                                     <div class="horas-extras">
-                                        <p><strong>Fecha: </strong> 2024-01-02</p>
-                                        <p><strong>horas extras: </strong> 2 </p>
-                                        <p><strong>total: </strong> 10 </p>
-
-                                        <div class="contenedo-mes">
-                                            <table class="tablacontener">
+                                        <div class="contenedo_horas-extras_datostablas" style="display: block;">
+                                            <p><strong>Fecha: </strong> {{ fechaRegistroHorasExtras | date:'yyyy-MM-dd' }} </p>
+                                            <p><strong>horas extras: </strong> {{ horas_extras }} </p>
+                                            <p><strong>total: </strong> {{ totalHorasExtras }} </p>
+                                        </div>
+                                        
+                                        <div class="contenedo_horasExtras" style="display: none;">
+                                            <div  *ngFor="let tabla of ContTablaHorasExtrasPorMes">
+                                                <table class="tablacontener">
                                                 <thead>
                                                     <tr class="filatitulo">
                                                         <th><h1 class="th-class">Fecha:</h1></th>
@@ -189,102 +189,58 @@
                                                     </tr>                                               
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class"> 2024-01-02</td>
-                                                        <td class="td-class"> 1 </td>
-                                                        <td class="td-class"> 1 </td>
-                                                    </tr>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class"> 2024-01-02</td>
-                                                        <td class="td-class"> 3 </td>
-                                                        <td class="td-class"> 4 </td>
-                                                    </tr>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class"> 2024-01-02</td>
-                                                        <td class="td-class"> 4 </td>
-                                                        <td class="td-class"> 8 </td>
+                                                    <tr  *ngFor="let datos of tabla.arrayDatos" class="filacontenido">
+                                                        <td class="td-class"> {{ datos.fecha | date:'yyyy-MM-dd' }} </td>
+                                                        <td class="td-class"> {{ datos.horas_extras }} </td>
+                                                        <td class="td-class"> {{ datos.total }} </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            </div>
                                         </div>
                                        
-                                        <button class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
-
+                                        <button (click)="buttHorasExtras()" class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
 
                                     </div>
 
                                     <h1 class="textitulo">Inasistencias </h1>
 
-                                    
-
                                     <div class="inasistencia">
 
-                                        <button class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
+                                        <button (click)="buttInasistencia()" class="butt-abrir"> Abrir <i class="fa-solid fa-window-restore fa-beat-fade iconoabrir"></i></button>
 
-                                        <p><strong>fecha: </strong> 2024-01-02</p>
-
-                                        <div class="contenedo-mes">
-                                            <table class="tablacontener">
-                                                <thead>
-                                                    <tr class="filatitulo">
-                                                        <th><h1 class="th-class">Mes </h1></th>
-                                                        <th><h1 class="th-class">Fecha </h1></th>
-                                                    </tr>                                               
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class">12</td>
-                                                        <td class="td-class">2024-01-02</td>
-                                                    </tr>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class">12</td>
-                                                        <td class="td-class">2024-01-04</td>
-                                                    </tr>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class">12</td>
-                                                        <td class="td-class">2024-01-03</td>
-                                                    </tr>
-                                                </tbody>
-                                                
-                                            </table>
-                                        </div>
-                                        <div class="contenedo-mes">
-                                            <table class="tablacontener">
-                                                <thead>
-                                                    <tr class="filatitulo">
-                                                        <th><h1 class="th-class">Mes </h1></th>
-                                                        <th><h1 class="th-class">Fecha </h1></th>
-                                                    </tr>                                               
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class">1</td>
-                                                        <td class="td-class">2024-01-02</td>
-                                                    </tr>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class">1</td>
-                                                        <td class="td-class">2024-01-04</td>
-                                                    </tr>
-                                                    <tr class="filacontenido">
-                                                        <td class="td-class">1</td>
-                                                        <td class="td-class">2024-01-03</td>
-                                                    </tr>
-                                                </tbody>
-                                                
-                                            </table>
+                                        <div class="contenedo_inasistencia_datostablas" style="display: block;">
+                                            <p><strong>fecha: </strong> {{ fechaInasistencia | date:'yyyy-MM-dd' }} </p>
                                         </div>
 
+                                        <div class="contenedo_inasistencia" style="display: none;">
+                                            <div *ngFor="let tabla of ContTablainasistenciaPorMes">
 
-                                      
+                                                <table class="tablacontener">
+                                                    <thead>
+                                                        <tr class="filatitulo">
+                                                            <th><h1 class="th-class">Messs </h1></th>
+                                                            <th><h1 class="th-class">Fechaaa </h1></th>
+                                                        </tr>                                               
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr  *ngFor="let datos of tabla.arrayDatos" class="filacontenido">
+                                                            <td class="td-class"> {{ tabla.mes | date:'MM' }} </td>
+                                                            <td class="td-class"> {{ datos.fecha | date:'yyyy-MM-dd' }} </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>      
                 </div>
                 <br>
             </div>
+            
             <div div class="columna-derecha" #columnaderecha></div>
         </div>
     </div>

@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
 .container_principal{
@@ -229,8 +228,45 @@
      box-shadow: 0 2px 0 0 currentcolor;
 }
 	
-
 /*------------------------------*/
+
+ /*cargando informacion al servidor*/
+ .cargando-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; 
+}
+
+.cargando-alert {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-top: 4px solid #007bff; /* Color del spinner */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 .cont{
   position: relative;
@@ -405,7 +441,7 @@ margin-top: 30px;
   margin-right: 10px;
 }
 
-.datos-personales, .horario-trabajo, .cuentaBancaria, .asistencias, .horas-extras, .incapacidad, .inasistencia, .contenedor-incapacidad, .contenedo-mes{
+.datos-personales, .horario-trabajo, .cuentaBancaria, .asistencias, .horas-extras, .incapacidad, .inasistencia, .contenedor-incapacidad, .contenedor-incapacidad_datostablas, .contenedo_asistencia, .contenedo_horasExtras, .contenedo_inasistencia{
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 1, 0.274);
@@ -414,11 +450,11 @@ margin-top: 30px;
   margin-top: 20px;
 } 
 
-.contenedo-mes{
+.contenedo_asistencia, .contenedo_horasExtras, .contenedo_inasistencia{
   padding: 5px;
   margin-top: 10px;
   padding-left: 0px;
-}
+} 
 
 .datos-personales p, .horario-trabajo p, .asistencias p, .horas-extras p, .incapacidad p, .inasistencia p{
   font-size: 18px;
@@ -437,7 +473,6 @@ margin-top: 30px;
   position: relative;
 }
 
-
 .tablacontener {
   width: 98%;
   border-spacing: 0; 
@@ -446,9 +481,6 @@ margin-top: 30px;
   overflow: hidden; 
   border: 10px solid #44474b; 
 }
-
-
-
 
 .filatitulo {
   background-color: #44474b; 
@@ -490,15 +522,11 @@ margin-top: 30px;
   font-weight: bold;
   font-family: 'Georgia', serif;
   text-align: center;
-
 }
-
-
 
 .tablacontener, .tablacontener-inicistencia, .tablacontener th, .tablacontener-inicistencia th, .tablacontener td, .tablacontener-inicistencia td {
   border: 1px solid #ddd;
 }
-
 
 .butt-abrir {
     position: absolute;
@@ -517,9 +545,6 @@ margin-top: 30px;
   .butt-abrir:hover {
     background-color: #0057b37c;
   }
-  
-
-
 
 /*contenedor derecha*/
 .derecha {
@@ -529,7 +554,6 @@ margin-top: 30px;
   width: 23%; 
  /*background-color: rgb(70, 70, 70);*/
 }
-
 
 .cuentaBancaria {
   display: flex;

@@ -71,7 +71,6 @@ export class AuthService {
     return this.http.post(`${this.URL}/delet_Empleado/RegisEmpleado_eliminado`, motivoData);
   }
 
-
   //Solicitudes por el método get 
 
   //Solicitud HTTP al servidor para obtener el nombre de la empresa
@@ -98,6 +97,16 @@ export class AuthService {
   //Solicitud HTTP al servidor para obtener los empleados de la empresa 
   inventarioGeneral(id: string): Observable<any> {
     return this.http.get(`${this.URL}/inventarioEmple/inventarioGeneral/${id}`);
+  }
+
+  //Solicitud HTTP al servidor para obtener la información detallada del empleado   
+  detalleEmpleado(id: string): Observable<any> {
+    return this.http.get(`${this.URL}/info_empleado/infoEmpleado/${id}`);
+  }
+
+  //Solicitud HTTP al servidor para obtener información de la plataforma más completa 
+  tablasContec(id: string): Observable<any> {
+    return this.http.get(`${this.URL}/info_empleado/tablaContec/${id}`);
   }
 
   //Solicitudes por el método delete 
